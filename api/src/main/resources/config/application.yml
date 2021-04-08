@@ -1,0 +1,34 @@
+server:
+  shutdown: graceful
+  port: 8080
+
+spring:
+  application.name: protocol-currency-api
+  jackson:
+    mapper:
+      ACCEPT_CASE_INSENSITIVE_ENUMS: true
+    deserialization:
+      FAIL_ON_UNKNOWN_PROPERTIES: false
+    default-property-inclusion: non_null
+  aop:
+    proxy-target-class: false
+  main:
+    banner-mode: log
+    web-application-type: reactive
+
+rarible:
+  core:
+    filter:
+      cors:
+        enabled: true
+    nginx-expose:
+      enabled: true
+      location: /protocol/currency
+
+currency:
+  historySince: '2020-01-01'
+  apiUrl: https://api.coingecko.com/api/v3
+  coins:
+    - ethereum
+    - dai
+    - weth

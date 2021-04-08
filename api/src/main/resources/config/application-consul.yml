@@ -1,0 +1,5 @@
+spring:
+  data:
+    mongodb:
+      uri: mongodb://${currency.mongodb.hosts}
+      database: ${currency.mongodb.database}

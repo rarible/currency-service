@@ -1,0 +1,60 @@
+﻿version: '3.8'
+
+services:
+  ${APPLICATION_ENVIRONMENT}-protocol-currency-api:
+    image: rarible/protocol-currency-api:${VERSION}
+    logging:
+      driver: "json-file"
+      options:
+        max-file: 5
+        max-size: 100m
+    deploy:
+      mode: replicated
+      replicas: ${PROTOCOL_TEMPLATE_API_REPLICAS}
+      placement:
+        constraints:
+          - "node.labels.rarible.service == true"
+          - "node.labels.environment == ${APPLICATION_ENVIRONMENT}"
+      resources:
+        limits:
+          cpus: '${PROTOCOL_TEMPLATE_API_CPU_LIMIT}'
+          memory: ${PROTOCOL_TEMPLATE_API_MEMORY_LIMIT}
+        reservations:
+          memory: ${PROTOCOL_TEMPLATE_API_MEMORY_RESERVED}
+      restart_policy:
+        condition: any
+        delay: 5s
+        window: 60s
+      update_config:
+        parallelism: 1
+        failure_action: rollback
+        delay: 20s
+        order: start-first
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/_status/ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 120s
+    environment:
+      - CONSUL_ROOT-PATH=${APPLICATION_ENVIRONMENT}/protocol
+      - APPLICATION_ENVIRONMENT=${APPLICATION_ENVIRONMENT}
+      - SPRING_PROFILES_ACTIVE=consul,${APPLICATION_ENVIRONMENT}
+      - JAVA_OPTIONS=-Xmx${PROTOCOL_TEMPLATE_API_HEAP} -Xms${PROTOCOL_TEMPLATE_API_HEAP}
+    networks:
+      - ${APPLICATION_ENVIRONMENT}-backend
+      - internet
+      - proxy
+networks:
+  prod-backend:
+    external: true
+  staging-backend:
+    external: true
+  dev-backend:
+    external: true
+  e2e-backend:
+    external: true
+  internet:
+    external: true
+  proxy:
+    external: true
