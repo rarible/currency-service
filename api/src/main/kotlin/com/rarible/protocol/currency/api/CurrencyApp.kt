@@ -10,8 +10,9 @@ import org.springframework.scheduling.annotation.EnableScheduling
 @EnableReactiveMongoRepositories
 @EnableScheduling
 @EnableMongoAuditing
-class CurrencyApp {
+object CurrencyApp {
 
+    @JvmStatic
     fun main(args: Array<String>) {
         runApplication<CurrencyApp>(*args)
     }
