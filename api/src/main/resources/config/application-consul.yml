@@ -1,5 +1,5 @@
 spring:
   data:
     mongodb:
-      uri: mongodb://${currency.mongodb.hosts}
-      database: ${currency.mongodb.database}
+      uri: mongodb://${mongodb.hosts}
+      database: ${mongodb.database}

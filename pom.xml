@@ -20,8 +20,10 @@
         <artifactId>rarible-parent-pom</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
+
     <properties>
         <swagger-annotations.version>1.5.20</swagger-annotations.version>
+        <spring-cloud.version>2.2.2.RELEASE</spring-cloud.version>
         <springdoc.version>1.5.4</springdoc.version>
         <rarible-core.version>1.2-SNAPSHOT</rarible-core.version>
         <testcontainers-version>1.15.2</testcontainers-version>
@@ -133,6 +135,14 @@
     </dependencyManagement>
 
     <dependencies>
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-stdlib</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-reflect</artifactId>
+        </dependency>
         <dependency>
             <groupId>ru.roborox.spring</groupId>
             <artifactId>log-test</artifactId>
