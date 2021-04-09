@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController
 import reactor.core.publisher.Mono
 import java.util.*
 
-@RestController
+@RestController("/v0.1/currency")
 class CurrencyController(
     private val rateRepository: RateRepository,
     private val conversionService: ConversionService

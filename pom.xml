@@ -194,5 +194,6 @@
         <module>core</module>
         <module>converters</module>
         <module>api-model</module>
+        <module>client</module>
     </modules>
 </project>
