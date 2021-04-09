@@ -29,11 +29,11 @@ data class CurrencyApiProperties(
 
 
 enum class Platform {
-    ethereum;
+    ETHEREUM;
 
     companion object {
-        fun of(name: String): Platform? =  if(name == ethereum.name) {
-            ethereum
+        fun of(name: String): Platform? =  if(name.toUpperCase() == ETHEREUM.name) {
+            ETHEREUM
         } else {
             null
         }

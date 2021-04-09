@@ -13,14 +13,14 @@ class CurrencyApiPropertiesTest {
         val props = CurrencyApiProperties(
             "",
             mapOf(
-                "ethereum" to mapOf("ethereum" to "0x0000000000000000000000000000000000000000"),
-                "dai" to mapOf("ethereum" to DAI)
+                "ethereum" to mapOf("ETHEREUM" to "0x0000000000000000000000000000000000000000"),
+                "dai" to mapOf("ETHEREUM" to DAI)
             ),
             Date()
         )
 
-        Assertions.assertEquals("ethereum", props.byAddress(Platform.ethereum, Address.ZERO()))
-        Assertions.assertEquals("dai", props.byAddress(Platform.ethereum, Address.apply(DAI)))
+        Assertions.assertEquals("ethereum", props.byAddress(Platform.ETHEREUM, Address.ZERO()))
+        Assertions.assertEquals("dai", props.byAddress(Platform.ETHEREUM, Address.apply(DAI)))
         Assertions.assertNull(props.byAddress(Platform.of("binance"), Address.ZERO()))
     }
 

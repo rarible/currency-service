@@ -33,8 +33,8 @@ common:
   # value is map of platform name to the coins address on the corresponding platform
   coins:
     ethereum:
-      ethereum: "0x0000000000000000000000000000000000000000"
+      ETHEREUM: "0x0000000000000000000000000000000000000000"
     dai:
-      ethereum: "0x6b175474e89094c44da98b954eedeac495271d0f"
+      ETHEREUM: "0x6b175474e89094c44da98b954eedeac495271d0f"
     weth:
-      ethereum: "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2"
+      ETHEREUM: "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2"
