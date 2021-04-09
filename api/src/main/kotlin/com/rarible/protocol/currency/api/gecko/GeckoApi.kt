@@ -31,7 +31,7 @@ interface GeckoApi {
         @RequestParam("to")
         to: Long,
 
-        @RequestParam(value = "vs_currencies", required = false, defaultValue = "usd")
+        @RequestParam(value = "vs_currency", required = false, defaultValue = "usd")
         vsCurrency: String = "usd"
     ): Mono<HistoryResponse>
 }
