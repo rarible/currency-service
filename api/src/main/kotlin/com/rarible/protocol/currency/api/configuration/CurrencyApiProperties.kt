@@ -5,7 +5,7 @@ import org.springframework.boot.context.properties.ConstructorBinding
 import org.springframework.format.annotation.DateTimeFormat
 import java.util.*
 
-internal const val PREFIX = "currency"
+internal const val PREFIX = "common"
 
 @ConstructorBinding
 @ConfigurationProperties(PREFIX)

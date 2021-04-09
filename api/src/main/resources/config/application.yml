@@ -25,7 +25,7 @@ rarible:
       enabled: true
       location: /protocol/currency
 
-currency:
+common:
   historySince: '2020-01-01'
   apiUrl: https://api.coingecko.com/api/v3
   coins:
