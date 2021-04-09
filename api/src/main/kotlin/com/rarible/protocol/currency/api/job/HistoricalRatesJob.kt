@@ -18,7 +18,7 @@ class HistoricalRatesJob(
     val geckoApi: GeckoApi
 ) {
 
-    @Scheduled(cron = "@hourly")
+    @Scheduled(initialDelay = 60000, fixedDelay = 3600000)
     fun loadPriceHistory(): Unit = runBlocking {
         properties.coins.forEach {
             loadCurrency(it)

@@ -8,7 +8,7 @@ pipeline {
     REGISTRY_PASSWORD = credentials('registry-password')
 
     STACK_DIR= 'ci-provision'
-    STACK_NAME = 'currency'
+    STACK_NAME = 'protocol'
   }
   stages {
     stage('package') {
@@ -30,7 +30,7 @@ pipeline {
         sh 'docker login -u ${REGISTRY_ACCOUNT} -p ${REGISTRY_PASSWORD}'
 
         sh '''
-          export IMAGE_NAME=currency-api
+          export IMAGE_NAME=protocol-currency-api
           
           docker build \
            -t ${REGISTRY_ACCOUNT}/${IMAGE_NAME}:$IMAGE_TAG \
