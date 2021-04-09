@@ -26,6 +26,11 @@
             <artifactId>rarible-core-common</artifactId>
         </dependency>
         <dependency>
+            <groupId>io.daonomic.scalether</groupId>
+            <artifactId>domain_2.13</artifactId>
+            <version>${scalether.version}</version>
+        </dependency>
+        <dependency>
             <groupId>javax.validation</groupId>
             <artifactId>validation-api</artifactId>
         </dependency>

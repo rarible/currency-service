@@ -21,7 +21,7 @@ class HistoricalRatesJob(
     @Scheduled(initialDelay = 60000, fixedDelay = 3600000)
     fun loadPriceHistory(): Unit = runBlocking {
         properties.coins.forEach {
-            loadCurrency(it)
+            loadCurrency(it.key)
         }
     }
 
