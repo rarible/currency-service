@@ -20,11 +20,11 @@ class CurrencyController(
     private val currencyApiProperties: CurrencyApiProperties
 ): CurrencyApi {
 
-    override fun getRate(platform: String, address: Address, date: Date): Mono<RateDto> = coroutineToMono {
+    override fun getRate(blockchain: String, address: Address, at: Date): Mono<RateDto> = coroutineToMono {
         currencyApiProperties
-            .byAddress(Platform.of(platform), address)
+            .byAddress(Platform.of(blockchain), address)
             ?.let {
-                rateRepository.getRate(it, date)
+                rateRepository.getRate(it, at)
             }
             ?.let {
                 conversionService.convert<RateDto>(it)
