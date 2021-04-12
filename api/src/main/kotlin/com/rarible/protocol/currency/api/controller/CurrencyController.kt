@@ -2,9 +2,9 @@ package com.rarible.protocol.currency.api.controller
 
 import com.rarible.core.common.conversion.convert
 import com.rarible.core.common.coroutine.coroutineToMono
+import com.rarible.core.model.type.Blockchain
 import com.rarible.protocol.currency.api.CurrencyApi
 import com.rarible.protocol.currency.api.configuration.CurrencyApiProperties
-import com.rarible.protocol.currency.api.configuration.Platform
 import com.rarible.protocol.currency.api.dto.RateDto
 import com.rarible.protocol.currency.core.repository.RateRepository
 import org.springframework.core.convert.ConversionService
@@ -20,9 +20,9 @@ class CurrencyController(
     private val currencyApiProperties: CurrencyApiProperties
 ): CurrencyApi {
 
-    override fun getRate(blockchain: String, address: Address, at: Date): Mono<RateDto> = coroutineToMono {
+    override fun getRate(blockchain: Blockchain, address: Address, at: Date): Mono<RateDto> = coroutineToMono {
         currencyApiProperties
-            .byAddress(Platform.of(blockchain), address)
+            .byAddress(blockchain, address)
             ?.let {
                 rateRepository.getRate(it, at)
             }

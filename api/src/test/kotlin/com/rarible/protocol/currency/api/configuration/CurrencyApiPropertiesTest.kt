@@ -1,5 +1,6 @@
 package com.rarible.protocol.currency.api.configuration
 
+import com.rarible.core.model.type.Blockchain
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import scalether.domain.Address
@@ -19,9 +20,8 @@ class CurrencyApiPropertiesTest {
             Date()
         )
 
-        Assertions.assertEquals("ethereum", props.byAddress(Platform.ETHEREUM, Address.ZERO()))
-        Assertions.assertEquals("dai", props.byAddress(Platform.ETHEREUM, Address.apply(DAI)))
-        Assertions.assertNull(props.byAddress(Platform.of("binance"), Address.ZERO()))
+        Assertions.assertEquals("ethereum", props.byAddress(Blockchain.ETHEREUM, Address.ZERO()))
+        Assertions.assertEquals("dai", props.byAddress(Blockchain.ETHEREUM, Address.apply(DAI)))
     }
 
     companion object {

@@ -1,5 +1,6 @@
 package com.rarible.protocol.currency.api
 
+import com.rarible.core.model.type.Blockchain
 import com.rarible.protocol.currency.api.dto.RateDto
 import org.springframework.format.annotation.DateTimeFormat
 import org.springframework.web.bind.annotation.GetMapping
@@ -13,7 +14,7 @@ interface CurrencyApi {
     @GetMapping(value = ["/rate"])
     fun getRate(
         @RequestParam("blockchain")
-        blockchain: String,
+        blockchain: Blockchain,
 
         @RequestParam("address")
         address: Address,

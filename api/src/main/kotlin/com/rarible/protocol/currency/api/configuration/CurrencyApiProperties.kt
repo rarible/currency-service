@@ -1,5 +1,6 @@
 package com.rarible.protocol.currency.api.configuration
 
+import com.rarible.core.model.type.Blockchain
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.boot.context.properties.ConstructorBinding
 import org.springframework.format.annotation.DateTimeFormat
@@ -15,27 +16,10 @@ data class CurrencyApiProperties(
     val coins: Map<String, Map<String, String>>,
     @DateTimeFormat(pattern = "yyyy-MM-dd") val historySince: Date
 ) {
-    fun byAddress(platform: Platform?, address: Address): String? {
-        return if(platform == null) {
-            null
-        } else {
-            this.coins.entries.firstOrNull { (_, addresses) ->
-                addresses[platform.name]
-                    ?.let { hex -> Address.apply(hex) } == address
-            }?.key
-        }
-    }
-}
-
-
-enum class Platform {
-    ETHEREUM;
-
-    companion object {
-        fun of(name: String): Platform? =  if(name.toUpperCase() == ETHEREUM.name) {
-            ETHEREUM
-        } else {
-            null
-        }
+    fun byAddress(platform: Blockchain, address: Address): String? {
+        return this.coins.entries.firstOrNull { (_, addresses) ->
+            addresses[platform.name]
+                ?.let { hex -> Address.apply(hex) } == address
+        }?.key
     }
 }
