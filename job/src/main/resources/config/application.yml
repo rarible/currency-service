@@ -1,3 +1,7 @@
+spring:
+  application:
+    name: protocol-currency-job
+
 common:
   historySince: '2020-01-01'
   apiUrl: https://api.coingecko.com/api/v3
