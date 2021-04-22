@@ -7,9 +7,11 @@ import com.rarible.protocol.currency.core.model.Rate
 import com.rarible.protocol.currency.core.repository.RateRepository
 import kotlinx.coroutines.reactive.awaitFirstOrDefault
 import kotlinx.coroutines.runBlocking
+import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Component
+import java.time.Instant
 import java.time.temporal.ChronoUnit
 
 @Component
@@ -40,22 +42,36 @@ class HistoricalRatesJob(
         }
 
 
-        val rates = loadCurrency(currencyId, from.epochSecond, from.plus(90, ChronoUnit.DAYS).epochSecond)
-        logger.info("Received {} rates for {}", rates.size, currencyId)
+        val rates = loadCurrency(currencyId, from, Instant.now())
+
         rateRepository.saveAll(rates)
     }
 
-    suspend fun loadCurrency(currencyId: String, from: Long, to: Long): List<Rate> {
-        return geckoApi
-            .history(currencyId, from, to)
-            .awaitFirstOrDefault(HistoryResponse())
-            .prices
-            .map { (date, rate) ->
-                Rate.of(currencyId, date, rate)
+    suspend fun loadCurrency(currencyId: String, from: Instant, maxTo: Instant): List<Rate> {
+        if(from.isAfter(maxTo)) {
+            logger.warn("No rates found for {}", currencyId)
+            return emptyList()
+        } else {
+            val to = from.plus(90, ChronoUnit.DAYS)
+            val rates = geckoApi
+                .history(currencyId, from.epochSecond, to.epochSecond)
+                .awaitFirstOrDefault(HistoryResponse())
+                .prices
+                .map { (date, rate) ->
+                    Rate.of(currencyId, date, rate)
+                }
+
+            return if (rates.isEmpty()) {
+                logger.info("No rates found for {} in range {} - {}. Trying next range...", currencyId, from, to)
+                loadCurrency(currencyId, to, maxTo)
+            } else {
+                logger.info("Received {} rates for {} in range {} - {}", rates.size, currencyId, from, to)
+                rates
             }
+        }
     }
 
     companion object {
-        val logger = LoggerFactory.getLogger(HistoricalRatesJob::class.java)
+        val logger: Logger = LoggerFactory.getLogger(HistoricalRatesJob::class.java)
     }
 }
