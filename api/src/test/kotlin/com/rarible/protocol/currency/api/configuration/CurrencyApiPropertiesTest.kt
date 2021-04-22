@@ -1,6 +1,7 @@
 package com.rarible.protocol.currency.api.configuration
 
 import com.rarible.core.model.type.Blockchain
+import com.rarible.protocol.currency.core.configuration.CurrencyApiProperties
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import scalether.domain.Address

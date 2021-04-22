@@ -9,7 +9,7 @@
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>protocol-currency-api</artifactId>
+    <artifactId>protocol-currency-job</artifactId>
 
     <build>
         <plugins>
@@ -21,6 +21,10 @@
     </build>
 
     <dependencies>
+        <dependency>
+            <groupId>ru.roborox.spring</groupId>
+            <artifactId>feign</artifactId>
+        </dependency>
         <dependency>
             <groupId>com.rarible.protocol</groupId>
             <artifactId>protocol-currency-core</artifactId>

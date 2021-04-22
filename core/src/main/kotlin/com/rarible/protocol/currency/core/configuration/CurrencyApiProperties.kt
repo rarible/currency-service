@@ -1,4 +1,4 @@
-package com.rarible.protocol.currency.api.configuration
+package com.rarible.protocol.currency.core.configuration
 
 import com.rarible.core.model.type.Blockchain
 import org.springframework.boot.context.properties.ConfigurationProperties

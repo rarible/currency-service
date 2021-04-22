@@ -4,7 +4,7 @@ import com.rarible.core.common.conversion.convert
 import com.rarible.core.common.coroutine.coroutineToMono
 import com.rarible.core.model.type.Blockchain
 import com.rarible.protocol.currency.api.CurrencyApi
-import com.rarible.protocol.currency.api.configuration.CurrencyApiProperties
+import com.rarible.protocol.currency.core.configuration.CurrencyApiProperties
 import com.rarible.protocol.currency.api.dto.RateDto
 import com.rarible.protocol.currency.core.repository.RateRepository
 import org.springframework.core.convert.ConversionService

@@ -40,6 +40,17 @@ pipeline {
           docker push ${REGISTRY_ACCOUNT}/${IMAGE_NAME}:latest
         '''
 
+        sh '''
+          export IMAGE_NAME=protocol-currency-job
+
+          docker build \
+           -t ${REGISTRY_ACCOUNT}/${IMAGE_NAME}:$IMAGE_TAG \
+           -t ${REGISTRY_ACCOUNT}/${IMAGE_NAME}:latest job
+
+          docker push ${REGISTRY_ACCOUNT}/${IMAGE_NAME}:$IMAGE_TAG
+          docker push ${REGISTRY_ACCOUNT}/${IMAGE_NAME}:latest
+        '''
+
         script {
           env.DOCKER_HOST = "ssh://jenkins@${SWARM_MANAGER_HOST}"
         }

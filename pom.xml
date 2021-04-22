@@ -196,5 +196,6 @@
         <module>api-model</module>
         <module>client</module>
         <module>client-starter</module>
+        <module>job</module>
     </modules>
 </project>

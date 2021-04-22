@@ -2,6 +2,7 @@ package com.rarible.protocol.currency.api.gecko
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.KotlinModule
+import com.rarible.protocol.currency.core.gecko.HistoryResponse
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import java.math.BigDecimal
@@ -29,6 +30,6 @@ class HistoryResponseTest {
 
         val value = mapper.readValue(json, HistoryResponse::class.java)
 
-        assertEquals(value.prices[0].second, BigDecimal.valueOf(2091.855473053653))
+        assertEquals(value.prices[0].rate, BigDecimal.valueOf(2091.855473053653))
     }
 }

@@ -15,26 +15,3 @@ spring:
   main:
     banner-mode: log
     web-application-type: reactive
-
-rarible:
-  core:
-    filter:
-      cors:
-        enabled: true
-    nginx-expose:
-      enabled: true
-      location: /protocol/currency
-
-common:
-  historySince: '2020-01-01'
-  apiUrl: https://api.coingecko.com/api/v3
-  # format:
-  # key is CoinGecko id from /coins/list;
-  # value is map of platform name to the coins address on the corresponding platform
-  coins:
-    ethereum:
-      ETHEREUM: "0x0000000000000000000000000000000000000000"
-    dai:
-      ETHEREUM: "0x6b175474e89094c44da98b954eedeac495271d0f"
-    weth:
-      ETHEREUM: "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2"

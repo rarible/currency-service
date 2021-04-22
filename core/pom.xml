@@ -22,6 +22,10 @@
 
     <dependencies>
         <dependency>
+            <groupId>ru.roborox.spring</groupId>
+            <artifactId>feign</artifactId>
+        </dependency>
+        <dependency>
             <groupId>com.rarible</groupId>
             <artifactId>rarible-core-service</artifactId>
         </dependency>

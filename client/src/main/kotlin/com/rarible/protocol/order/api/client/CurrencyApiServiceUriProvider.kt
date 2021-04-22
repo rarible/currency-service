@@ -1,6 +1,5 @@
 package com.rarible.protocol.order.api.client
 
-import com.rarible.core.model.type.Blockchain
 import java.net.URI
 
 class CurrencyApiServiceUriProvider(
