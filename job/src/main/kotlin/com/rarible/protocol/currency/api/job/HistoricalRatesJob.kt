@@ -43,8 +43,10 @@ class HistoricalRatesJob(
 
 
         val rates = loadCurrency(currencyId, from, Instant.now())
-
-        rateRepository.saveAll(rates)
+        if(rates.isNotEmpty()) {
+            rateRepository.saveAll(rates)
+            loadCurrency(currencyId)
+        }
     }
 
     suspend fun loadCurrency(currencyId: String, from: Instant, maxTo: Instant): List<Rate> {
