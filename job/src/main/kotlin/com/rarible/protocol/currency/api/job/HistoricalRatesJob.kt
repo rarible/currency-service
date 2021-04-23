@@ -37,10 +37,10 @@ class HistoricalRatesJob(
             logger.info("No history for {}. Loading from historySince={}", currencyId, since.toString())
             since
         } else {
-            logger.info("Last entry for {} is {}. Proceeding loading.", currencyId, last)
-            last.date.toInstant()
+            val lastPlusHour = last.date.toInstant().plus(1, ChronoUnit.HOURS)
+            logger.info("Last entry for {} is {}. Proceeding loading starting with {}", currencyId, last, lastPlusHour)
+            lastPlusHour
         }
-
 
         val rates = loadCurrency(currencyId, from, Instant.now())
         if(rates.isNotEmpty()) {
