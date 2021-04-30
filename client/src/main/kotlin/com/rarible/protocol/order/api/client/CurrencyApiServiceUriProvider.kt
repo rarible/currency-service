@@ -6,6 +6,6 @@ class CurrencyApiServiceUriProvider(
     private val environment: String
 ) {
     fun provideUri(): URI {
-        return URI.create(String.format("http://%s-protocol-currency-api:8080", environment))
+        return URI.create(String.format("http://%s-currency-api:8080", environment))
     }
 }
