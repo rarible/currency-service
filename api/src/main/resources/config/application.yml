@@ -10,8 +10,6 @@ spring:
     deserialization:
       FAIL_ON_UNKNOWN_PROPERTIES: false
     default-property-inclusion: non_null
-  aop:
-    proxy-target-class: false
   main:
     banner-mode: log
     web-application-type: reactive
