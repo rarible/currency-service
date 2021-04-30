@@ -1,7 +1,5 @@
-package com.rarible.protocol.currency.api.gecko
+package com.rarible.protocol.currency.core.gecko
 
-import com.rarible.protocol.currency.core.gecko.HistoryResponse
-import org.springframework.format.annotation.DateTimeFormat
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestParam
@@ -25,7 +23,6 @@ interface GeckoApi {
         currencyId: String,
 
         @RequestParam("from")
-        @DateTimeFormat()
         from: Long,
 
         @RequestParam("to")

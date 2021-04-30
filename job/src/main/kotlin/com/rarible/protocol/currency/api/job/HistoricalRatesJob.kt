@@ -1,6 +1,6 @@
 package com.rarible.protocol.currency.api.job
 
-import com.rarible.protocol.currency.api.gecko.GeckoApi
+import com.rarible.protocol.currency.core.gecko.GeckoApi
 import com.rarible.protocol.currency.core.gecko.HistoryResponse
 import com.rarible.protocol.currency.core.configuration.CurrencyApiProperties
 import com.rarible.protocol.currency.core.model.Rate
