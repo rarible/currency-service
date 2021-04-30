@@ -10,12 +10,18 @@ import com.rarible.protocol.currency.core.repository.RateRepository
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.core.convert.ConversionService
+import org.springframework.http.MediaType
+import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import reactor.core.publisher.Mono
 import scalether.domain.Address
 import java.util.*
 
-@RestController("/v0.1/currency")
+@RestController
+@RequestMapping(
+    value = ["/v0.1/currency"],
+    produces = [MediaType.APPLICATION_JSON_VALUE]
+)
 class CurrencyController(
     private val rateRepository: RateRepository,
     private val conversionService: ConversionService,
