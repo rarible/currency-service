@@ -20,7 +20,6 @@ interface CurrencyApi {
         address: Address,
 
         @RequestParam("at")
-        @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-        at: Date
+        at: Long
     ): Mono<RateDto>
 }

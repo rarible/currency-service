@@ -30,8 +30,9 @@ class CurrencyController(
 
     val logger: Logger = LoggerFactory.getLogger(CurrencyController::class.java)
 
-    override fun getRate(blockchain: Blockchain, address: Address, at: Date): Mono<RateDto> {
-        logger.info("Get rate for [{}/{}] at {}", blockchain, address, at)
+    override fun getRate(blockchain: Blockchain, address: Address, at: Long): Mono<RateDto> {
+        val atDate = Date(at)
+        logger.info("Get rate for [{}/{}] at {}", blockchain, address, atDate)
         val coinId = currencyApiProperties.byAddress(blockchain, address)
 
         return coroutineToMono {
@@ -44,7 +45,7 @@ class CurrencyController(
                 null
             } else {
                 logger.info("Coin id = {}", coinId)
-                val geckoRate = rateRepository.getRate(coinId, at)
+                val geckoRate = rateRepository.getRate(coinId, atDate)
                 logger.info("Gecko response: {}", geckoRate)
                 geckoRate?.let {
                     conversionService.convert<RateDto>(it)
