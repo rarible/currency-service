@@ -5,8 +5,7 @@ import com.rarible.protocol.currency.core.configuration.CurrencyApiProperties
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import scalether.domain.Address
-import java.util.*
-
+import java.time.Instant
 
 class CurrencyApiPropertiesTest {
 
@@ -18,7 +17,7 @@ class CurrencyApiPropertiesTest {
                 "ethereum" to mapOf("ETHEREUM" to "0x0000000000000000000000000000000000000000"),
                 "dai" to mapOf("ETHEREUM" to DAI)
             ),
-            Date()
+            Instant.now()
         )
 
         Assertions.assertEquals("ethereum", props.byAddress(Blockchain.ETHEREUM, Address.ZERO()))

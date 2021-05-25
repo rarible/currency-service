@@ -12,7 +12,7 @@ import org.springframework.data.mongodb.core.query.Criteria
 import org.springframework.data.mongodb.core.query.Query
 import org.springframework.data.mongodb.core.query.gt
 import org.springframework.data.mongodb.core.query.isEqualTo
-import java.util.*
+import java.time.Instant
 
 class RateRepository(
     private val template: ReactiveMongoTemplate
@@ -28,7 +28,7 @@ class RateRepository(
         return template.findById<Rate>(id).awaitFirstOrNull()
     }
 
-    suspend fun getRate(currencyId: String, date: Date): Rate? {
+    suspend fun getRate(currencyId: String, date: Instant): Rate? {
         return template.findOne<Rate>(
             Query(
                 Criteria().andOperator(
@@ -52,6 +52,4 @@ class RateRepository(
             )
         ).awaitFirstOrNull()
     }
-
-
 }

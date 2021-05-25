@@ -22,6 +22,11 @@
     </parent>
 
     <properties>
+        <version.plugin.jacoco>0.8.6</version.plugin.jacoco>
+
+        <model-generator.version>1.0-SNAPSHOT</model-generator.version>
+        <protocol-api.version>1.0-SNAPSHOT</protocol-api.version>
+        <dev-jna.version>5.7.0</dev-jna.version>
         <swagger-annotations.version>1.5.20</swagger-annotations.version>
         <spring-cloud.version>2.2.2.RELEASE</spring-cloud.version>
         <springdoc.version>1.5.4</springdoc.version>
@@ -29,6 +34,9 @@
         <testcontainers-version>1.15.2</testcontainers-version>
         <mockk.version>1.10.5</mockk.version>
         <dev-jna.version>5.7.0</dev-jna.version>
+
+        <dir.target.classes>${basedir}/target/classes</dir.target.classes>
+        <generator.package>com.rarible.protocol.dto</generator.package>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -49,26 +57,6 @@
             <dependency>
                 <groupId>com.rarible.protocol</groupId>
                 <artifactId>protocol-currency-core</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.rarible.protocol</groupId>
-                <artifactId>protocol-currency-api-model</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.rarible.protocol</groupId>
-                <artifactId>protocol-currency-api-converters</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.rarible.protocol</groupId>
-                <artifactId>protocol-currency-api</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.rarible.protocol</groupId>
-                <artifactId>protocol-currency-api-client</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
@@ -105,6 +93,21 @@
                 <groupId>com.rarible</groupId>
                 <artifactId>rarible-core-contract</artifactId>
                 <version>${rarible-core.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.rarible.core</groupId>
+                <artifactId>rarible-core-test-common</artifactId>
+                <version>${rarible-core.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.rarible.protocol</groupId>
+                <artifactId>protocol-api-currency</artifactId>
+                <version>${protocol-api.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.rarible.protocol</groupId>
+                <artifactId>protocol-client-currency</artifactId>
+                <version>${protocol-api.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.rarible</groupId>
@@ -170,6 +173,30 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>${version.plugin.jacoco}</version>
+                <configuration>
+                    <excludes>
+                        <exclude>**/*Exception.*</exclude>
+                    </excludes>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>report</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
     <profiles>
@@ -192,10 +219,6 @@
     <modules>
         <module>api</module>
         <module>core</module>
-        <module>converters</module>
-        <module>api-model</module>
-        <module>client</module>
-        <module>client-starter</module>
         <module>job</module>
     </modules>
 </project>

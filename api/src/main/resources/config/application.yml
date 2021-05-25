@@ -15,7 +15,7 @@ spring:
     web-application-type: reactive
 
 common:
-  historySince: '2020-01-01'
+  historySince: '2020-01-01T00:00:00Z'
   apiUrl: https://api.coingecko.com/api/v3
   # format:
   # key is CoinGecko id from /coins/list;

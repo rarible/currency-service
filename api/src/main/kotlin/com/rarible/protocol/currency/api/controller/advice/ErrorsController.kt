@@ -2,8 +2,7 @@ package com.rarible.protocol.currency.api.controller.advice
 
 import com.rarible.core.common.coroutine.coroutineToMono
 import com.rarible.protocol.currency.api.exceptions.CurrencyApiException
-import com.rarible.protocol.currency.api.error.CurrencyApiErrorCodeDto
-import com.rarible.protocol.currency.api.error.CurrencyApiErrorDto
+import com.rarible.protocol.dto.CurrencyApiErrorDto
 import org.slf4j.LoggerFactory
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -34,12 +33,12 @@ class ErrorsController {
 
         CurrencyApiErrorDto(
             status = HttpStatus.INTERNAL_SERVER_ERROR.value(),
-            code = CurrencyApiErrorCodeDto.UNKNOWN,
+            code = CurrencyApiErrorDto.Code.UNKNOWN,
             message = ex.message ?: "Something went wrong"
         )
     }
 
-    private suspend fun logWithNecessaryLevel(status: HttpStatus, ex: Exception, message: String = "") {
+    private fun logWithNecessaryLevel(status: HttpStatus, ex: Exception, message: String = "") {
         if (status.is5xxServerError) {
             logger.error(message, ex)
         } else {

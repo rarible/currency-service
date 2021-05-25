@@ -1,55 +1,51 @@
 package com.rarible.protocol.currency.api.controller
 
 import com.rarible.core.common.conversion.convert
-import com.rarible.core.common.coroutine.coroutineToMono
 import com.rarible.core.model.type.Blockchain
-import com.rarible.protocol.currency.api.CurrencyApi
-import com.rarible.protocol.currency.api.dto.RateDto
 import com.rarible.protocol.currency.api.service.CurrencyService
 import com.rarible.protocol.currency.core.configuration.CurrencyApiProperties
+import com.rarible.protocol.dto.CurrencyRateDto
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.core.convert.ConversionService
-import org.springframework.http.MediaType
-import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.RestController
-import reactor.core.publisher.Mono
 import scalether.domain.Address
-import java.util.*
+import java.time.Instant
 
 @RestController
-@RequestMapping(
-    value = ["/v0.1/currency"],
-    produces = [MediaType.APPLICATION_JSON_VALUE]
-)
 class CurrencyController(
     private val currencyService: CurrencyService,
     private val conversionService: ConversionService,
     private val currencyApiProperties: CurrencyApiProperties
-) : CurrencyApi {
+) : CurrencyControllerApi {
 
     val logger: Logger = LoggerFactory.getLogger(CurrencyController::class.java)
 
-    override fun getRate(blockchain: Blockchain, address: Address, at: Long): Mono<RateDto> {
-        val atDate = Date(at)
+    override suspend fun getCurrencyRate(
+        blockchainStr: String,
+        addressStr: String,
+        at: Long
+    ): ResponseEntity<CurrencyRateDto> {
+        val atDate = Instant.ofEpochMilli(at)
+        val blockchain = Blockchain.valueOf(blockchainStr)
+        val address = Address.apply(addressStr)
         logger.info("Get rate for [{}/{}] at {}", blockchain, address, atDate)
-        val coinId = currencyApiProperties.byAddress(blockchain, address)
 
-        return coroutineToMono {
-            if(coinId == null) {
-                logger.warn(
-                    "Coin [{}/{}] is not supported. If this coin should be tracked, add it to application.yml.",
-                    blockchain,
-                    address
-                )
-                null
-            } else {
-                val geckoRate = currencyService.getRate(coinId, atDate)
-                logger.info("Gecko response: {}", geckoRate)
-                geckoRate?.let {
-                    conversionService.convert<RateDto>(it)
-                }
-            }
+        val coinId = currencyApiProperties.byAddress(blockchain, address)
+        if (coinId == null) {
+            logger.warn(
+                "Coin [{}/{}] is not supported. If this coin should be tracked, add it to application.yml.",
+                blockchain, address
+            )
+            return ResponseEntity.ok().build()
         }
+
+        val geckoRate = currencyService.getRate(coinId, atDate)
+        logger.info("Gecko response: {}", geckoRate)
+        val result = geckoRate?.let {
+            conversionService.convert<CurrencyRateDto>(it)
+        }
+        return ResponseEntity.ok(result)
     }
 }

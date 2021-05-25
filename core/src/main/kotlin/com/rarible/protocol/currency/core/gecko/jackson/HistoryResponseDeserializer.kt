@@ -7,7 +7,7 @@ import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.node.ArrayNode
 import com.rarible.protocol.currency.core.gecko.HistoryResponse
 import com.rarible.protocol.currency.core.gecko.Price
-import java.util.*
+import java.time.Instant
 
 
 class HistoryResponseDeserializer: JsonDeserializer<HistoryResponse>() {
@@ -17,7 +17,7 @@ class HistoryResponseDeserializer: JsonDeserializer<HistoryResponse>() {
 
         val prices: List<Price> = pricesJson.map {
             val price = it as ArrayNode
-            val date = Date(price[0].asLong())
+            val date = Instant.ofEpochMilli(price[0].asLong())
             val rate = price[1].asDouble().toBigDecimal()
             Price(date, rate)
         }.toList()
