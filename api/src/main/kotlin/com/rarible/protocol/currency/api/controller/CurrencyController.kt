@@ -1,7 +1,6 @@
 package com.rarible.protocol.currency.api.controller
 
-import com.rarible.core.common.conversion.convert
-import com.rarible.core.model.type.Blockchain
+import com.rarible.ethereum.domain.Blockchain
 import com.rarible.protocol.currency.api.service.CurrencyService
 import com.rarible.protocol.currency.core.configuration.CurrencyApiProperties
 import com.rarible.protocol.dto.CurrencyRateDto
@@ -44,7 +43,7 @@ class CurrencyController(
         val geckoRate = currencyService.getRate(coinId, atDate)
         logger.info("Gecko response: {}", geckoRate)
         val result = geckoRate?.let {
-            conversionService.convert<CurrencyRateDto>(it)
+            conversionService.convert(it, CurrencyRateDto::class.java)
         }
         return ResponseEntity.ok(result)
     }

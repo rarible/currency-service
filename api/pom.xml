@@ -38,20 +38,20 @@
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-mongodb-reactive</artifactId>
+            <groupId>com.rarible.core</groupId>
+            <artifactId>rarible-core-mongo</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.rarible</groupId>
+            <groupId>com.rarible.core</groupId>
             <artifactId>rarible-core-starter</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.rarible</groupId>
-            <artifactId>rarible-telemetry-starter</artifactId>
+            <groupId>com.rarible.core</groupId>
+            <artifactId>rarible-core-telemetry-starter</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.rarible</groupId>
-            <artifactId>rarible-core-contract</artifactId>
+            <groupId>com.rarible.ethereum</groupId>
+            <artifactId>rarible-ethereum-contract</artifactId>
         </dependency>
         <dependency>
             <groupId>com.rarible.core</groupId>
@@ -60,11 +60,6 @@
         <dependency>
             <groupId>com.rarible.protocol</groupId>
             <artifactId>protocol-client-currency</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>ru.roborox.spring</groupId>
-            <artifactId>test-common</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>

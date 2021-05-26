@@ -1,6 +1,6 @@
 package com.rarible.protocol.currency.core.configuration
 
-import com.rarible.core.model.type.Blockchain
+import com.rarible.ethereum.domain.Blockchain
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.boot.context.properties.ConstructorBinding
 import scalether.domain.Address

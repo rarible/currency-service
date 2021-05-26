@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestParam
 import reactor.core.publisher.Mono
 
-
 interface GeckoApi {
 
     @GetMapping("/simple/price")

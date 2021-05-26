@@ -1,8 +1,8 @@
 package com.rarible.protocol.currency.api.controller.advice
 
-import com.rarible.core.common.coroutine.coroutineToMono
 import com.rarible.protocol.currency.api.exceptions.CurrencyApiException
 import com.rarible.protocol.dto.CurrencyApiErrorDto
+import kotlinx.coroutines.reactor.mono
 import org.slf4j.LoggerFactory
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -15,7 +15,7 @@ class ErrorsController {
     private val logger = LoggerFactory.getLogger(this::class.java)
 
     @ExceptionHandler(CurrencyApiException::class)
-    fun handleIndexerApiException(ex: CurrencyApiException) = coroutineToMono {
+    fun handleIndexerApiException(ex: CurrencyApiException) = mono {
         logWithNecessaryLevel(ex.status, ex, "Template api error while handle request")
 
         val error = CurrencyApiErrorDto(
@@ -28,7 +28,7 @@ class ErrorsController {
 
     @ExceptionHandler(Throwable::class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    fun handlerException(ex: Throwable) = coroutineToMono {
+    fun handlerException(ex: Throwable) = mono {
         logger.error("System error while handling request", ex)
 
         CurrencyApiErrorDto(
