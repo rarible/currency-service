@@ -21,8 +21,8 @@ class RateRepository(
     suspend fun createIndexes() {
         template.indexOps(Rate::class.java).ensureIndex(
             Index()
-                .on("${Rate::currencyId}", Sort.Direction.ASC)
-                .on("${Rate::date}", Sort.Direction.ASC)
+                .on(Rate::currencyId.name, Sort.Direction.ASC)
+                .on(Rate::date.name, Sort.Direction.ASC)
         ).awaitFirst()
     }
 
