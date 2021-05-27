@@ -1,5 +1,6 @@
 package com.rarible.protocol.currency.api
 
+import com.github.cloudyrock.spring.v5.EnableMongock
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 import org.springframework.data.mongodb.config.EnableMongoAuditing
@@ -10,6 +11,7 @@ import org.springframework.scheduling.annotation.EnableScheduling
 @EnableReactiveMongoRepositories
 @EnableScheduling
 @EnableMongoAuditing
+@EnableMongock
 class CurrencyHistoryJob
 
 fun main(args: Array<String>) {
