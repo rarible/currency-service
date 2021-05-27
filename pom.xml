@@ -23,7 +23,7 @@
     <properties>
         <version.plugin.jacoco>0.8.6</version.plugin.jacoco>
 
-        <protocol-api.version>1.0.1</protocol-api.version>
+        <protocol-api.version>1.1.0</protocol-api.version>
         <dev-jna.version>5.7.0</dev-jna.version>
         <swagger-annotations.version>1.5.20</swagger-annotations.version>
         <springdoc.version>1.5.4</springdoc.version>
