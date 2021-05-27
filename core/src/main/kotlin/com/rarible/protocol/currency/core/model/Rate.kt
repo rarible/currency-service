@@ -4,14 +4,11 @@ import org.bson.types.ObjectId
 import org.springframework.data.annotation.Id
 import org.springframework.data.annotation.Version
 import org.springframework.data.mongodb.core.index.CompoundIndex
-import org.springframework.data.mongodb.core.index.Indexed
 import org.springframework.data.mongodb.core.mapping.Document
 import java.math.BigDecimal
-import java.time.Instant
-import java.time.LocalDateTime
 import java.util.*
 
-@Document
+@Document("rate")
 @CompoundIndex(
     def = "{'currencyId': 1, 'date': -1}"
 )

@@ -8,6 +8,7 @@ import org.springframework.data.domain.Sort
 import org.springframework.data.mongodb.core.ReactiveMongoTemplate
 import org.springframework.data.mongodb.core.findById
 import org.springframework.data.mongodb.core.findOne
+import org.springframework.data.mongodb.core.index.Index
 import org.springframework.data.mongodb.core.query.Criteria
 import org.springframework.data.mongodb.core.query.Query
 import org.springframework.data.mongodb.core.query.gt
@@ -17,6 +18,14 @@ import java.util.*
 class RateRepository(
     private val template: ReactiveMongoTemplate
 ) {
+    suspend fun createIndexes() {
+        template.indexOps(Rate::class.java).ensureIndex(
+            Index()
+                .on("${Rate::currencyId}", Sort.Direction.ASC)
+                .on("${Rate::date}", Sort.Direction.ASC)
+        ).awaitFirst()
+    }
+
     suspend fun save(storageModel: Rate): Rate {
         return template.save(storageModel).awaitFirst()
     }
