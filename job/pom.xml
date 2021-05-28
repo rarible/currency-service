@@ -22,6 +22,18 @@
 
     <dependencies>
         <dependency>
+            <groupId>com.github.cloudyrock.mongock</groupId>
+            <artifactId>mongock-spring-v5</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.mongodb</groupId>
+            <artifactId>mongodb-driver-sync</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.github.cloudyrock.mongock</groupId>
+            <artifactId>mongodb-springdata-v3-driver</artifactId>
+        </dependency>
+        <dependency>
             <groupId>com.rarible.protocol</groupId>
             <artifactId>protocol-currency-core</artifactId>
         </dependency>
@@ -38,7 +50,7 @@
             <artifactId>spring-boot-starter-data-mongodb-reactive</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.rarible.core</groupId>
+            <groupId>com.rarible</groupId>
             <artifactId>rarible-core-starter</artifactId>
         </dependency>
         <dependency>
