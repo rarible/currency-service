@@ -6,9 +6,9 @@ import org.springframework.data.annotation.Version
 import org.springframework.data.mongodb.core.index.CompoundIndex
 import org.springframework.data.mongodb.core.mapping.Document
 import java.math.BigDecimal
-import java.util.*
+import java.time.Instant
 
-@Document("rate")
+@Document
 @CompoundIndex(
     def = "{'currencyId': 1, 'date': -1}"
 )
@@ -18,7 +18,7 @@ data class Rate (
 
     val currencyId: String,
 
-    val date: Date,
+    val date: Instant,
 
     val rate: BigDecimal,
 
@@ -26,7 +26,7 @@ data class Rate (
     val version: Long? = null
 ) {
     companion object {
-        fun of(currencyId: String, date: Date, rate: BigDecimal) =
+        fun of(currencyId: String, date: Instant, rate: BigDecimal) =
             Rate(ObjectId.get(), currencyId, date, rate)
     }
 }

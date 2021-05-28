@@ -34,20 +34,8 @@
             <artifactId>mongodb-springdata-v3-driver</artifactId>
         </dependency>
         <dependency>
-            <groupId>ru.roborox.spring</groupId>
-            <artifactId>feign</artifactId>
-        </dependency>
-        <dependency>
             <groupId>com.rarible.protocol</groupId>
             <artifactId>protocol-currency-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.rarible.protocol</groupId>
-            <artifactId>protocol-currency-api-model</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.rarible.protocol</groupId>
-            <artifactId>protocol-currency-api-converters</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -62,41 +50,20 @@
             <artifactId>spring-boot-starter-data-mongodb-reactive</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.rarible</groupId>
+            <groupId>com.rarible.core</groupId>
             <artifactId>rarible-core-starter</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.rarible</groupId>
-            <artifactId>rarible-telemetry-starter</artifactId>
+            <groupId>com.rarible.core</groupId>
+            <artifactId>rarible-core-telemetry-starter</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.rarible</groupId>
-            <artifactId>rarible-core-common</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.rarible</groupId>
-            <artifactId>rarible-core-contract</artifactId>
+            <groupId>com.rarible.ethereum</groupId>
+            <artifactId>rarible-ethereum-contract</artifactId>
         </dependency>
         <dependency>
             <groupId>org.jetbrains.kotlinx</groupId>
             <artifactId>kotlinx-coroutines-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.jetbrains.kotlinx</groupId>
-            <artifactId>kotlinx-coroutines-jdk8</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.jetbrains.kotlinx</groupId>
-            <artifactId>kotlinx-coroutines-reactive</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.jetbrains.kotlinx</groupId>
-            <artifactId>kotlinx-coroutines-reactor</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>ru.roborox.spring</groupId>
-            <artifactId>test-common</artifactId>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.testcontainers</groupId>

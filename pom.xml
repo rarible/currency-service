@@ -7,23 +7,25 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
 
-    <repositories>
-        <repository>
-            <id>nexus-snapshots</id>
-            <name>nexus-snapshots</name>
-            <url>http://10.7.3.6:8081/nexus/content/repositories/snapshots/</url>
-        </repository>
-    </repositories>
-
     <parent>
         <groupId>com.rarible</groupId>
         <artifactId>rarible-parent-pom</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.1-SNAPSHOT</version>
     </parent>
 
+    <repositories>
+        <repository>
+            <id>nexus-maven-public</id>
+            <url>http://nexus.rarible.int/repository/maven-public/</url>
+        </repository>
+    </repositories>
+
     <properties>
+        <version.plugin.jacoco>0.8.6</version.plugin.jacoco>
+
+        <protocol-api.version>1.1.0</protocol-api.version>
+        <dev-jna.version>5.7.0</dev-jna.version>
         <swagger-annotations.version>1.5.20</swagger-annotations.version>
-        <spring-cloud.version>2.2.2.RELEASE</spring-cloud.version>
         <springdoc.version>1.5.4</springdoc.version>
         <rarible-core.version>1.2-SNAPSHOT</rarible-core.version>
         <mongock.version>4.3.4</mongock.version>
@@ -34,9 +36,16 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>ru.roborox.spring</groupId>
-                <artifactId>parent</artifactId>
+                <groupId>com.rarible.core</groupId>
+                <artifactId>rarible-core-parent</artifactId>
                 <version>1.2-SNAPSHOT</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.rarible.ethereum</groupId>
+                <artifactId>rarible-ethereum-parent</artifactId>
+                <version>1.0-SNAPSHOT</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -61,63 +70,13 @@
             </dependency>
             <dependency>
                 <groupId>com.rarible.protocol</groupId>
-                <artifactId>protocol-currency-api-model</artifactId>
-                <version>${project.version}</version>
+                <artifactId>protocol-api-currency</artifactId>
+                <version>${protocol-api.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.rarible.protocol</groupId>
-                <artifactId>protocol-currency-api-converters</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.rarible.protocol</groupId>
-                <artifactId>protocol-currency-api</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.rarible.protocol</groupId>
-                <artifactId>protocol-currency-api-client</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.rarible</groupId>
-                <artifactId>rarible-telemetry-starter</artifactId>
-                <version>${rarible-core.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.rarible</groupId>
-                <artifactId>rarible-core-starter</artifactId>
-                <version>${rarible-core.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.rarible</groupId>
-                <artifactId>rarible-core-service</artifactId>
-                <version>${rarible-core.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.rarible</groupId>
-                <artifactId>rarible-core-converter</artifactId>
-                <version>${rarible-core.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.rarible</groupId>
-                <artifactId>rarible-core-common</artifactId>
-                <version>${rarible-core.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.rarible</groupId>
-                <artifactId>rarible-core-model</artifactId>
-                <version>${rarible-core.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.rarible</groupId>
-                <artifactId>rarible-core-contract</artifactId>
-                <version>${rarible-core.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.rarible</groupId>
-                <artifactId>rarible-core-test</artifactId>
-                <version>${rarible-core.version}</version>
+                <artifactId>protocol-client-currency</artifactId>
+                <version>${protocol-api.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springdoc</groupId>
@@ -151,11 +110,6 @@
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-reflect</artifactId>
         </dependency>
-        <dependency>
-            <groupId>ru.roborox.spring</groupId>
-            <artifactId>log-test</artifactId>
-            <scope>test</scope>
-        </dependency>
     </dependencies>
     <build>
         <plugins>
@@ -175,6 +129,30 @@
                             </files>
                             <quiet>true</quiet>
                         </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>${version.plugin.jacoco}</version>
+                <configuration>
+                    <excludes>
+                        <exclude>**/*Exception.*</exclude>
+                    </excludes>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>report</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
                     </execution>
                 </executions>
             </plugin>
@@ -200,10 +178,6 @@
     <modules>
         <module>api</module>
         <module>core</module>
-        <module>converters</module>
-        <module>api-model</module>
-        <module>client</module>
-        <module>client-starter</module>
         <module>job</module>
     </modules>
 </project>

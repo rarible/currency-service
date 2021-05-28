@@ -1,14 +1,14 @@
-package com.rarible.protocol.currency.api.converters.dto
+package com.rarible.protocol.currency.api.converter
 
-import com.rarible.protocol.currency.api.dto.RateDto
 import com.rarible.protocol.currency.core.model.Rate
+import com.rarible.protocol.dto.CurrencyRateDto
 import org.springframework.core.convert.converter.Converter
 import org.springframework.stereotype.Component
 
 @Component
-object RateDtoConverter : Converter<Rate, RateDto> {
-    override fun convert(source: Rate): RateDto {
-        return RateDto(
+object RateDtoConverter : Converter<Rate, CurrencyRateDto> {
+    override fun convert(source: Rate): CurrencyRateDto {
+        return CurrencyRateDto(
             fromCurrencyId = source.currencyId,
             toCurrencyId = "usd",
             rate = source.rate,

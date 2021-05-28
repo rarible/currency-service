@@ -1,8 +1,8 @@
 package com.rarible.protocol.currency.api.job
 
+import com.rarible.protocol.currency.core.configuration.CurrencyApiProperties
 import com.rarible.protocol.currency.core.gecko.GeckoApi
 import com.rarible.protocol.currency.core.gecko.HistoryResponse
-import com.rarible.protocol.currency.core.configuration.CurrencyApiProperties
 import com.rarible.protocol.currency.core.model.Rate
 import com.rarible.protocol.currency.core.repository.RateRepository
 import kotlinx.coroutines.reactive.awaitFirstOrDefault
@@ -33,11 +33,11 @@ class HistoricalRatesJob(
     suspend fun loadCurrency(currencyId: String) {
         val last = rateRepository.findLast(currencyId)
         val from = if(last == null) {
-            val since = properties.historySince.toInstant()
+            val since = properties.historySince
             logger.info("No history for {}. Loading from historySince={}", currencyId, since.toString())
             since
         } else {
-            val lastPlusHour = last.date.toInstant().plus(1, ChronoUnit.HOURS)
+            val lastPlusHour = last.date.plus(1, ChronoUnit.HOURS)
             logger.info("Last entry for {} is {}. Proceeding loading starting with {}", currencyId, last, lastPlusHour)
             lastPlusHour
         }

@@ -2,16 +2,14 @@ package com.rarible.protocol.currency.core.repository
 
 import com.rarible.core.test.containers.MongodbReactiveBaseTest
 import com.rarible.protocol.currency.core.model.Rate
-import com.rarible.protocol.currency.core.repository.RateRepository
 import kotlinx.coroutines.runBlocking
 import org.assertj.core.api.Assertions
-import org.assertj.core.api.InstanceOfAssertFactory
 import org.bson.types.ObjectId
 import org.junit.jupiter.api.Test
 import org.testcontainers.junit.jupiter.Testcontainers
 import java.math.BigDecimal
+import java.time.Instant
 import java.util.*
-
 
 @Testcontainers
 class RateRepositoryTest : MongodbReactiveBaseTest() {
@@ -42,11 +40,9 @@ class RateRepositoryTest : MongodbReactiveBaseTest() {
         findLast = repo.findLast("dai")
         Assertions.assertThat(findLast).isNotNull
         Assertions.assertThat(findLast!!.rate).isEqualTo(rate4.rate)
-
     }
 
-
-    fun createRate(currencyId: String) = Rate(
-        ObjectId.get(), currencyId, Date(), BigDecimal.valueOf(Random(Date().time).nextDouble())
+    private fun createRate(currencyId: String) = Rate(
+        ObjectId.get(), currencyId, Instant.now(), BigDecimal.valueOf(Random(Date().time).nextDouble())
     )
 }
