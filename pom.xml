@@ -16,11 +16,12 @@
     <repositories>
         <repository>
             <id>nexus-maven-public</id>
-            <url>http://nexus.rarible.int/repository/maven-public/</url>
+            <url>http://10.7.3.6:8083/repository/maven-public/</url>
         </repository>
     </repositories>
 
     <properties>
+        <nexus.maven.public>http://10.7.3.6:8083/repository/maven-public/</nexus.maven.public>
         <version.plugin.jacoco>0.8.6</version.plugin.jacoco>
 
         <protocol-api.version>1.1.0</protocol-api.version>
@@ -33,6 +34,7 @@
         <mockk.version>1.10.5</mockk.version>
         <dev-jna.version>5.7.0</dev-jna.version>
     </properties>
+
     <dependencyManagement>
         <dependencies>
             <dependency>
