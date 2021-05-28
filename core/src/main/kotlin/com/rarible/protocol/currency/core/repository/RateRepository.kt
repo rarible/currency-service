@@ -23,6 +23,7 @@ class RateRepository(
             Index()
                 .on(Rate::currencyId.name, Sort.Direction.ASC)
                 .on(Rate::date.name, Sort.Direction.ASC)
+                .background()
         ).awaitFirst()
     }
 
