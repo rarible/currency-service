@@ -10,6 +10,7 @@
 
     <modelVersion>4.0.0</modelVersion>
     <artifactId>protocol-currency-core</artifactId>
+    <version>1.0</version>
 
     <build>
         <resources>

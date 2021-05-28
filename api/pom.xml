@@ -10,6 +10,7 @@
 
     <modelVersion>4.0.0</modelVersion>
     <artifactId>protocol-currency-api</artifactId>
+    <version>1.0</version>
 
     <build>
         <plugins>
