@@ -27,7 +27,7 @@ class CurrencyController(
         at: Long
     ): ResponseEntity<CurrencyRateDto> {
         val atDate = Instant.ofEpochMilli(at)
-        val blockchain = Blockchain.valueOf(blockchainStr.toUpperCase())
+        val blockchain = Blockchain.valueOf(blockchainStr)
         val address = Address.apply(addressStr)
         logger.info("Get rate for [{}/{}] at {}", blockchain, address, atDate)
 
