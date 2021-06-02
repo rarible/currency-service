@@ -5,7 +5,7 @@
     <artifactId>currency</artifactId>
     <groupId>com.rarible.protocol</groupId>
     <packaging>pom</packaging>
-    <version>1.0.0</version>
+    <version>1.1-SNAPSHOT</version>
 
     <parent>
         <groupId>com.rarible</groupId>
@@ -40,7 +40,7 @@
         <swagger-annotations.version>1.5.20</swagger-annotations.version>
         <springdoc.version>1.5.4</springdoc.version>
         <rarible-core.version>1.2-SNAPSHOT</rarible-core.version>
-        <mongock.version>4.3.4</mongock.version>
+        <mongock.core.version>4.3.8</mongock.core.version>
         <testcontainers-version>1.15.2</testcontainers-version>
         <mockk.version>1.10.5</mockk.version>
         <dev-jna.version>5.7.0</dev-jna.version>
@@ -72,7 +72,7 @@
             <dependency>
                 <groupId>com.github.cloudyrock.mongock</groupId>
                 <artifactId>mongock-bom</artifactId>
-                <version>${mongock.version}</version>
+                <version>${mongock.core.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
