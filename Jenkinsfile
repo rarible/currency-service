@@ -1,3 +1,3 @@
-@Library('shared-library') _
+@Library('shared-library@protocol-service-pipeline') _
 
-servicePipeline('protocol-currency', 'nexus-ci')
+servicePipeline('protocol-currency', 'protocol', 'nexus-ci')
