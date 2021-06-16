@@ -2,3 +2,9 @@ rarible:
   core:
     nginx-expose:
       server: api-dev.rarible.com
+common:
+  coins:
+    dai:
+      ETHEREUM: "0xad6d458402f60fd3bd25163575031acdce07538d"
+    weth:
+      ETHEREUM: "0xc778417e063141139fce010982780140aa0cd5ab"
