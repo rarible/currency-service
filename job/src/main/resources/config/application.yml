@@ -1,3 +1,6 @@
+application:
+  project: protocol
+
 spring:
   application:
     name: protocol-currency-job
