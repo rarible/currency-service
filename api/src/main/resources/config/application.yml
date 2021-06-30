@@ -1,3 +1,6 @@
+application:
+  project: protocol
+
 server:
   shutdown: graceful
   port: 8080
@@ -29,3 +32,7 @@ common:
       ETHEREUM: "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2"
     rarible:
       ETHEREUM: "0xfca59cd816ab1ead66534d82bc21e7515ce441cf"
+    usd-coin:
+      ETHEREUM: "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+    firdaos:
+      ETHEREUM: "0x361887c1d1b73557018c47c8001711168128cf69"
