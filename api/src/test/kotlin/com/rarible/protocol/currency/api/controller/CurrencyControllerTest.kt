@@ -2,6 +2,7 @@ package com.rarible.protocol.currency.api.controller
 
 import com.rarible.core.test.ext.MongoTest
 import com.rarible.protocol.client.FixedApiServiceUriProvider
+import com.rarible.protocol.client.NoopWebClientCustomizer
 import com.rarible.protocol.client.exception.ProtocolApiResponseException
 import com.rarible.protocol.currency.api.client.CurrencyApiClientFactory
 import com.rarible.protocol.currency.api.client.CurrencyControllerApi
@@ -48,8 +49,8 @@ internal class CurrencyControllerTest(
     @BeforeEach
     fun beforeEach() {
         val uri = URI.create("http://localhost:${port}")
-        val clientFactory = CurrencyApiClientFactory(FixedApiServiceUriProvider(uri))
-        client = clientFactory.createCurrencyApiClient("ETHEREUM")
+        val clientFactory = CurrencyApiClientFactory(FixedApiServiceUriProvider(uri), NoopWebClientCustomizer())
+        client = clientFactory.createCurrencyApiClient("ethereum")
     }
 
     @Test

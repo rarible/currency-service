@@ -22,26 +22,19 @@
     </build>
 
     <dependencies>
+        <!-- =========== Internal dependencies =========== -->
         <dependency>
             <groupId>com.rarible.protocol</groupId>
             <artifactId>protocol-currency-core</artifactId>
         </dependency>
+
+        <!-- =============== Protocol-API ================ -->
         <dependency>
             <groupId>com.rarible.protocol</groupId>
             <artifactId>protocol-api-currency</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-webflux</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-mongodb-reactive</artifactId>
-        </dependency>
+
+        <!-- =============== Rarible-core ================ -->
         <dependency>
             <groupId>com.rarible.core</groupId>
             <artifactId>rarible-core-mongo</artifactId>
@@ -62,6 +55,22 @@
             <groupId>com.rarible.core</groupId>
             <artifactId>rarible-core-test-common</artifactId>
         </dependency>
+
+        <!-- ================== Spring =================== -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-webflux</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-mongodb-reactive</artifactId>
+        </dependency>
+
+        <!-- ================== Test ===================== -->
         <dependency>
             <groupId>com.rarible.protocol</groupId>
             <artifactId>protocol-client-currency</artifactId>
