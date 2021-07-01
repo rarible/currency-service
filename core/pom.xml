@@ -22,6 +22,7 @@
     </build>
 
     <dependencies>
+        <!-- =============== Rarible-core ================ -->
         <dependency>
             <groupId>com.rarible.core</groupId>
             <artifactId>rarible-core-common</artifactId>
@@ -31,10 +32,13 @@
             <artifactId>rarible-core-feign</artifactId>
         </dependency>
 
+        <!-- ================== Spring =================== -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webflux</artifactId>
         </dependency>
+
+        <!-- ================== Other =================== -->
         <dependency>
             <groupId>org.jetbrains.kotlinx</groupId>
             <artifactId>kotlinx-coroutines-jdk8</artifactId>
@@ -47,6 +51,8 @@
             <groupId>org.jetbrains.kotlinx</groupId>
             <artifactId>kotlinx-coroutines-reactor</artifactId>
         </dependency>
+
+        <!-- ================== Test ===================== -->
         <dependency>
             <groupId>org.testcontainers</groupId>
             <artifactId>junit-jupiter</artifactId>
