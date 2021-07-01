@@ -1,5 +1,6 @@
 package com.rarible.protocol.currency.api.controller
 
+import com.rarible.core.logging.withMdc
 import com.rarible.ethereum.domain.Blockchain
 import com.rarible.protocol.currency.api.service.CurrencyService
 import com.rarible.protocol.currency.core.configuration.CurrencyApiProperties
@@ -8,6 +9,8 @@ import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.core.convert.ConversionService
 import org.springframework.http.ResponseEntity
+import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 import scalether.domain.Address
 import java.time.Instant
@@ -46,5 +49,21 @@ class CurrencyController(
             conversionService.convert(it, CurrencyRateDto::class.java)
         }
         return ResponseEntity.ok(result)
+    }
+
+    //TODO Remove when marketplace start to use Protocol API 1.7.0 or higher
+    //------------------- Deprecated ------------------//
+
+    @Deprecated("Duplicated /currency in Gateway API")
+    @GetMapping(
+        value = ["/v0.1/currency/rate"],
+        produces = ["application/json"]
+    )
+    suspend fun getCurrencyRate_legacy(
+        @RequestParam(value = "blockchain", required = true) blockchain: String,
+        @RequestParam(value = "address", required = true) address: String,
+        @RequestParam(value = "at", required = true) at: Long
+    ): ResponseEntity<CurrencyRateDto> {
+        return withMdc { getCurrencyRate(blockchain, address, at) }
     }
 }
