@@ -1,11 +1,11 @@
 package com.rarible.protocol.currency.api.controller
 
 import com.rarible.core.test.ext.MongoTest
-import com.rarible.protocol.client.FixedApiServiceUriProvider
-import com.rarible.protocol.client.NoopWebClientCustomizer
-import com.rarible.protocol.client.exception.ProtocolApiResponseException
 import com.rarible.protocol.currency.api.client.CurrencyApiClientFactory
 import com.rarible.protocol.currency.api.client.CurrencyControllerApi
+import com.rarible.protocol.currency.api.client.CurrencyControllerApi.ErrorGetCurrencyRate
+import com.rarible.protocol.currency.api.client.FixedCurrencyApiServiceUriProvider
+import com.rarible.protocol.currency.api.client.NoopWebClientCustomizer
 import com.rarible.protocol.currency.core.model.Rate
 import com.rarible.protocol.currency.core.repository.RateRepository
 import com.rarible.protocol.dto.CurrencyApiErrorDto
@@ -49,8 +49,8 @@ internal class CurrencyControllerTest(
     @BeforeEach
     fun beforeEach() {
         val uri = URI.create("http://localhost:${port}")
-        val clientFactory = CurrencyApiClientFactory(FixedApiServiceUriProvider(uri), NoopWebClientCustomizer())
-        client = clientFactory.createCurrencyApiClient("ethereum")
+        val clientFactory = CurrencyApiClientFactory(FixedCurrencyApiServiceUriProvider(uri), NoopWebClientCustomizer())
+        client = clientFactory.createCurrencyApiClient()
     }
 
     @Test
@@ -88,7 +88,7 @@ internal class CurrencyControllerTest(
 
     @Test
     fun `illegal argument`() = runBlocking {
-        val e = Assertions.assertThrows(ProtocolApiResponseException::class.java, Executable {
+        val e = Assertions.assertThrows(ErrorGetCurrencyRate::class.java, Executable {
             client?.getCurrencyRate(
                 "wrong",
                 ethereumAddress,
@@ -96,7 +96,7 @@ internal class CurrencyControllerTest(
             )?.block()
         })
 
-        val error = e.responseObject as CurrencyApiErrorDto
+        val error = e.on500 as CurrencyApiErrorDto
         assertEquals(500, error.status)
         assertEquals(CurrencyApiErrorDto.Code.UNKNOWN, error.code)
     }
