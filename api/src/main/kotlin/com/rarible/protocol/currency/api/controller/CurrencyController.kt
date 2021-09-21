@@ -1,40 +1,34 @@
 package com.rarible.protocol.currency.api.controller
 
-import com.rarible.core.logging.withMdc
-import com.rarible.ethereum.domain.Blockchain
 import com.rarible.protocol.currency.api.service.CurrencyService
 import com.rarible.protocol.currency.core.configuration.CurrencyApiProperties
+import com.rarible.protocol.currency.core.converter.dto.RateDtoConverter
+import com.rarible.protocol.currency.core.converter.model.BlockchainConverter
+import com.rarible.protocol.dto.BlockchainDto
 import com.rarible.protocol.dto.CurrencyRateDto
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
-import org.springframework.core.convert.ConversionService
 import org.springframework.http.ResponseEntity
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
-import scalether.domain.Address
 import java.time.Instant
 
 @RestController
 class CurrencyController(
     private val currencyService: CurrencyService,
-    private val conversionService: ConversionService,
     private val currencyApiProperties: CurrencyApiProperties
 ) : CurrencyControllerApi {
 
     val logger: Logger = LoggerFactory.getLogger(CurrencyController::class.java)
 
     override suspend fun getCurrencyRate(
-        blockchainStr: String,
-        addressStr: String,
+        blockchain: BlockchainDto,
+        address: String,
         at: Long
     ): ResponseEntity<CurrencyRateDto> {
         val atDate = Instant.ofEpochMilli(at)
-        val blockchain = Blockchain.valueOf(blockchainStr)
-        val address = Address.apply(addressStr)
         logger.info("Get rate for [{}/{}] at {}", blockchain, address, atDate)
 
-        val coinId = currencyApiProperties.byAddress(blockchain, address)
+        val coinId = currencyApiProperties.byAddress(BlockchainConverter.convert(blockchain), address)
         if (coinId == null) {
             logger.warn(
                 "Coin [{}/{}] is not supported. If this coin should be tracked, add it to application.yml.",
@@ -45,25 +39,7 @@ class CurrencyController(
 
         val geckoRate = currencyService.getRate(coinId, atDate)
         logger.info("Gecko response: {}", geckoRate)
-        val result = geckoRate?.let {
-            conversionService.convert(it, CurrencyRateDto::class.java)
-        }
+        val result = geckoRate?.let { RateDtoConverter.convert(it) }
         return ResponseEntity.ok(result)
-    }
-
-    //TODO Remove when marketplace start to use Protocol API 1.7.0 or higher
-    //------------------- Deprecated ------------------//
-
-    @Deprecated("Duplicated /currency in Gateway API")
-    @GetMapping(
-        value = ["/v0.1/currency/rate"],
-        produces = ["application/json"]
-    )
-    suspend fun getCurrencyRate_legacy(
-        @RequestParam(value = "blockchain", required = true) blockchain: String,
-        @RequestParam(value = "address", required = true) address: String,
-        @RequestParam(value = "at", required = true) at: Long
-    ): ResponseEntity<CurrencyRateDto> {
-        return withMdc { getCurrencyRate(blockchain, address, at) }
     }
 }

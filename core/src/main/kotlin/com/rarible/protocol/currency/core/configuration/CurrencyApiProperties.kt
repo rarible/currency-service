@@ -1,9 +1,8 @@
 package com.rarible.protocol.currency.core.configuration
 
-import com.rarible.ethereum.domain.Blockchain
+import com.rarible.protocol.currency.core.model.Blockchain
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.boot.context.properties.ConstructorBinding
-import scalether.domain.Address
 import java.time.Instant
 
 internal const val PREFIX = "common"
@@ -15,10 +14,9 @@ data class CurrencyApiProperties(
     val coins: Map<String, Map<String, String>>,
     val historySince: Instant
 ) {
-    fun byAddress(platform: Blockchain, address: Address): String? {
+    fun byAddress(blockchain: Blockchain, address: String): String? {
         return this.coins.entries.firstOrNull { (_, addresses) ->
-            addresses[platform.name]
-                ?.let { hex -> Address.apply(hex) } == address
+            addresses[blockchain.name] == address
         }?.key
     }
 }

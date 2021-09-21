@@ -31,6 +31,12 @@
             <artifactId>rarible-core-feign</artifactId>
         </dependency>
 
+        <!-- =============== Currency API ================ -->
+        <dependency>
+            <groupId>com.rarible.protocol</groupId>
+            <artifactId>protocol-model-currency</artifactId>
+        </dependency>
+
         <!-- ================== Spring =================== -->
         <dependency>
             <groupId>org.springframework</groupId>

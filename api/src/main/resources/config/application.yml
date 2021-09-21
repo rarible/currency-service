@@ -36,3 +36,5 @@ common:
       ETHEREUM: "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
     firdaos:
       ETHEREUM: "0x361887c1d1b73557018c47c8001711168128cf69"
+    flow:
+      FLOW: "A.1654653399040a61.FlowToken"

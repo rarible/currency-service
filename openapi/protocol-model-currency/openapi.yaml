@@ -23,6 +23,12 @@ components:
           type: string
           format: date-time
 
+    Blockchain:
+      type: string
+      enum:
+        - ETHEREUM
+        - FLOW
+
     CurrencyApiError:
       required:
         - code

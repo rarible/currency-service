@@ -3,18 +3,15 @@ package com.rarible.protocol.currency.api.controller
 import com.rarible.core.test.ext.MongoTest
 import com.rarible.protocol.currency.api.client.CurrencyApiClientFactory
 import com.rarible.protocol.currency.api.client.CurrencyControllerApi
-import com.rarible.protocol.currency.api.client.CurrencyControllerApi.ErrorGetCurrencyRate
 import com.rarible.protocol.currency.api.client.FixedCurrencyApiServiceUriProvider
 import com.rarible.protocol.currency.api.client.NoopWebClientCustomizer
 import com.rarible.protocol.currency.core.model.Rate
 import com.rarible.protocol.currency.core.repository.RateRepository
-import com.rarible.protocol.dto.CurrencyApiErrorDto
+import com.rarible.protocol.dto.BlockchainDto
 import kotlinx.coroutines.runBlocking
-import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.function.Executable
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.web.server.LocalServerPort
@@ -37,9 +34,7 @@ internal class CurrencyControllerTest(
     @LocalServerPort
     val port: Int
 ) {
-
     val ethereumAddress = "0x0000000000000000000000000000000000000000"
-    val blockchain = "ETHEREUM"
 
     @Autowired
     private lateinit var rateRepository: RateRepository
@@ -62,7 +57,7 @@ internal class CurrencyControllerTest(
         rateRepository.save(rate)
 
         val currencyRate = client?.getCurrencyRate(
-            blockchain,
+            BlockchainDto.ETHEREUM,
             ethereumAddress,
             date.minusSeconds(1).toEpochMilli()
         )?.block()
@@ -78,26 +73,11 @@ internal class CurrencyControllerTest(
         rateRepository.save(rate)
 
         val currencyRate = client?.getCurrencyRate(
-            blockchain,
+            BlockchainDto.ETHEREUM,
             ethereumAddress,
             date.plusSeconds(1).toEpochMilli()
         )?.block()
 
         assertEquals(currencyRate?.rate, rateValue)
-    }
-
-    @Test
-    fun `illegal argument`() = runBlocking {
-        val e = Assertions.assertThrows(ErrorGetCurrencyRate::class.java, Executable {
-            client?.getCurrencyRate(
-                "wrong",
-                ethereumAddress,
-                Instant.now().toEpochMilli()
-            )?.block()
-        })
-
-        val error = e.on500 as CurrencyApiErrorDto
-        assertEquals(500, error.status)
-        assertEquals(CurrencyApiErrorDto.Code.UNKNOWN, error.code)
     }
 }

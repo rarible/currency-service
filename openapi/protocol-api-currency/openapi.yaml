@@ -14,7 +14,7 @@ paths:
           in: query
           required: true
           schema:
-            type: string
+            "$ref": "#/components/schemas/Blockchain"
         - name: address
           in: query
           required: true
