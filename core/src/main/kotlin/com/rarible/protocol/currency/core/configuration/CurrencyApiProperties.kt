@@ -1,6 +1,7 @@
 package com.rarible.protocol.currency.core.configuration
 
 import com.rarible.protocol.currency.core.model.Blockchain
+import org.slf4j.LoggerFactory
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.boot.context.properties.ConstructorBinding
 import scalether.domain.Address
@@ -15,10 +16,13 @@ data class CurrencyApiProperties(
     val coins: Map<String, Map<String, String>>,
     val historySince: Instant
 ) {
+    private val logger = LoggerFactory.getLogger(javaClass)
+
     fun byAddress(blockchain: Blockchain, address: String): String? {
         return this.coins.entries.firstOrNull { (_, addresses) ->
             when (blockchain) {
                 Blockchain.ETHEREUM, Blockchain.POLYGON -> {
+                    logger.info("Try compare ${addresses[blockchain.name]} and $address")
                     Address.apply(addresses[blockchain.name]) == Address.apply(address)
                 }
                 Blockchain.FLOW -> {

@@ -67,6 +67,23 @@ internal class CurrencyControllerTest(
     }
 
     @Test
+    fun `get actual with other address type`() = runBlocking {
+
+        val date = Instant.now().minusSeconds(60)
+        val rateValue = BigDecimal("123.54")
+        val rate = Rate.of("ethereum", date, rateValue)
+        rateRepository.save(rate)
+
+        val currencyRate = client?.getCurrencyRate(
+            BlockchainDto.ETHEREUM,
+            "0000000000000000000000000000000000000000",
+            date.minusSeconds(1).toEpochMilli()
+        )?.block()
+
+        assertEquals(currencyRate?.rate, rateValue)
+    }
+
+    @Test
     fun `get last`() = runBlocking {
         val date = Instant.now().minusSeconds(60)
         val rateValue = BigDecimal("123.54")
