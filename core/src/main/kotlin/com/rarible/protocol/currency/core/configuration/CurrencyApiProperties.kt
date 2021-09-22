@@ -22,8 +22,7 @@ data class CurrencyApiProperties(
         return this.coins.entries.firstOrNull { (_, addresses) ->
             when (blockchain) {
                 Blockchain.ETHEREUM, Blockchain.POLYGON -> {
-                    logger.info("Try compare ${addresses[blockchain.name]} and $address")
-                    Address.apply(addresses[blockchain.name]) == Address.apply(address)
+                    addresses[blockchain.name]?.let { Address.apply(it) } == Address.apply(address)
                 }
                 Blockchain.FLOW -> {
                     addresses[blockchain.name] == address
