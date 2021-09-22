@@ -60,6 +60,7 @@
                             <generateApiTests>false</generateApiTests>
                             <generateApis>true</generateApis>
                             <generateModelTests>false</generateModelTests>
+                            <modelPackage>${generator.package}</modelPackage>
                         </configuration>
                     </execution>
                 </executions>

@@ -75,6 +75,7 @@
                             <generateApis>true</generateApis>
                             <apiPackage>com.rarible.protocol.currency.api.client</apiPackage>
                             <generateModelTests>false</generateModelTests>
+                            <modelPackage>${generator.package}</modelPackage>
                         </configuration>
                     </execution>
                 </executions>
