@@ -1,7 +1,7 @@
 package com.rarible.protocol.currency.api.controller.advice
 
 import com.rarible.protocol.currency.api.exceptions.CurrencyApiException
-import com.rarible.protocol.dto.CurrencyApiErrorDto
+import com.rarible.protocol.currency.dto.CurrencyApiErrorDto
 import kotlinx.coroutines.reactor.mono
 import org.slf4j.LoggerFactory
 import org.springframework.http.HttpStatus

@@ -4,8 +4,8 @@ import com.rarible.protocol.currency.api.service.CurrencyService
 import com.rarible.protocol.currency.core.configuration.CurrencyApiProperties
 import com.rarible.protocol.currency.core.converter.dto.RateDtoConverter
 import com.rarible.protocol.currency.core.converter.model.BlockchainConverter
-import com.rarible.protocol.dto.BlockchainDto
-import com.rarible.protocol.dto.CurrencyRateDto
+import com.rarible.protocol.currency.dto.BlockchainDto
+import com.rarible.protocol.currency.dto.CurrencyRateDto
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.http.ResponseEntity

@@ -1,7 +1,7 @@
 package com.rarible.protocol.currency.core.converter.dto
 
 import com.rarible.protocol.currency.core.model.Rate
-import com.rarible.protocol.dto.CurrencyRateDto
+import com.rarible.protocol.currency.dto.CurrencyRateDto
 import org.springframework.core.convert.converter.Converter
 
 object RateDtoConverter : Converter<Rate, CurrencyRateDto> {

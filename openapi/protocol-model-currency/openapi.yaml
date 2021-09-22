@@ -27,6 +27,7 @@ components:
       type: string
       enum:
         - ETHEREUM
+        - POLYGON
         - FLOW
 
     CurrencyApiError:

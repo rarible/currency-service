@@ -13,7 +13,7 @@
 
     <properties>
         <generator.kotlin>kotlin</generator.kotlin>
-        <generator.package>com.rarible.protocol.dto</generator.package>
+        <generator.package>com.rarible.protocol.currency.dto</generator.package>
 
         <dir.resources>${basedir}/src/main/resources</dir.resources>
         <dir.src.kotlin>${project.basedir}/src/main/kotlin</dir.src.kotlin>

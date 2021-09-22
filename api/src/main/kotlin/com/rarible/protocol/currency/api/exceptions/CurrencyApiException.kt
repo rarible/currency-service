@@ -1,6 +1,6 @@
 package com.rarible.protocol.currency.api.exceptions
 
-import com.rarible.protocol.dto.CurrencyApiErrorDto
+import com.rarible.protocol.currency.dto.CurrencyApiErrorDto
 import org.springframework.http.HttpStatus
 
 sealed class CurrencyApiException(

@@ -7,7 +7,7 @@ import com.rarible.protocol.currency.api.client.FixedCurrencyApiServiceUriProvid
 import com.rarible.protocol.currency.api.client.NoopWebClientCustomizer
 import com.rarible.protocol.currency.core.model.Rate
 import com.rarible.protocol.currency.core.repository.RateRepository
-import com.rarible.protocol.dto.BlockchainDto
+import com.rarible.protocol.currency.dto.BlockchainDto
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
