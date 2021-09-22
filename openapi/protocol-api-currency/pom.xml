@@ -55,6 +55,7 @@
                         <configuration>
                             <inputSpec>${dir.target.classes}/openapi.yaml</inputSpec>
                             <apiPackage>com.rarible.protocol.currency.api.controller</apiPackage>
+                            <modelPackage>${generator.package}</modelPackage>
                             <generatorName>rarible-server</generatorName>
                             <generateModels>false</generateModels>
                             <generateApiTests>false</generateApiTests>
