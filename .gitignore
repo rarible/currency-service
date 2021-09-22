@@ -51,5 +51,5 @@ Thumbs.db
 *.mov
 *.wmv
 
-*.flattened-pom.xml
+.flattened-pom.xml
 

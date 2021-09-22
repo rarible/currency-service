@@ -42,10 +42,11 @@ internal class CurrencyControllerTest(
     private var client: CurrencyControllerApi? = null
 
     @BeforeEach
-    fun beforeEach() {
+    fun beforeEach() = runBlocking<Unit> {
         val uri = URI.create("http://localhost:${port}")
         val clientFactory = CurrencyApiClientFactory(FixedCurrencyApiServiceUriProvider(uri), NoopWebClientCustomizer())
         client = clientFactory.createCurrencyApiClient()
+        rateRepository.dropCollection()
     }
 
     @Test

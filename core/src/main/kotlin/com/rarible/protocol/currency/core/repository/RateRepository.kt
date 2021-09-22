@@ -6,6 +6,7 @@ import kotlinx.coroutines.reactive.awaitFirstOrDefault
 import kotlinx.coroutines.reactive.awaitFirstOrNull
 import org.springframework.data.domain.Sort
 import org.springframework.data.mongodb.core.ReactiveMongoTemplate
+import org.springframework.data.mongodb.core.dropCollection
 import org.springframework.data.mongodb.core.findById
 import org.springframework.data.mongodb.core.findOne
 import org.springframework.data.mongodb.core.index.Index
@@ -18,6 +19,10 @@ import java.time.Instant
 class RateRepository(
     private val template: ReactiveMongoTemplate
 ) {
+    suspend fun dropCollection() {
+        template.dropCollection<Rate>().awaitFirstOrNull()
+    }
+
     suspend fun createIndexes() {
         template.indexOps(Rate::class.java).ensureIndex(
             Index()

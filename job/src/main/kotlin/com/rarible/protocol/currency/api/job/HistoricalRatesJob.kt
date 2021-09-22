@@ -20,7 +20,6 @@ class HistoricalRatesJob(
     val rateRepository: RateRepository,
     val geckoApi: GeckoApi
 ) {
-
     @Scheduled(initialDelay = 60000, fixedDelay = 3600000)
     fun loadPriceHistory(): Unit = runBlocking {
         logger.info("Starting load of historical prices")
