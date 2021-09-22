@@ -3,6 +3,7 @@ package com.rarible.protocol.currency.core.configuration
 import com.rarible.protocol.currency.core.model.Blockchain
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.boot.context.properties.ConstructorBinding
+import scalether.domain.Address
 import java.time.Instant
 
 internal const val PREFIX = "common"
@@ -16,7 +17,14 @@ data class CurrencyApiProperties(
 ) {
     fun byAddress(blockchain: Blockchain, address: String): String? {
         return this.coins.entries.firstOrNull { (_, addresses) ->
-            addresses[blockchain.name] == address
+            when (blockchain) {
+                Blockchain.ETHEREUM, Blockchain.POLYGON -> {
+                    Address.apply(addresses[blockchain.name]) == Address.apply(address)
+                }
+                Blockchain.FLOW -> {
+                    addresses[blockchain.name] == address
+                }
+            }
         }?.key
     }
 }
