@@ -10,3 +10,5 @@ common:
       ETHEREUM: "0xc6f33b62a94939e52e1b074c4ac1a801b869fdb2"
     flow:
       FLOW: "A.7e60df042a9c0868.FlowToken"
+    tezos:
+      TEZOS: "TEZOS"
