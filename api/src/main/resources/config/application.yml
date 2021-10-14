@@ -63,4 +63,4 @@ common:
     flow:
       FLOW: "A.1654653399040a61.FlowToken"
     tezos:
-      TEZOS: "TEZOS"
+      TEZOS: "XTZ"
