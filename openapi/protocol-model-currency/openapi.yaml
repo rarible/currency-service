@@ -29,6 +29,7 @@ components:
         - ETHEREUM
         - POLYGON
         - FLOW
+        - TEZOS
 
     CurrencyApiError:
       required:

@@ -27,6 +27,9 @@ data class CurrencyApiProperties(
                 Blockchain.FLOW -> {
                     addresses[blockchain.name] == address
                 }
+                Blockchain.TEZOS -> {
+                    addresses[blockchain.name] == address
+                }
             }
         }?.key
     }

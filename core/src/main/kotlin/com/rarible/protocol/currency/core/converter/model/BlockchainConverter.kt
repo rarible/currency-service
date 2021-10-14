@@ -10,6 +10,7 @@ object BlockchainConverter : Converter<BlockchainDto, Blockchain> {
             BlockchainDto.ETHEREUM -> Blockchain.ETHEREUM
             BlockchainDto.POLYGON -> Blockchain.POLYGON
             BlockchainDto.FLOW -> Blockchain.FLOW
+            BlockchainDto.TEZOS -> Blockchain.TEZOS
         }
     }
 }
