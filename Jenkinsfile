@@ -1,7 +1,7 @@
 @Library('shared-library')
 
 def pipelineConfig = [
-    "stackName": "rarible"
+    "stackName": "protocol-currency"
 ]
 
 serviceCI(pipelineConfig)
