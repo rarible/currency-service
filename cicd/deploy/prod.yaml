@@ -1,0 +1,2 @@
+protocol-currency-api:
+  replicas: 3
