@@ -8,17 +8,28 @@ import com.rarible.protocol.currency.dto.BlockchainDto
 import com.rarible.protocol.currency.dto.CurrencyRateDto
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import org.springframework.core.env.ConfigurableEnvironment
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.RestController
 import java.time.Instant
+import javax.annotation.PostConstruct
 
 @RestController
 class CurrencyController(
     private val currencyService: CurrencyService,
-    private val currencyApiProperties: CurrencyApiProperties
+    private val currencyApiProperties: CurrencyApiProperties,
+    private val environment: ConfigurableEnvironment
 ) : CurrencyControllerApi {
 
     val logger: Logger = LoggerFactory.getLogger(CurrencyController::class.java)
+
+    @PostConstruct
+    fun postConstruct() {
+        logger.info("System: " + System.getProperties())
+        logger.info("SPRING - system env: " + environment.systemEnvironment)
+        logger.info("SPRING - system properties: " + environment.systemProperties)
+        logger.info("SPRING property sources:" + environment.propertySources.map { it.source })
+    }
 
     override suspend fun getCurrencyRate(
         blockchain: BlockchainDto,
