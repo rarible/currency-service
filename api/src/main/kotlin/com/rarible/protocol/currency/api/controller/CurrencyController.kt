@@ -12,7 +12,6 @@ import org.springframework.core.env.ConfigurableEnvironment
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.RestController
 import java.time.Instant
-import javax.annotation.PostConstruct
 
 @RestController
 class CurrencyController(
@@ -22,14 +21,6 @@ class CurrencyController(
 ) : CurrencyControllerApi {
 
     val logger: Logger = LoggerFactory.getLogger(CurrencyController::class.java)
-
-    @PostConstruct
-    fun postConstruct() {
-        logger.info("System: " + System.getProperties())
-        logger.info("SPRING - system env: " + environment.systemEnvironment)
-        logger.info("SPRING - system properties: " + environment.systemProperties)
-        logger.info("SPRING property sources:" + environment.propertySources.map { it.source })
-    }
 
     override suspend fun getCurrencyRate(
         blockchain: BlockchainDto,
