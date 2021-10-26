@@ -1,0 +1,13 @@
+apiVersion: v2
+name: protocol-currency
+# type: library
+version: 0.1.0
+dependencies:
+- name: rarible-helm-chart
+  alias: protocol-currency-api
+  repository: file://../resources/helm/rarible
+  version: 0.1.0
+- name: rarible-helm-chart
+  alias: protocol-currency-job
+  repository: file://../resources/helm/rarible
+  version: 0.1.0
