@@ -49,7 +49,7 @@ class CurrencyApiClientAutoConfigurationIt {
     @Test
     fun `test default client uri`() {
         val uri = currencyApiServiceUriProvider.getUri()
-        assertThat(uri.toString()).isEqualTo("http://test-currency-api:8080")
+        assertThat(uri.toString()).isEqualTo("http://test-protocol-currency-api:8080")
     }
 
     @TestConfiguration
