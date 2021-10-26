@@ -1,3 +1,7 @@
-@Library('shared-library@no-tests-more-properties-auto-version') _
+@Library('shared-library')
 
-servicePipeline('protocol-currency', 'protocol', 'nexus-ci')
+def pipelineConfig = [
+    "stackName": "protocol-currency"
+]
+
+serviceCI(pipelineConfig)
