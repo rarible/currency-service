@@ -1,7 +1,3 @@
-rarible:
-  core:
-    nginx-expose:
-      server: api-staging.rarible.com
 common:
   coins:
     dai:
