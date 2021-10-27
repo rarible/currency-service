@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory
 import org.springframework.core.env.ConfigurableEnvironment
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.RestController
+import java.math.BigDecimal
 import java.time.Instant
 
 @RestController
@@ -37,6 +38,19 @@ class CurrencyController(
                 blockchain, address
             )
             return ResponseEntity.ok().build()
+        }
+
+        // TODO make it configurable
+        // For FLOWUSD rate is ALWAYS == 1
+        if (coinId == "flowusd") {
+            return ResponseEntity.ok(
+                CurrencyRateDto(
+                    fromCurrencyId = coinId,
+                    toCurrencyId = "usd",
+                    rate = BigDecimal.ONE,
+                    date = atDate
+                )
+            )
         }
 
         val geckoRate = currencyService.getRate(coinId, atDate)
