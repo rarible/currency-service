@@ -37,7 +37,7 @@
 
         <!-- =============== Currency API ================ -->
         <dependency>
-            <groupId>com.rarible.protocol</groupId>
+            <groupId>com.rarible.protocol.currency</groupId>
             <artifactId>protocol-model-currency</artifactId>
         </dependency>
 

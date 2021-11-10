@@ -33,7 +33,7 @@
 
         <!-- =============== Currency API ================ -->
         <dependency>
-            <groupId>com.rarible.protocol</groupId>
+            <groupId>com.rarible.protocol.currency</groupId>
             <artifactId>protocol-api-currency</artifactId>
         </dependency>
 
@@ -75,7 +75,7 @@
 
         <!-- ================== Test ===================== -->
         <dependency>
-            <groupId>com.rarible.protocol</groupId>
+            <groupId>com.rarible.protocol.currency</groupId>
             <artifactId>protocol-client-currency</artifactId>
             <scope>test</scope>
         </dependency>
