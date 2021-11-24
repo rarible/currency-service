@@ -1,6 +1,6 @@
 protocol-currency-api:
   image:
-    repository: protocol-currency-api
+    repository: currency-service-api
   replicas: 2
   environments:
     APPLICATION_ENVIRONMENT: '{{ include "service.appEnv" $ }}'
@@ -24,7 +24,7 @@ protocol-currency-api:
 
 protocol-currency-job:
   image:
-    repository: protocol-currency-job
+    repository: currency-service-job
   replicas: 1
   environments:
     APPLICATION_ENVIRONMENT: '{{ include "service.appEnv" $ }}'
