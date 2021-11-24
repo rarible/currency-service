@@ -24,8 +24,12 @@ class HistoricalRatesJob(
     fun loadPriceHistory(): Unit = runBlocking {
         logger.info("Starting load of historical prices")
         properties.coins.forEach {
-            logger.info("Load currency entry price: $it")
-            loadCurrency(it.key)
+            val currencyId = it.key
+            try {
+                loadCurrency(currencyId)
+            } catch (ex: Throwable) {
+                logger.error("Can't load currency for $currencyId")
+            }
         }
         logger.info("Finished load of historical prices")
     }
