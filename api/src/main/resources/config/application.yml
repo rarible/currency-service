@@ -72,3 +72,5 @@ common:
       FLOW: "A.3c5959b568896393.FUSD"
     tezos:
       TEZOS: "tz1Ke2h7sDdakHJQh8WX4Z372du1KChsksyU"
+    eurs:
+      TEZOS: "KT1JBNFcB5tiycHNdYGYCtR3kk6JaJysUCi8"
