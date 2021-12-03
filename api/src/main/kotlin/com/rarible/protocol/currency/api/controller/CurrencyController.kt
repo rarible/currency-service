@@ -17,8 +17,7 @@ import java.time.Instant
 @RestController
 class CurrencyController(
     private val currencyService: CurrencyService,
-    private val currencyApiProperties: CurrencyApiProperties,
-    private val environment: ConfigurableEnvironment
+    private val currencyApiProperties: CurrencyApiProperties
 ) : CurrencyControllerApi {
 
     val logger: Logger = LoggerFactory.getLogger(CurrencyController::class.java)

@@ -16,8 +16,6 @@ data class CurrencyApiProperties(
     val coins: Map<String, Map<String, String>>,
     val historySince: Instant
 ) {
-    private val logger = LoggerFactory.getLogger(javaClass)
-
     fun byAddress(blockchain: Blockchain, address: String): String? {
         return this.coins.entries.firstOrNull { (_, addresses) ->
             when (blockchain) {
