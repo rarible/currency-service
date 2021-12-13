@@ -33,6 +33,7 @@ protocol-currency-job:
     SPRING_PROFILES_ACTIVE: 'consul,{{ include "service.appEnv" $ }}'
   nodeSelector:
     node.labels.rarible.service: true
+  endpointMode: dnsrr
   resources:
     jvm:
       xmx_megabytes: 512
