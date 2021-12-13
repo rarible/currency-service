@@ -20,7 +20,8 @@ protocol-currency-api:
   networks:
     common:
     - '{{ include "service.appEnv" $ }}-backend'
-    - proxy
+    additional:
+    - proxy-staging
 
 protocol-currency-job:
   image:
