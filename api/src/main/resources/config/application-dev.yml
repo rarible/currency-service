@@ -14,3 +14,5 @@ common:
       FLOW: "A.e223d8a629e49c68.FUSD"
     stasis-eurs:
       TEZOS: "KT1LP8Zx12yw3nDCmRBPv3HrWZXH1JCQViWu:0"
+    matic:
+      ETHEREUM: "0x83e556da6514325ee615ff868cd0d324856fa0cf"
