@@ -8,6 +8,7 @@ common:
       ETHEREUM: "0x5592ec0cfb4dbc12d3ab100b257153436a1f0fea"
     weth:
       ETHEREUM: "0xc778417e063141139fce010982780140aa0cd5ab"
+      POLYGON: "0x062f24cb618e6ba873ec1c85fd08b8d2ee9bf23e"
     flow:
       FLOW: "A.7e60df042a9c0868.FlowToken"
     flowusd:
@@ -15,4 +16,4 @@ common:
     stasis-eurs:
       TEZOS: "KT1LP8Zx12yw3nDCmRBPv3HrWZXH1JCQViWu:0"
     matic:
-      ETHEREUM: "0x7d1afa7b718fb893db30a3abc0cfc608aacfebb0"
+      ETHEREUM: "0x83e556da6514325ee615ff868cd0d324856fa0cf"
