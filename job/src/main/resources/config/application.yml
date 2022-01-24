@@ -62,7 +62,7 @@ common:
       TEZOS: "tz1Ke2h7sDdakHJQh8WX4Z372du1KChsksyU"
     stasis-eurs:
       TEZOS: "KT1JBNFcB5tiycHNdYGYCtR3kk6JaJysUCi8:0"
-    matic:
+    matic-network:
       POLYGON: "0x0000000000000000000000000000000000001010"
 
 mongock:
