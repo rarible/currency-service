@@ -75,6 +75,6 @@ common:
       TEZOS: "tz1Ke2h7sDdakHJQh8WX4Z372du1KChsksyU"
     stasis-eurs:
       TEZOS: "KT1JBNFcB5tiycHNdYGYCtR3kk6JaJysUCi8:0"
-    matic:
+    matic-network:
       ETHEREUM: "0x7d1afa7b718fb893db30a3abc0cfc608aacfebb0"
       POLYGON: "0x0000000000000000000000000000000000000000"
