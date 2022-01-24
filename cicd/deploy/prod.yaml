@@ -1,2 +1,5 @@
 protocol-currency-api:
   replicas: 3
+  networks:
+    additional:
+    - proxy
