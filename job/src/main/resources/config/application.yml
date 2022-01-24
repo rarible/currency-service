@@ -63,7 +63,7 @@ common:
     stasis-eurs:
       TEZOS: "KT1JBNFcB5tiycHNdYGYCtR3kk6JaJysUCi8:0"
     matic-network:
-      POLYGON: "0x0000000000000000000000000000000000001010"
+      POLYGON: "0x0000000000000000000000000000000000000000"
 
 mongock:
   change-logs-scan-package:

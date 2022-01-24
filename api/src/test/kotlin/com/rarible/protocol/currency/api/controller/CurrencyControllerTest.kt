@@ -34,7 +34,7 @@ internal class CurrencyControllerTest(
     @LocalServerPort
     val port: Int
 ) {
-    val ethereumAddress = "0x0000000000000000000000000000000000000000"
+    val zeroAddress = "0x0000000000000000000000000000000000000000"
 
     @Autowired
     private lateinit var rateRepository: RateRepository
@@ -59,7 +59,24 @@ internal class CurrencyControllerTest(
 
         val currencyRate = client?.getCurrencyRate(
             BlockchainDto.ETHEREUM,
-            ethereumAddress,
+            zeroAddress,
+            date.minusSeconds(1).toEpochMilli()
+        )?.block()
+
+        assertEquals(currencyRate?.rate, rateValue)
+    }
+
+    @Test
+    fun `get actual polygon`() = runBlocking {
+
+        val date = Instant.now().minusSeconds(60)
+        val rateValue = BigDecimal("123.54")
+        val rate = Rate.of("matic-network", date, rateValue)
+        rateRepository.save(rate)
+
+        val currencyRate = client?.getCurrencyRate(
+            BlockchainDto.POLYGON,
+            zeroAddress,
             date.minusSeconds(1).toEpochMilli()
         )?.block()
 
@@ -92,7 +109,7 @@ internal class CurrencyControllerTest(
 
         val currencyRate = client?.getCurrencyRate(
             BlockchainDto.ETHEREUM,
-            ethereumAddress,
+            zeroAddress,
             date.plusSeconds(1).toEpochMilli()
         )?.block()
 
