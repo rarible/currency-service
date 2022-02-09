@@ -18,4 +18,4 @@ common:
     matic-network:
       ETHEREUM: "0x83e556da6514325ee615ff868cd0d324856fa0cf"
     wtez: # alias, not a real coin
-      TEZOS: "KT1LkKaeLBvTBo6knGeN5RsEunERCaqVcLr9"
+      TEZOS: "KT1RggVJ1mMaLJezpdsJ6YtBfL7sBfcaGD1H"

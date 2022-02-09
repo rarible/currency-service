@@ -15,4 +15,4 @@ common:
     stasis-eurs:
       TEZOS: "KT1Rgf9RNW7gLj7JGn98yyVM34S4St9eudMC:0"
     wtez: # alias, not a real coin
-      TEZOS: "KT1LkKaeLBvTBo6knGeN5RsEunERCaqVcLr9"
+      TEZOS: "KT1RggVJ1mMaLJezpdsJ6YtBfL7sBfcaGD1H"
