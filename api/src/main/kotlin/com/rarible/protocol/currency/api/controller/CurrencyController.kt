@@ -29,16 +29,14 @@ class CurrencyController(
         val atDate = Instant.ofEpochMilli(at)
         logger.info("Get rate for [{}/{}] at {}", blockchain, address, atDate)
 
-        val coinAlias = currencyApiProperties.byAddress(BlockchainConverter.convert(blockchain), address)
-        if (coinAlias == null) {
+        val coinId = currencyApiProperties.byAddress(BlockchainConverter.convert(blockchain), address)
+        if (coinId == null) {
             logger.warn(
                 "Coin [{}/{}] is not supported. If this coin should be tracked, add it to application.yml.",
                 blockchain, address
             )
             return ResponseEntity.ok().build()
         }
-
-        val coinId = ALIASES[coinAlias] ?: coinAlias // if there is no alias it means we work with original coin
 
         // TODO make it configurable
         // For FLOWUSD rate is ALWAYS == 1
@@ -55,21 +53,7 @@ class CurrencyController(
 
         val geckoRate = currencyService.getRate(coinId, atDate)
         logger.info("Gecko response: {}", geckoRate)
-        val result = geckoRate?.let {
-            // In the response we need to specify original coin
-            RateDtoConverter.convert(it).copy(fromCurrencyId = coinAlias)
-        }
+        val result = geckoRate?.let { RateDtoConverter.convert(it) }
         return ResponseEntity.ok(result)
-    }
-
-    // TODO Since we can't map single coin to several addresses of same blockchain,
-    // we need to introduce alias for such coins.
-    companion object {
-
-        val ALIASES = mapOf(
-            //In case with wtez we use same rate as for tezos,
-            //since wrapped tezos coin has same rate as original tezos coin
-            "wtez" to "tezos"
-        )
     }
 }
