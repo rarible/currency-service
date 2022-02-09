@@ -8,7 +8,6 @@ import com.rarible.protocol.currency.dto.BlockchainDto
 import com.rarible.protocol.currency.dto.CurrencyRateDto
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
-import org.springframework.core.env.ConfigurableEnvironment
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.RestController
 import java.math.BigDecimal
@@ -39,12 +38,14 @@ class CurrencyController(
             return ResponseEntity.ok().build()
         }
 
+        val alias = ALIASES[coinId] ?: coinId
+
         // TODO make it configurable
         // For FLOWUSD rate is ALWAYS == 1
-        if (coinId == "flowusd") {
+        if (alias == "flowusd") {
             return ResponseEntity.ok(
                 CurrencyRateDto(
-                    fromCurrencyId = coinId,
+                    fromCurrencyId = alias,
                     toCurrencyId = "usd",
                     rate = BigDecimal.ONE,
                     date = atDate
@@ -52,9 +53,23 @@ class CurrencyController(
             )
         }
 
-        val geckoRate = currencyService.getRate(coinId, atDate)
+        val geckoRate = currencyService.getRate(alias, atDate)
         logger.info("Gecko response: {}", geckoRate)
-        val result = geckoRate?.let { RateDtoConverter.convert(it) }
+        val result = geckoRate?.let {
+            // In the response we need to specify original coin
+            RateDtoConverter.convert(it).copy(fromCurrencyId = coinId)
+        }
         return ResponseEntity.ok(result)
+    }
+
+    // TODO Since we can't map single coin to several addresses of same blockchain,
+    // we need to introduce alias for such coins.
+    companion object {
+
+        val ALIASES = mapOf(
+            //In case with wtez we use same rate as for tezos,
+            //since wrapped tezos coin has same rate as original tezos coin
+            "wtez" to "tezos"
+        )
     }
 }

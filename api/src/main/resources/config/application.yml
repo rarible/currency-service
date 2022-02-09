@@ -78,3 +78,6 @@ common:
     matic-network:
       ETHEREUM: "0x7d1afa7b718fb893db30a3abc0cfc608aacfebb0"
       POLYGON: "0x0000000000000000000000000000000000000000"
+      #TODO dev contract, should be replaced by prod
+    wtez:
+      TEZOS: "KT1LkKaeLBvTBo6knGeN5RsEunERCaqVcLr9"

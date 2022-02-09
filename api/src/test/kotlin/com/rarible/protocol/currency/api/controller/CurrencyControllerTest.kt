@@ -1,5 +1,6 @@
 package com.rarible.protocol.currency.api.controller
 
+import com.rarible.core.common.nowMillis
 import com.rarible.core.test.ext.MongoTest
 import com.rarible.protocol.currency.api.client.CurrencyApiClientFactory
 import com.rarible.protocol.currency.api.client.CurrencyControllerApi
@@ -98,6 +99,24 @@ internal class CurrencyControllerTest(
         )?.block()
 
         assertEquals(currencyRate?.rate, rateValue)
+    }
+
+    @Test
+    fun `get aliased currency rate`() = runBlocking {
+
+        val date = nowMillis().minusSeconds(60)
+        val rateValue = BigDecimal("133")
+        val rate = Rate.of("tezos", date, rateValue)
+        rateRepository.save(rate)
+
+        val currencyRate = client?.getCurrencyRate(
+            BlockchainDto.TEZOS,
+            "KT1LkKaeLBvTBo6knGeN5RsEunERCaqVcLr9",
+            date.minusSeconds(1).toEpochMilli()
+        )?.block()
+
+        assertEquals(currencyRate?.rate, rateValue)
+        assertEquals(currencyRate?.fromCurrencyId, "wtez")
     }
 
     @Test
