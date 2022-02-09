@@ -17,5 +17,5 @@ common:
       TEZOS: "KT1LP8Zx12yw3nDCmRBPv3HrWZXH1JCQViWu:0"
     matic-network:
       ETHEREUM: "0x83e556da6514325ee615ff868cd0d324856fa0cf"
-    wrapped-tezos:
+    wtez:
       TEZOS: "KT1LkKaeLBvTBo6knGeN5RsEunERCaqVcLr9"

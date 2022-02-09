@@ -64,8 +64,6 @@ common:
       TEZOS: "KT1JBNFcB5tiycHNdYGYCtR3kk6JaJysUCi8:0"
     matic-network:
       POLYGON: "0x0000000000000000000000000000000000000000"
-    wrapped-tezos:
-      TEZOS: "KT1EJkjatSNWD2NiPx8hivKnawxuyaVTwP6n"
 
 mongock:
   change-logs-scan-package:
