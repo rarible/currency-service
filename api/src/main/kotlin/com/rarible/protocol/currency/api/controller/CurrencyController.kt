@@ -29,8 +29,8 @@ class CurrencyController(
         val atDate = Instant.ofEpochMilli(at)
         logger.info("Get rate for [{}/{}] at {}", blockchain, address, atDate)
 
-        val coinId = currencyApiProperties.byAddress(BlockchainConverter.convert(blockchain), address)
-        if (coinId == null) {
+        val coinAlias = currencyApiProperties.byAddress(BlockchainConverter.convert(blockchain), address)
+        if (coinAlias == null) {
             logger.warn(
                 "Coin [{}/{}] is not supported. If this coin should be tracked, add it to application.yml.",
                 blockchain, address
@@ -38,14 +38,14 @@ class CurrencyController(
             return ResponseEntity.ok().build()
         }
 
-        val alias = ALIASES[coinId] ?: coinId
+        val coinId = ALIASES[coinAlias] ?: coinAlias // if there is no alias it means we work with original coin
 
         // TODO make it configurable
         // For FLOWUSD rate is ALWAYS == 1
-        if (alias == "flowusd") {
+        if (coinId == "flowusd") {
             return ResponseEntity.ok(
                 CurrencyRateDto(
-                    fromCurrencyId = alias,
+                    fromCurrencyId = coinId,
                     toCurrencyId = "usd",
                     rate = BigDecimal.ONE,
                     date = atDate
@@ -53,11 +53,11 @@ class CurrencyController(
             )
         }
 
-        val geckoRate = currencyService.getRate(alias, atDate)
+        val geckoRate = currencyService.getRate(coinId, atDate)
         logger.info("Gecko response: {}", geckoRate)
         val result = geckoRate?.let {
             // In the response we need to specify original coin
-            RateDtoConverter.convert(it).copy(fromCurrencyId = coinId)
+            RateDtoConverter.convert(it).copy(fromCurrencyId = coinAlias)
         }
         return ResponseEntity.ok(result)
     }
