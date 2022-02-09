@@ -14,5 +14,5 @@ common:
       FLOW: "A.e223d8a629e49c68.FUSD"
     stasis-eurs:
       TEZOS: "KT1Rgf9RNW7gLj7JGn98yyVM34S4St9eudMC:0"
-    wtez:
+    wtez: # alias, not a real coin
       TEZOS: "KT1LkKaeLBvTBo6knGeN5RsEunERCaqVcLr9"
