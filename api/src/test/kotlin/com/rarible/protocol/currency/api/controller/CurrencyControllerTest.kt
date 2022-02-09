@@ -111,7 +111,7 @@ internal class CurrencyControllerTest(
 
         val currencyRate = client?.getCurrencyRate(
             BlockchainDto.TEZOS,
-            "KT1LkKaeLBvTBo6knGeN5RsEunERCaqVcLr9",
+            "KT1EJkjatSNWD2NiPx8hivKnawxuyaVTwP6n",
             date.minusSeconds(1).toEpochMilli()
         )?.block()
 
