@@ -2,7 +2,7 @@ package com.rarible.protocol.currency.api.gecko
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
-import com.rarible.core.feign.FeignHelper
+import com.rarible.protocol.currency.core.gecko.FeignHelper
 import com.rarible.protocol.currency.core.gecko.GeckoApi
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Tag
