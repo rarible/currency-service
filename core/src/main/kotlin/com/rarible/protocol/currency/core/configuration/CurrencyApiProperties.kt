@@ -26,10 +26,7 @@ data class CurrencyApiProperties(
                     Blockchain.ETHEREUM, Blockchain.POLYGON -> {
                         addresses[blockchain.name]?.let { Address.apply(it) } == Address.apply(address)
                     }
-                    Blockchain.FLOW -> {
-                        addresses[blockchain.name] == address
-                    }
-                    Blockchain.TEZOS -> {
+                    Blockchain.FLOW, Blockchain.SOLANA, Blockchain.TEZOS -> {
                         addresses[blockchain.name] == address
                     }
                 }
