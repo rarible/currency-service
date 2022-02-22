@@ -2,6 +2,8 @@ protocol-currency-api:
   image:
     repository: currency-service-api
   replicas: 2
+  service:
+    enabled: true
   environments:
     APPLICATION_ENVIRONMENT: '{{ include "service.appEnv" $ }}'
     CONSUL_ROOT_PATH: '{{ include "service.appEnv" $ }}/protocol/currency'
