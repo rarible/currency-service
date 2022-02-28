@@ -13,6 +13,7 @@ internal const val PREFIX = "common"
 data class CurrencyApiProperties(
     val apiUrl: String,
     val coins: Map<String, Map<String, String>>,
+    val aliases: Map<String, String>,
     val historySince: Instant
 ) {
     fun byAddress(blockchain: Blockchain, address: String): String? {
@@ -32,6 +33,11 @@ data class CurrencyApiProperties(
                 }
             }?.key
         }
+    }
+
+    fun getRealCoin(alias: String): String {
+        // if there is no alias it means we work with original coin
+        return aliases[alias] ?: alias
     }
 
     private val extraCurrency = mapOf(
