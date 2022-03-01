@@ -38,14 +38,12 @@ class CurrencyController(
             return ResponseEntity.ok().build()
         }
 
-        val coinId = ALIASES[coinAlias] ?: coinAlias // if there is no alias it means we work with original coin
+        val coinId = currencyApiProperties.getRealCoin(coinAlias)
 
-        // TODO make it configurable
-        // For FLOWUSD rate is ALWAYS == 1
-        if (coinId == "flowusd") {
+        if (coinId == "usd") {
             return ResponseEntity.ok(
                 CurrencyRateDto(
-                    fromCurrencyId = coinId,
+                    fromCurrencyId = coinAlias,
                     toCurrencyId = "usd",
                     rate = BigDecimal.ONE,
                     date = atDate
@@ -62,14 +60,4 @@ class CurrencyController(
         return ResponseEntity.ok(result)
     }
 
-    // TODO Since we can't map single coin to several addresses of same blockchain,
-    // we need to introduce alias for such coins.
-    companion object {
-
-        val ALIASES = mapOf(
-            //In case with wtez we use same rate as for tezos,
-            //since wrapped tezos coin has same rate as original tezos coin
-            "wtez" to "tezos"
-        )
-    }
 }

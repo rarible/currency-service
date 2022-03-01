@@ -20,11 +20,17 @@ class HistoricalRatesJob(
     val rateRepository: RateRepository,
     val geckoApi: GeckoApi
 ) {
+
+    private val dedicatedCoins = listOf(
+        "seur" // EUR stable coin
+    )
+
     @Scheduled(initialDelay = 60000, fixedDelay = 3600000)
     fun loadPriceHistory(): Unit = runBlocking {
-        logger.info("Starting load of historical prices")
-        properties.coins.forEach {
-            val currencyId = it.key
+        val coins = properties.coins.map { it.key } + dedicatedCoins
+        logger.info("Starting load of historical prices for {} coins", coins.size)
+
+        coins.forEach { currencyId ->
             try {
                 loadCurrency(currencyId)
             } catch (ex: Throwable) {

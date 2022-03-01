@@ -9,6 +9,7 @@ import com.rarible.protocol.currency.api.client.NoopWebClientCustomizer
 import com.rarible.protocol.currency.core.model.Rate
 import com.rarible.protocol.currency.core.repository.RateRepository
 import com.rarible.protocol.currency.dto.BlockchainDto
+import kotlinx.coroutines.reactive.awaitFirst
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
@@ -31,10 +32,11 @@ import java.time.Instant
         "logging.logstash.tcp-socket.enabled = false"
     ]
 )
-internal class CurrencyControllerTest(
+internal class CurrencyControllerFt(
     @LocalServerPort
     val port: Int
 ) {
+
     val zeroAddress = "0x0000000000000000000000000000000000000000"
 
     @Autowired
@@ -62,7 +64,7 @@ internal class CurrencyControllerTest(
             BlockchainDto.ETHEREUM,
             zeroAddress,
             date.minusSeconds(1).toEpochMilli()
-        )?.block()
+        )?.awaitFirst()
 
         assertEquals(currencyRate?.rate, rateValue)
     }
@@ -79,7 +81,7 @@ internal class CurrencyControllerTest(
             BlockchainDto.POLYGON,
             zeroAddress,
             date.minusSeconds(1).toEpochMilli()
-        )?.block()
+        )?.awaitFirst()
 
         assertEquals(currencyRate?.rate, rateValue)
     }
@@ -96,7 +98,7 @@ internal class CurrencyControllerTest(
             BlockchainDto.ETHEREUM,
             "0000000000000000000000000000000000000000",
             date.minusSeconds(1).toEpochMilli()
-        )?.block()
+        )?.awaitFirst()
 
         assertEquals(currencyRate?.rate, rateValue)
     }
@@ -113,10 +115,22 @@ internal class CurrencyControllerTest(
             BlockchainDto.TEZOS,
             "KT1EJkjatSNWD2NiPx8hivKnawxuyaVTwP6n",
             date.minusSeconds(1).toEpochMilli()
-        )?.block()
+        )?.awaitFirst()
 
         assertEquals(currencyRate?.rate, rateValue)
         assertEquals(currencyRate?.fromCurrencyId, "wtez")
+    }
+
+    @Test
+    fun `get usd wrapped currency rate`() = runBlocking {
+        val currencyRate = client?.getCurrencyRate(
+            BlockchainDto.TEZOS,
+            "KT18fp5rcTW7mbWDmzFwjLDUhs5MeJmagDSZ",
+            nowMillis().toEpochMilli()
+        )?.awaitFirst()
+
+        assertEquals(currencyRate?.rate, BigDecimal.ONE)
+        assertEquals(currencyRate?.fromCurrencyId, "wrapped-usdc")
     }
 
     @Test
