@@ -13,7 +13,7 @@ internal const val PREFIX = "common"
 data class CurrencyApiProperties(
     val apiUrl: String,
     val coins: Map<String, Map<String, String>>,
-    val aliases: Map<String, String>,
+    val aliases: Map<String, String> = emptyMap(),
     val historySince: Instant
 ) {
     fun byAddress(blockchain: Blockchain, address: String): String? {
