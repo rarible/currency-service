@@ -9,6 +9,7 @@ import com.rarible.protocol.currency.api.client.NoopWebClientCustomizer
 import com.rarible.protocol.currency.core.model.Rate
 import com.rarible.protocol.currency.core.repository.RateRepository
 import com.rarible.protocol.currency.dto.BlockchainDto
+import com.rarible.protocol.currency.dto.CurrencyRateDto
 import kotlinx.coroutines.reactive.awaitFirst
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -84,6 +85,42 @@ internal class CurrencyControllerFt(
         )?.awaitFirst()
 
         assertEquals(currencyRate?.rate, rateValue)
+    }
+
+    @Test
+    fun `get actual polygon with date filter`() = runBlocking {
+
+        val dateBefore1 = Instant.now().minusSeconds(120)
+        val dateBefore2 = Instant.now().minusSeconds(60)
+        val dateAfter = Instant.now().plusSeconds(900)
+
+        saveRate("111.11", dateBefore1)
+        val rateValue = saveRate("222.22", dateBefore2)
+        val rateValueLatest = saveRate("333.33", dateAfter)
+
+        val currencyRateBeforeDate = getRateForDate(dateBefore2.plusSeconds(1))
+        assertEquals(currencyRateBeforeDate?.rate, rateValue)
+
+        val currencyRateLatest = getRateForDate(dateAfter.plusSeconds(1))
+        assertEquals(currencyRateLatest?.rate, rateValueLatest)
+
+        val currencyRateLatestBeforeDate = getRateForDate(dateAfter.minusSeconds(1))
+        assertEquals(currencyRateLatestBeforeDate?.rate, rateValue)
+    }
+
+    private suspend fun getRateForDate(dateBefore2: Instant): CurrencyRateDto? {
+        return client?.getCurrencyRate(
+                BlockchainDto.POLYGON,
+                zeroAddress,
+                dateBefore2.plusSeconds(1).toEpochMilli()
+        )?.awaitFirst()
+    }
+
+    private suspend fun saveRate(rateValue : String, at : Instant): BigDecimal {
+        val rateValue = BigDecimal(rateValue)
+        val rate = Rate.of("matic-network", at, rateValue)
+        rateRepository.save(rate)
+        return rateValue
     }
 
     @Test
