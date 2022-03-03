@@ -12,6 +12,7 @@ import com.rarible.protocol.currency.dto.BlockchainDto
 import com.rarible.protocol.currency.dto.CurrencyRateDto
 import kotlinx.coroutines.reactive.awaitFirst
 import kotlinx.coroutines.runBlocking
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -99,15 +100,15 @@ internal class CurrencyControllerFt(
         val rateValueLatest = saveRate("333.33", dateAfter)
 
         val currencyRateBeforeDate = getRateForDate(dateBefore2.plusSeconds(1))
-        assertEquals(currencyRateBeforeDate?.rate, rateValue)
+        assertThat(currencyRateBeforeDate?.rate).isEqualTo(rateValue)
 
         val currencyRateLatest = getRateForDate(dateAfter.plusSeconds(1))
-        assertEquals(currencyRateLatest?.rate, rateValueLatest)
+        assertThat(currencyRateLatest?.rate).isEqualTo(rateValueLatest)
 
         val currencyRateLatestBeforeDate = getRateForDate(dateAfter.minusSeconds(1))
-        assertEquals(currencyRateLatestBeforeDate?.rate, rateValue)
+        assertThat(currencyRateLatestBeforeDate?.rate).isEqualTo(rateValue)
     }
-
+;
     private suspend fun getRateForDate(date: Instant): CurrencyRateDto? {
         return client?.getCurrencyRate(
                 BlockchainDto.POLYGON,
