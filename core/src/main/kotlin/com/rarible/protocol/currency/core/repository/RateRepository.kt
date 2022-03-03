@@ -10,7 +10,11 @@ import org.springframework.data.mongodb.core.dropCollection
 import org.springframework.data.mongodb.core.findById
 import org.springframework.data.mongodb.core.findOne
 import org.springframework.data.mongodb.core.index.Index
-import org.springframework.data.mongodb.core.query.*
+import org.springframework.data.mongodb.core.query.Criteria
+import org.springframework.data.mongodb.core.query.Query
+import org.springframework.data.mongodb.core.query.gt
+import org.springframework.data.mongodb.core.query.lt
+import org.springframework.data.mongodb.core.query.isEqualTo
 import java.time.Instant
 
 class RateRepository(
