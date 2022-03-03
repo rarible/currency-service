@@ -108,11 +108,11 @@ internal class CurrencyControllerFt(
         assertEquals(currencyRateLatestBeforeDate?.rate, rateValue)
     }
 
-    private suspend fun getRateForDate(dateBefore2: Instant): CurrencyRateDto? {
+    private suspend fun getRateForDate(date: Instant): CurrencyRateDto? {
         return client?.getCurrencyRate(
                 BlockchainDto.POLYGON,
                 zeroAddress,
-                dateBefore2.toEpochMilli()
+                date.toEpochMilli()
         )?.awaitFirst()
     }
 
