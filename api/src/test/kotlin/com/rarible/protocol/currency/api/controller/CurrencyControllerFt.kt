@@ -88,11 +88,11 @@ internal class CurrencyControllerFt(
     }
 
     @Test
-    fun `get actual polygon with date filter`() = runBlocking {
+    fun `get actual rate with date filter`() = runBlocking {
 
-        val dateBefore1 = Instant.now().minusSeconds(120)
-        val dateBefore2 = Instant.now().minusSeconds(60)
-        val dateAfter = Instant.now().plusSeconds(900)
+        val dateBefore1 = nowMillis().minusSeconds(120)
+        val dateBefore2 = nowMillis().minusSeconds(60)
+        val dateAfter = nowMillis().plusSeconds(900)
 
         saveRate("111.11", dateBefore1)
         val rateValue = saveRate("222.22", dateBefore2)
@@ -112,7 +112,7 @@ internal class CurrencyControllerFt(
         return client?.getCurrencyRate(
                 BlockchainDto.POLYGON,
                 zeroAddress,
-                dateBefore2.plusSeconds(1).toEpochMilli()
+                dateBefore2.toEpochMilli()
         )?.awaitFirst()
     }
 
