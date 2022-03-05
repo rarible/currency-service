@@ -12,8 +12,8 @@ import org.springframework.data.mongodb.core.findOne
 import org.springframework.data.mongodb.core.index.Index
 import org.springframework.data.mongodb.core.query.Criteria
 import org.springframework.data.mongodb.core.query.Query
-import org.springframework.data.mongodb.core.query.gt
 import org.springframework.data.mongodb.core.query.isEqualTo
+import org.springframework.data.mongodb.core.query.lt
 import java.time.Instant
 
 class RateRepository(
@@ -48,7 +48,7 @@ class RateRepository(
             Query(
                 Criteria().andOperator(
                     Rate::currencyId isEqualTo currencyId,
-                    Rate::date gt date
+                    Rate::date lt date
                 )
             ).with(
                 Sort.by(Sort.Direction.DESC, Rate::date.name)
