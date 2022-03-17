@@ -89,7 +89,7 @@ internal class CurrencyControllerFt(
     }
 
     @Test
-    fun `get actual rate with date filter`() = runBlocking {
+    fun `get actual rate with date filter`() = runBlocking<Unit> {
 
         val dateBefore1 = nowMillis().minusSeconds(120)
         val dateBefore2 = nowMillis().minusSeconds(60)
