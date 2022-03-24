@@ -163,7 +163,7 @@ internal class CurrencyControllerFt(
     fun `get usd wrapped currency rate`() = runBlocking {
         val currencyRate = client?.getCurrencyRate(
             BlockchainDto.TEZOS,
-            "KT18fp5rcTW7mbWDmzFwjLDUhs5MeJmagDSZ",
+            "KT18fp5rcTW7mbWDmzFwjLDUhs5MeJmagDSZ:17",
             nowMillis().toEpochMilli()
         )?.awaitFirst()
 

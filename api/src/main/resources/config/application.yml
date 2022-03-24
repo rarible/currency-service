@@ -85,13 +85,13 @@ common:
     usdtez:
       TEZOS: "KT1LN4LPSqTMS7Sd2CJw4bbDGRkMv2t68Fy9"
     wrapped-usdc:
-      TEZOS: "KT18fp5rcTW7mbWDmzFwjLDUhs5MeJmagDSZ"
+      TEZOS: "KT18fp5rcTW7mbWDmzFwjLDUhs5MeJmagDSZ:17"
     plenty-dao:
-      TEZOS: "KT1GRSvLoikDsXujKgZPsGLX8k8VvR2Tq95b"
+      TEZOS: "KT1GRSvLoikDsXujKgZPsGLX8k8VvR2Tq95b:0"
     youves-uusd:
-      TEZOS: "KT1XRPEPXbZK25r3Htzp2o1x7xdMMmfocKNW"
+      TEZOS: "KT1XRPEPXbZK25r3Htzp2o1x7xdMMmfocKNW:0"
     eurl:
-      TEZOS: "KT1JBNFcB5tiycHNdYGYCtR3kk6JaJysUCi8"
+      TEZOS: "KT1JBNFcB5tiycHNdYGYCtR3kk6JaJysUCi8:0"
 
   # coins aliased by 'usd' value will always return 1:1 rate
   aliases:
