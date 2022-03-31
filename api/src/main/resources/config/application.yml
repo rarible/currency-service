@@ -92,6 +92,8 @@ common:
       TEZOS: "KT1XRPEPXbZK25r3Htzp2o1x7xdMMmfocKNW:0"
     eurl:
       TEZOS: "KT1JBNFcB5tiycHNdYGYCtR3kk6JaJysUCi8:0"
+    solana:
+      SOLANA: "So11111111111111111111111111111111111111112"
 
   # coins aliased by 'usd' value will always return 1:1 rate
   aliases:

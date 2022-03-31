@@ -64,6 +64,8 @@ common:
       POLYGON: "0x0000000000000000000000000000000000000000"
     plenty-dao:
       TEZOS: "KT1GRSvLoikDsXujKgZPsGLX8k8VvR2Tq95b:0"
+    solana:
+      SOLANA: "So11111111111111111111111111111111111111112"
 
 mongock:
   change-logs-scan-package:
