@@ -23,7 +23,7 @@
     </repositories>
 
     <properties>
-        <revision>1.25</revision>
+        <revision>1.26</revision>
         <maven.deploy.skip>true</maven.deploy.skip>
 
         <rarible.core.version>2.3.3</rarible.core.version>
