@@ -6,6 +6,9 @@ common:
   coins:
     dai:
       ETHEREUM: "0xad6d458402f60fd3bd25163575031acdce07538d"
+    dai-newdev:
+      EHTEREUM: "0x3867e897ed8C72900281BF27ac9e8D6c7E3615b6"
+      POLYGON: "0x938a97375D6809f7FCd191139E6658D6A5109A48"
     weth:
       ETHEREUM: "0xc778417e063141139fce010982780140aa0cd5ab"
       POLYGON: "0xa6fa4fb5f76172d178d61b04b0ecd319c5d1c0aa"
@@ -23,3 +26,6 @@ common:
       TEZOS: "KT1NaRKxAGaoioX9CbzApaBjCYijcGHGfYJV:0"
     eurl:
       TEZOS: "KT1LJSq4mhyLtPKrncLXerwAF2Xvk7eU3KJX:0"
+
+  aliases:
+    dai-newdev: dai
