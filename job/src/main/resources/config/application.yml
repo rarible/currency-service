@@ -66,6 +66,9 @@ common:
       TEZOS: "KT1GRSvLoikDsXujKgZPsGLX8k8VvR2Tq95b:0"
     solana:
       SOLANA: "So11111111111111111111111111111111111111112"
+    monavale:
+      ETHEREUM: "0x275f5ad03be0fa221b4c6649b8aee09a42d9412a"
+      POLYGON: "0x6968105460f67c3bf751be7c15f92f5286fd0ce5"
 
 mongock:
   change-logs-scan-package:
