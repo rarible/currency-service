@@ -23,9 +23,9 @@ common:
     wtez: # alias, not a real coin
       TEZOS: "KT1RggVJ1mMaLJezpdsJ6YtBfL7sBfcaGD1H"
     youves-uusd:
-      TEZOS: "KT1NaRKxAGaoioX9CbzApaBjCYijcGHGfYJV:0"
+      TEZOS: "KT191NbZCWnCZvoLEgcPpSEx5yVRk7WnisnN:0"
     eurl:
-      TEZOS: "KT1LJSq4mhyLtPKrncLXerwAF2Xvk7eU3KJX:0"
+      TEZOS: "KT1XVLypM2M7kVBGuT4p8wkYigCxbh6CMdia:0"
 
   aliases:
     dai-newdev: dai
