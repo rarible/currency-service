@@ -11,7 +11,7 @@ common:
       POLYGON: "0x938a97375D6809f7FCd191139E6658D6A5109A48"
     weth:
       ETHEREUM: "0x55eb2809896ab7414706aacdde63e3bbb26e0bc6"
-      POLYGON: "0xa6fa4fb5f76172d178d61b04b0ecd319c5d1c0aa"
+      POLYGON: "0xb24740adecb71feb7d66aa4ebd5f5c334e5be922"
     flow:
       FLOW: "A.7e60df042a9c0868.FlowToken"
     flowusd:
