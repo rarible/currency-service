@@ -97,6 +97,8 @@ common:
     monavale:
       ETHEREUM: "0x275f5ad03be0fa221b4c6649b8aee09a42d9412a"
       POLYGON: "0x6968105460f67c3bf751be7c15f92f5286fd0ce5"
+    apecoin:
+      ETHEREUM: "0x4d224452801aced8b2f0aebe155379bb5d594381"
 
   # coins aliased by 'usd' value will always return 1:1 rate
   aliases:
