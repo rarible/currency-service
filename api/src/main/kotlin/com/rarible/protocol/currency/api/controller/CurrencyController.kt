@@ -5,6 +5,7 @@ import com.rarible.protocol.currency.core.configuration.CurrencyApiProperties
 import com.rarible.protocol.currency.core.converter.dto.RateDtoConverter
 import com.rarible.protocol.currency.core.converter.model.BlockchainConverter
 import com.rarible.protocol.currency.dto.BlockchainDto
+import com.rarible.protocol.currency.dto.CurrenciesDto
 import com.rarible.protocol.currency.dto.CurrencyRateDto
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -20,6 +21,11 @@ class CurrencyController(
 ) : CurrencyControllerApi {
 
     val logger: Logger = LoggerFactory.getLogger(CurrencyController::class.java)
+
+    override suspend fun getAllCurrencies(): ResponseEntity<CurrenciesDto> {
+        val currencies = currencyApiProperties.getAllCurrencies()
+        return ResponseEntity.ok(CurrenciesDto(currencies))
+    }
 
     override suspend fun getCurrencyRate(
         blockchain: BlockchainDto,

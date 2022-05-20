@@ -1,6 +1,8 @@
 package com.rarible.protocol.currency.core.configuration
 
 import com.rarible.protocol.currency.core.model.Blockchain
+import com.rarible.protocol.currency.dto.BlockchainDto
+import com.rarible.protocol.currency.dto.CurrencyDto
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.boot.context.properties.ConstructorBinding
 import scalether.domain.Address
@@ -38,6 +40,19 @@ data class CurrencyApiProperties(
     fun getRealCoin(alias: String): String {
         // if there is no alias it means we work with original coin
         return aliases[alias] ?: alias
+    }
+
+    fun getAllCurrencies(): List<CurrencyDto> {
+        return coins.map { coin ->
+            coin.value.map {
+                CurrencyDto(
+                    currencyId = coin.key,
+                    alias = aliases[coin.key],
+                    blockchain = BlockchainDto.valueOf(it.key),
+                    address = it.value
+                )
+            }
+        }.flatten()
     }
 
     private val extraCurrency = mapOf(
