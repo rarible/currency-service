@@ -11,6 +11,7 @@ import com.rarible.protocol.currency.core.repository.RateRepository
 import com.rarible.protocol.currency.dto.BlockchainDto
 import com.rarible.protocol.currency.dto.CurrencyRateDto
 import kotlinx.coroutines.reactive.awaitFirst
+import kotlinx.coroutines.reactive.awaitFirstOrNull
 import kotlinx.coroutines.runBlocking
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -44,7 +45,7 @@ internal class CurrencyControllerFt(
     @Autowired
     private lateinit var rateRepository: RateRepository
 
-    private var client: CurrencyControllerApi? = null
+    lateinit var client: CurrencyControllerApi
 
     @BeforeEach
     fun beforeEach() = runBlocking<Unit> {
@@ -79,7 +80,7 @@ internal class CurrencyControllerFt(
         val rate = Rate.of("matic-network", date, rateValue)
         rateRepository.save(rate)
 
-        val currencyRate = client?.getCurrencyRate(
+        val currencyRate = client.getCurrencyRate(
             BlockchainDto.POLYGON,
             zeroAddress,
             date.minusSeconds(1).toEpochMilli()
@@ -110,10 +111,10 @@ internal class CurrencyControllerFt(
     }
 ;
     private suspend fun getRateForDate(date: Instant): CurrencyRateDto? {
-        return client?.getCurrencyRate(
-                BlockchainDto.POLYGON,
-                zeroAddress,
-                date.toEpochMilli()
+        return client.getCurrencyRate(
+            BlockchainDto.POLYGON,
+            zeroAddress,
+            date.toEpochMilli()
         )?.awaitFirst()
     }
 
@@ -132,7 +133,7 @@ internal class CurrencyControllerFt(
         val rate = Rate.of("ethereum", date, rateValue)
         rateRepository.save(rate)
 
-        val currencyRate = client?.getCurrencyRate(
+        val currencyRate = client.getCurrencyRate(
             BlockchainDto.ETHEREUM,
             "0000000000000000000000000000000000000000",
             date.minusSeconds(1).toEpochMilli()
@@ -149,7 +150,7 @@ internal class CurrencyControllerFt(
         val rate = Rate.of("tezos", date, rateValue)
         rateRepository.save(rate)
 
-        val currencyRate = client?.getCurrencyRate(
+        val currencyRate = client.getCurrencyRate(
             BlockchainDto.TEZOS,
             "KT1EJkjatSNWD2NiPx8hivKnawxuyaVTwP6n",
             date.minusSeconds(1).toEpochMilli()
@@ -161,7 +162,7 @@ internal class CurrencyControllerFt(
 
     @Test
     fun `get usd wrapped currency rate`() = runBlocking {
-        val currencyRate = client?.getCurrencyRate(
+        val currencyRate = client.getCurrencyRate(
             BlockchainDto.TEZOS,
             "KT18fp5rcTW7mbWDmzFwjLDUhs5MeJmagDSZ:17",
             nowMillis().toEpochMilli()
@@ -178,12 +179,26 @@ internal class CurrencyControllerFt(
         val rate = Rate.of("ethereum", date, rateValue)
         rateRepository.save(rate)
 
-        val currencyRate = client?.getCurrencyRate(
+        val currencyRate = client.getCurrencyRate(
             BlockchainDto.ETHEREUM,
             zeroAddress,
             date.plusSeconds(1).toEpochMilli()
         )?.block()
 
         assertEquals(currencyRate?.rate, rateValue)
+    }
+
+    @Test
+    fun `get all currencies`() = runBlocking<Unit> {
+        val currencies = client.getAllCurrencies()?.awaitFirstOrNull()?.currencies!!
+
+        val wethCurrencies = currencies.filter { it.currencyId == "weth" }
+        assertThat(wethCurrencies).hasSize(2)
+
+        val eth = wethCurrencies.find { it.blockchain == BlockchainDto.ETHEREUM }!!
+        val poly = wethCurrencies.find { it.blockchain == BlockchainDto.POLYGON }!!
+
+        assertThat(eth.address).isEqualTo("0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2")
+        assertThat(poly.address).isEqualTo("0x7ceb23fd6bc0add59e62ac25578270cff1b9f619")
     }
 }
