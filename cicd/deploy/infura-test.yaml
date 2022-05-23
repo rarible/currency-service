@@ -1,10 +1,8 @@
 sharedEnvironments: &sharedEnvironments
   SPRING_CLOUD_CONSUL_ENABLED: false
-  SPRING_CLOUD_BOOTSTRAP_ENABLED: false
   RARIBLE_CORE_APM_AGENT_ENABLED: false
-  LOGGING_LOGSTASH_TCPSOCKET_ENABLED: false
-  LOGGING_LOGSTASH_TCPSOCKET_DESTINATIONS: ""
   SPRING_DATA_MONGODB_DATABASE: test-protocol-currency
+  APPLICATION_ENVIRONMENT: "infura-test"
 
 protocol-currency-api:
   environments:
