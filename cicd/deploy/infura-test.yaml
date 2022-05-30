@@ -1,0 +1,16 @@
+sharedEnvironments: &sharedEnvironments
+  SPRING_CLOUD_CONSUL_ENABLED: false
+  RARIBLE_CORE_APM_AGENT_ENABLED: false
+  SPRING_DATA_MONGODB_DATABASE: test-protocol-currency
+  APPLICATION_ENVIRONMENT: "infura-test"
+  # secrets
+  # SPRING_DATA_MONGODB_URI
+
+protocol-currency-api:
+  environments:
+    <<: *sharedEnvironments
+
+
+protocol-currency-job:
+  environments:
+    <<: *sharedEnvironments
