@@ -6,11 +6,21 @@ sharedEnvironments: &sharedEnvironments
   # secrets
   # SPRING_DATA_MONGODB_URI
 
+sharedTolerations: &sharedTolerations
+  effect: NoSchedule
+  key: env
+  operator: Equal
+  value: infura-test
+
 protocol-currency-api:
+  tolerations:
+    - *sharedTolerations
   environments:
     <<: *sharedEnvironments
 
 
 protocol-currency-job:
+  tolerations:
+    - *sharedTolerations
   environments:
     <<: *sharedEnvironments
