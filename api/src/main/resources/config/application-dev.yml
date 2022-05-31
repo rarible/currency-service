@@ -26,6 +26,8 @@ common:
       TEZOS: "KT191NbZCWnCZvoLEgcPpSEx5yVRk7WnisnN:0"
     eurl:
       TEZOS: "KT1XVLypM2M7kVBGuT4p8wkYigCxbh6CMdia:0"
+    dogami:
+      TEZOS: "KT1Em3cZu3PRnvUyvifgAqYBjzuBv8fEAEud"
 
   aliases:
     dai-newdev: dai
