@@ -99,6 +99,8 @@ common:
       POLYGON: "0x6968105460f67c3bf751be7c15f92f5286fd0ce5"
     apecoin:
       ETHEREUM: "0x4d224452801aced8b2f0aebe155379bb5d594381"
+    dogami:
+      TEZOS: "KT1Ha4yFVeyzw6KRAdkzq6TxDHB97KG4pZe8"
 
   # coins aliased by 'usd' value will always return 1:1 rate
   aliases:
