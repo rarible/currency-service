@@ -7,6 +7,7 @@ import com.rarible.protocol.currency.core.model.Rate
 import com.rarible.protocol.currency.core.repository.RateRepository
 import kotlinx.coroutines.reactive.awaitFirstOrDefault
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.time.delay
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.scheduling.annotation.Scheduled
@@ -16,10 +17,11 @@ import java.time.temporal.ChronoUnit
 
 @Component
 class HistoricalRatesJob(
-    val properties: CurrencyApiProperties,
-    val rateRepository: RateRepository,
-    val geckoApi: GeckoApi
+    private val properties: CurrencyApiProperties,
+    private val rateRepository: RateRepository,
+    private val geckoApi: GeckoApi
 ) {
+    private val request = properties.request
 
     private val dedicatedCoins = listOf(
         "seur" // EUR stable coin
@@ -31,11 +33,19 @@ class HistoricalRatesJob(
         logger.info("Starting load of historical prices for {} coins", coins.size)
 
         coins.forEach { currencyId ->
-            try {
-                loadCurrency(currencyId)
-            } catch (ex: Throwable) {
-                logger.error("Can't load currency for $currencyId")
+            var attempt = 1
+
+            while (attempt <= request.attempts) {
+                try {
+                    loadCurrency(currencyId)
+                    break
+                } catch (ex: Throwable) {
+                    logger.error("Can't load currency for $currencyId, attempt $attempt/${request.attempts}", ex)
+                    delay(request.errorDelay)
+                }
+                attempt += 1
             }
+            delay(request.delay)
         }
         logger.info("Finished load of historical prices")
     }

@@ -6,6 +6,7 @@ import com.rarible.protocol.currency.dto.CurrencyDto
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.boot.context.properties.ConstructorBinding
 import scalether.domain.Address
+import java.time.Duration
 import java.time.Instant
 
 internal const val PREFIX = "common"
@@ -16,7 +17,8 @@ data class CurrencyApiProperties(
     val apiUrl: String,
     val coins: Map<String, Map<String, String>>,
     val aliases: Map<String, String> = emptyMap(),
-    val historySince: Instant
+    val historySince: Instant,
+    val request: RequestProperties = RequestProperties()
 ) {
     fun byAddress(blockchain: Blockchain, address: String): String? {
         val extraCoins = extraCurrency[blockchain]
@@ -59,3 +61,9 @@ data class CurrencyApiProperties(
         Blockchain.TEZOS to mapOf("xtz" to "tezos")
     )
 }
+
+data class RequestProperties(
+    val delay: Duration = Duration.ofMillis(100),
+    val errorDelay: Duration = Duration.ofMillis(500),
+    val attempts: Int = 3
+)
