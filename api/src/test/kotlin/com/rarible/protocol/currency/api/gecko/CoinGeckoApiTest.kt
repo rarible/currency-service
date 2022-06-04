@@ -5,6 +5,8 @@ import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import com.rarible.protocol.currency.core.gecko.FeignHelper
 import com.rarible.protocol.currency.core.gecko.GeckoApi
 import com.rarible.protocol.currency.core.gecko.GeckoApiImpl
+import kotlinx.coroutines.reactor.awaitSingle
+import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Tag
 import org.junit.jupiter.params.ParameterizedTest
@@ -34,23 +36,23 @@ class CoinGeckoApiTest {
 
     @ParameterizedTest
     @MethodSource("clients")
-    fun testGeckoApiIntegration(client: GeckoApi) {
+    fun testGeckoApiIntegration(client: GeckoApi) = runBlocking {
         val from = LocalDate.of(2022, 6, 4).atStartOfDay()
         val to = from.plusDays(2)
 
         val eth = client
             .history("ethereum", from.toEpochSecond(ZoneOffset.UTC), to.toEpochSecond(ZoneOffset.UTC))
-            .block()
+            .awaitSingle()
         Assertions.assertTrue(eth.prices.isNotEmpty()) { "Ethereum prices must not be empty" }
 
         val dai = client
             .history("dai", from.toEpochSecond(ZoneOffset.UTC), to.toEpochSecond(ZoneOffset.UTC))
-            .block()
+            .awaitSingle()
         Assertions.assertTrue(dai.prices.isNotEmpty()) { "DAI prices must not be empty" }
 
         val weth = client
             .history("weth", from.toEpochSecond(ZoneOffset.UTC), to.toEpochSecond(ZoneOffset.UTC))
-            .block()
+            .awaitSingle()
         Assertions.assertTrue(weth.prices.isNotEmpty()) { "WETH prices must not be empty" }
     }
 }
