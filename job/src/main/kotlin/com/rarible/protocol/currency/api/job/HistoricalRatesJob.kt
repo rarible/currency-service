@@ -52,7 +52,7 @@ class HistoricalRatesJob(
 
     suspend fun loadCurrency(currencyId: String) {
         val last = rateRepository.findLast(currencyId)
-        val from = if(last == null) {
+        val from = if (last == null) {
             val since = properties.historySince
             logger.info("No history for {}. Loading from historySince={}", currencyId, since.toString())
             since
@@ -61,7 +61,6 @@ class HistoricalRatesJob(
             logger.info("Last entry for {} is {}. Proceeding loading starting with {}", currencyId, last, lastPlusHour)
             lastPlusHour
         }
-
         val rates = loadCurrency(currencyId, from, Instant.now())
         if(rates.isNotEmpty()) {
             rateRepository.saveAll(rates)
@@ -70,7 +69,7 @@ class HistoricalRatesJob(
     }
 
     suspend fun loadCurrency(currencyId: String, from: Instant, maxTo: Instant): List<Rate> {
-        if(from.isAfter(maxTo)) {
+        if (from.isAfter(maxTo)) {
             logger.warn("No rates found for {}", currencyId)
             return emptyList()
         } else {
@@ -85,6 +84,7 @@ class HistoricalRatesJob(
 
             return if (rates.isEmpty()) {
                 logger.info("No rates found for {} in range {} - {}. Trying next range...", currencyId, from, to)
+                delay(request.delay)
                 loadCurrency(currencyId, to, maxTo)
             } else {
                 logger.info("Received {} rates for {} in range {} - {}", rates.size, currencyId, from, to)
