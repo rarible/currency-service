@@ -19,8 +19,7 @@ class CurrencyApiConfiguration(
         .registerModule(KotlinModule())
 
     @Bean
-    fun geckoApi(
-        objectMapper: ObjectMapper
-    ): GeckoApi =
-        FeignHelper.createClient(objectMapper, properties.apiUrl)
+    fun geckoApi(objectMapper: ObjectMapper): GeckoApi {
+        return FeignHelper.createClient(objectMapper, baseUrl = properties.apiUrl, proxyUrl = properties.proxyUrl)
+    }
 }

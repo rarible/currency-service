@@ -6,6 +6,7 @@ import com.rarible.protocol.currency.dto.CurrencyDto
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.boot.context.properties.ConstructorBinding
 import scalether.domain.Address
+import java.net.URI
 import java.time.Duration
 import java.time.Instant
 
@@ -18,7 +19,8 @@ data class CurrencyApiProperties(
     val coins: Map<String, Map<String, String>>,
     val aliases: Map<String, String> = emptyMap(),
     val historySince: Instant,
-    val request: RequestProperties = RequestProperties()
+    val request: RequestProperties = RequestProperties(),
+    val proxyUrl: URI? = null
 ) {
     fun byAddress(blockchain: Blockchain, address: String): String? {
         val extraCoins = extraCurrency[blockchain]

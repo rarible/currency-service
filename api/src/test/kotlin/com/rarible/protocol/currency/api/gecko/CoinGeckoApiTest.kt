@@ -18,7 +18,8 @@ class CoinGeckoApiTest {
         val objectMapper = ObjectMapper().registerKotlinModule()
         val client = FeignHelper.createClient<GeckoApi>(
             objectMapper,
-            "https://api.coingecko.com/api/v3"
+            "https://api.coingecko.com/api/v3",
+            null
         )
 
         val from = LocalDate.of(2020, 1, 1).atStartOfDay()

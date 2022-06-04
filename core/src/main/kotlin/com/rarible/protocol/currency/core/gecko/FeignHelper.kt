@@ -15,12 +15,19 @@ import org.springframework.web.reactive.function.client.WebClient
 import reactivefeign.ReactiveContract
 import reactivefeign.webclient.WebReactiveFeign
 import reactor.netty.http.client.HttpClient
+import reactor.netty.transport.ProxyProvider
+import java.net.URI
 
 // TODO Taken from legacy service-core, should be removed
 @Deprecated("Remove and replace by restTemplate")
 object FeignHelper {
 
-    fun <T> createClient(clazz: Class<T>, mapper: ObjectMapper, baseUrl: String): T {
+    fun <T> createClient(
+        clazz: Class<T>,
+        mapper: ObjectMapper,
+        baseUrl: String,
+        proxyUrl: URI?
+    ): T {
         val strategies = ExchangeStrategies
             .builder()
             .codecs { clientDefaultCodecsConfigurer: ClientCodecConfigurer ->
@@ -41,14 +48,23 @@ object FeignHelper {
                 .option(EpollChannelOption.TCP_KEEPINTVL, 60)
                 .option(EpollChannelOption.TCP_KEEPCNT, 8)
         }
-        val connector = ReactorClientHttpConnector(client)
+        val finalClient = if (proxyUrl != null) {
+            client
+                .proxy { option ->
+                    val userInfo = proxyUrl.userInfo.split(":")
+                    option.type(ProxyProvider.Proxy.HTTP).host(proxyUrl.host).username(userInfo[0]).password { userInfo[1] }.port(proxyUrl.port)
+                }
+        } else {
+            client
+        }
+        val connector = ReactorClientHttpConnector(finalClient)
         return WebReactiveFeign
             .builder<T>(WebClient.builder().clientConnector(connector).exchangeStrategies(strategies))
             .contract(ReactiveContract(SpringMvcContract()))
             .target(clazz, baseUrl)
     }
 
-    inline fun <reified T> createClient(mapper: ObjectMapper, baseUrl: String): T {
-        return createClient(T::class.java, mapper, baseUrl)
+    inline fun <reified T> createClient(mapper: ObjectMapper, baseUrl: String, proxyUrl: URI?): T {
+        return createClient(T::class.java, mapper, baseUrl, proxyUrl)
     }
 }
