@@ -40,7 +40,7 @@ class HistoricalRatesJob(
                     loadCurrency(currencyId)
                     break
                 } catch (ex: Throwable) {
-                    logger.error("Can't load currency for $currencyId, attempt $attempt/${request.attempts}", ex)
+                    logger.error("Can't load currency for $currencyId, attempt $attempt/${request.attempts}, cause=${ex.message ?: ex.cause?.message}")
                     delay(request.errorDelay)
                 }
                 attempt += 1
