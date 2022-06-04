@@ -71,7 +71,7 @@ enum class ClientType {
 }
 
 data class RequestProperties(
-    val delay: Duration = Duration.ofMillis(100),
-    val errorDelay: Duration = Duration.ofMillis(500),
+    val delay: Duration = Duration.ofSeconds(10),
+    val errorDelay: Duration = Duration.ofSeconds(10),
     val attempts: Int = 3
 )
