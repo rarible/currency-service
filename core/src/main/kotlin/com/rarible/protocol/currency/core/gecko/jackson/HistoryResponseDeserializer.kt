@@ -9,10 +9,9 @@ import com.rarible.protocol.currency.core.gecko.HistoryResponse
 import com.rarible.protocol.currency.core.gecko.Price
 import java.time.Instant
 
-
 class HistoryResponseDeserializer: JsonDeserializer<HistoryResponse>() {
     override fun deserialize(parser: JsonParser, ctx: DeserializationContext): HistoryResponse {
-        val node: JsonNode = parser.getCodec().readTree(parser)
+        val node: JsonNode = parser.codec.readTree(parser)
         val pricesJson = node["prices"] as ArrayNode
 
         val prices: List<Price> = pricesJson.map {
@@ -21,6 +20,7 @@ class HistoryResponseDeserializer: JsonDeserializer<HistoryResponse>() {
             val rate = price[1].asDouble().toBigDecimal()
             Price(date, rate)
         }.toList()
+
         return HistoryResponse(prices)
     }
 }

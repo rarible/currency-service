@@ -5,29 +5,39 @@ import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestParam
 import reactor.core.publisher.Mono
 
+internal const val ID_PARAM = "id"
+internal const val FROM_PARAM = "from"
+internal const val TO_PARAM = "to"
+internal const val VS_CURRENCIES_PARAM = "vs_currencies"
+internal const val VS_CURRENCY_PARAM = "vs_currency"
+internal const val DEFAULT_VS_CURRENCY_PARAM_VALUR = "usd"
+
+internal const val CURRENT_PRICE_PATH = "/simple/price"
+internal const val HISTORY_PATH = "/coins/{$ID_PARAM}/market_chart/range"
+
 interface GeckoApi {
 
-    @GetMapping("/simple/price")
+    @GetMapping(CURRENT_PRICE_PATH)
     fun currentPrice(
-        @RequestParam("id")
+        @RequestParam(ID_PARAM)
         coinId: String,
 
-        @RequestParam(value = "vs_currencies", required = false, defaultValue = "usd")
+        @RequestParam(value = VS_CURRENCIES_PARAM, required = false, defaultValue = DEFAULT_VS_CURRENCY_PARAM_VALUR)
         vsCurrency: String
     ): Mono<Map<String, Map<String, Double>>>
 
-    @GetMapping("/coins/{id}/market_chart/range")
+    @GetMapping(HISTORY_PATH)
     fun history(
-        @PathVariable("id")
+        @PathVariable(ID_PARAM)
         currencyId: String,
 
-        @RequestParam("from")
+        @RequestParam(FROM_PARAM)
         from: Long,
 
-        @RequestParam("to")
+        @RequestParam(TO_PARAM)
         to: Long,
 
-        @RequestParam(value = "vs_currency", required = false, defaultValue = "usd")
-        vsCurrency: String = "usd"
+        @RequestParam(value = VS_CURRENCY_PARAM, required = false, defaultValue = DEFAULT_VS_CURRENCY_PARAM_VALUR)
+        vsCurrency: String = DEFAULT_VS_CURRENCY_PARAM_VALUR
     ): Mono<HistoryResponse>
 }

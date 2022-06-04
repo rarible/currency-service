@@ -26,7 +26,7 @@ object FeignHelper {
     fun <T> createClient(
         clazz: Class<T>,
         mapper: ObjectMapper,
-        baseUrl: String,
+        baseUrl: URI,
         proxyUrl: URI?
     ): T {
         val strategies = ExchangeStrategies
@@ -50,7 +50,7 @@ object FeignHelper {
                 .option(EpollChannelOption.TCP_KEEPCNT, 8)
         }
         val finalClient = if (proxyUrl != null) {
-            logger.info("Proxy was configured for client ${clazz.javaClass.name}")
+            logger.info("Proxy was configured for Feign client ${clazz.name}")
             client
                 .proxy { option ->
                     val userInfo = proxyUrl.userInfo.split(":")
@@ -63,10 +63,10 @@ object FeignHelper {
         return WebReactiveFeign
             .builder<T>(WebClient.builder().clientConnector(connector).exchangeStrategies(strategies))
             .contract(ReactiveContract(SpringMvcContract()))
-            .target(clazz, baseUrl)
+            .target(clazz, baseUrl.toASCIIString())
     }
 
-    inline fun <reified T> createClient(mapper: ObjectMapper, baseUrl: String, proxyUrl: URI?): T {
+    inline fun <reified T> createClient(mapper: ObjectMapper, baseUrl: URI, proxyUrl: URI? = null): T {
         return createClient(T::class.java, mapper, baseUrl, proxyUrl)
     }
 

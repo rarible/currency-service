@@ -15,12 +15,13 @@ internal const val PREFIX = "common"
 @ConstructorBinding
 @ConfigurationProperties(PREFIX)
 data class CurrencyApiProperties(
-    val apiUrl: String,
+    val apiUrl: URI,
     val coins: Map<String, Map<String, String>>,
     val aliases: Map<String, String> = emptyMap(),
     val historySince: Instant,
     val request: RequestProperties = RequestProperties(),
-    val proxyUrl: URI? = null
+    val proxyUrl: URI? = null,
+    val clientType: ClientType = ClientType.FEIGN
 ) {
     fun byAddress(blockchain: Blockchain, address: String): String? {
         val extraCoins = extraCurrency[blockchain]
@@ -62,6 +63,11 @@ data class CurrencyApiProperties(
     private val extraCurrency = mapOf(
         Blockchain.TEZOS to mapOf("xtz" to "tezos")
     )
+}
+
+enum class ClientType {
+    FEIGN,
+    WEB
 }
 
 data class RequestProperties(
