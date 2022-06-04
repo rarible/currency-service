@@ -3,6 +3,7 @@ package com.rarible.protocol.currency.core.gecko
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.netty.channel.ChannelOption
 import io.netty.channel.epoll.EpollChannelOption
+import org.slf4j.LoggerFactory
 import org.springframework.cloud.openfeign.support.SpringMvcContract
 import org.springframework.http.MediaType
 import org.springframework.http.client.reactive.ReactorClientHttpConnector
@@ -49,6 +50,7 @@ object FeignHelper {
                 .option(EpollChannelOption.TCP_KEEPCNT, 8)
         }
         val finalClient = if (proxyUrl != null) {
+            logger.info("Proxy was configured for client ${clazz.javaClass.name}")
             client
                 .proxy { option ->
                     val userInfo = proxyUrl.userInfo.split(":")
@@ -67,4 +69,6 @@ object FeignHelper {
     inline fun <reified T> createClient(mapper: ObjectMapper, baseUrl: String, proxyUrl: URI?): T {
         return createClient(T::class.java, mapper, baseUrl, proxyUrl)
     }
+
+    private val logger = LoggerFactory.getLogger(javaClass)
 }
