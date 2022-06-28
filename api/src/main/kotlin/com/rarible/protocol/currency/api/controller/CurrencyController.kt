@@ -7,12 +7,12 @@ import com.rarible.protocol.currency.core.converter.model.BlockchainConverter
 import com.rarible.protocol.currency.dto.BlockchainDto
 import com.rarible.protocol.currency.dto.CurrenciesDto
 import com.rarible.protocol.currency.dto.CurrencyRateDto
+import java.math.BigDecimal
+import java.time.Instant
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.RestController
-import java.math.BigDecimal
-import java.time.Instant
 
 @RestController
 class CurrencyController(

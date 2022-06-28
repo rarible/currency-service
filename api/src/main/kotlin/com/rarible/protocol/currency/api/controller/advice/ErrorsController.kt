@@ -1,6 +1,6 @@
 package com.rarible.protocol.currency.api.controller.advice
 
-import com.rarible.protocol.currency.api.exceptions.CurrencyApiException
+import com.rarible.protocol.currency.core.exceptions.CurrencyApiException
 import com.rarible.protocol.currency.dto.CurrencyApiErrorDto
 import kotlinx.coroutines.reactor.mono
 import org.slf4j.LoggerFactory
