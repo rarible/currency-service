@@ -23,6 +23,7 @@ import org.springframework.boot.web.server.LocalServerPort
 import java.math.BigDecimal
 import java.net.URI
 import java.time.Instant
+import org.junit.jupiter.api.assertThrows
 
 @MongoTest
 @SpringBootTest(
@@ -190,7 +191,7 @@ internal class CurrencyControllerFt(
 
     @Test
     fun `get all currencies`() = runBlocking<Unit> {
-        val currencies = client.getAllCurrencies()?.awaitFirstOrNull()?.currencies!!
+        val currencies = client.allCurrencies?.awaitFirstOrNull()?.currencies!!
 
         val wethCurrencies = currencies.filter { it.currencyId == "weth" }
         assertThat(wethCurrencies).hasSize(2)
@@ -200,5 +201,18 @@ internal class CurrencyControllerFt(
 
         assertThat(eth.address).isEqualTo("0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2")
         assertThat(poly.address).isEqualTo("0x7ceb23fd6bc0add59e62ac25578270cff1b9f619")
+    }
+
+    @Test
+    fun `should throw validate error`() {
+        val badAddress = "${zeroAddress}1"
+        val msg = "Unable to parse ETHEREUM or POLYGON address [$badAddress]"
+        assertThrows<CurrencyControllerApi.ErrorGetCurrencyRate>(msg) {
+            client.getCurrencyRate(
+                BlockchainDto.ETHEREUM,
+                badAddress,
+                Instant.now().toEpochMilli()
+            ).block()
+        }
     }
 }
