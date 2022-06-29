@@ -21,9 +21,11 @@ protocol-currency-api:
     order: start-first
   networks:
     common:
-    - '{{ include "service.appEnv" $ }}-backend'
+      - '{{ include "service.appEnv" $ }}-backend'
     additional:
-    - proxy-staging
+      - proxy-staging
+  podAnnotations:
+    fluentbit.io/parser: logfmt
 
 protocol-currency-job:
   image:
@@ -46,4 +48,6 @@ protocol-currency-job:
     delay: 20s
   networks:
     common:
-    - '{{ include "service.appEnv" $ }}-backend'
+      - '{{ include "service.appEnv" $ }}-backend'
+  podAnnotations:
+    fluentbit.io/parser: logfmt
