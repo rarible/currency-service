@@ -5,9 +5,9 @@ protocol-currency-api:
   service:
     enabled: true
   environments:
-    APPLICATION_ENVIRONMENT: '{{ include "service.appEnv" $ }}'
-    CONSUL_ROOT_PATH: '{{ include "service.appEnv" $ }}/protocol/currency'
-    SPRING_PROFILES_ACTIVE: 'consul,{{ include "service.appEnv" $ }}'
+    APPLICATION_ENVIRONMENT: '{{ include "service.env" $ }}'
+    CONSUL_ROOT_PATH: '{{ include "service.env" $ }}/protocol/currency'
+    SPRING_PROFILES_ACTIVE: 'consul,{{ include "service.env" $ }}'
   nodeSelector:
     node.labels.rarible.service: true
   resources:
@@ -15,15 +15,9 @@ protocol-currency-api:
       xmx_megabytes: 512
       max_direct_memory_megabytes: 128
   livenessProbe:
-    initialDelaySeconds: 600s
+    initialDelaySeconds: 600
   updateConfig:
-    delay: 20s
     order: start-first
-  networks:
-    common:
-      - '{{ include "service.appEnv" $ }}-backend'
-    additional:
-      - proxy-staging
   podAnnotations:
     fluentbit.io/parser: logfmt
 
@@ -32,22 +26,16 @@ protocol-currency-job:
     repository: currency-service-job
   replicas: 1
   environments:
-    APPLICATION_ENVIRONMENT: '{{ include "service.appEnv" $ }}'
-    CONSUL_ROOT_PATH: '{{ include "service.appEnv" $ }}/protocol/currency'
-    SPRING_PROFILES_ACTIVE: 'consul,{{ include "service.appEnv" $ }}'
+    APPLICATION_ENVIRONMENT: '{{ include "service.env" $ }}'
+    CONSUL_ROOT_PATH: '{{ include "service.env" $ }}/protocol/currency'
+    SPRING_PROFILES_ACTIVE: 'consul,{{ include "service.env" $ }}'
   nodeSelector:
     node.labels.rarible.service: true
-  endpointMode: dnsrr
   resources:
     jvm:
       xmx_megabytes: 512
       max_direct_memory_megabytes: 128
   livenessProbe:
-    initialDelaySeconds: 600s
-  updateConfig:
-    delay: 20s
-  networks:
-    common:
-      - '{{ include "service.appEnv" $ }}-backend'
+    initialDelaySeconds: 600
   podAnnotations:
     fluentbit.io/parser: logfmt
