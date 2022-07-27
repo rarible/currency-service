@@ -73,6 +73,8 @@ common:
       ETHEREUM: "0x4d224452801aced8b2f0aebe155379bb5d594381"
     dogami:
       TEZOS: "KT1Ha4yFVeyzw6KRAdkzq6TxDHB97KG4pZe8"
+    immutable-x:
+      IMMUTABLEX: "0x0000000000000000000000000000000000000000"
 
 mongock:
   change-logs-scan-package:

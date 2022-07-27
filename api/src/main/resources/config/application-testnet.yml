@@ -25,3 +25,7 @@ common:
       TEZOS: "KT1PEBh9oKkQosYuw4tvzigps5p7uqXMgdez:0"
     dogami:
       TEZOS: "KT1Em3cZu3PRnvUyvifgAqYBjzuBv8fEAEud"
+    immutable-x:
+      IMMUTABLEX: "0x0000000000000000000000000000000000000000"
+      # not sure, there are several addresses of IMX at Rinkeby
+      ETHEREUM: "0xca0596d0534786f8672bd7a07fe9ba683d37090b"
