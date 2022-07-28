@@ -7,11 +7,11 @@ import com.rarible.protocol.currency.dto.CurrencyApiErrorDto
 import com.rarible.protocol.currency.dto.CurrencyDto
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.boot.context.properties.ConstructorBinding
+import org.springframework.http.HttpStatus
 import scalether.domain.Address
 import java.net.URI
 import java.time.Duration
 import java.time.Instant
-import org.springframework.http.HttpStatus
 
 internal const val PREFIX = "common"
 
@@ -34,11 +34,11 @@ data class CurrencyApiProperties(
         } else {
             this.coins.entries.firstOrNull { (_, addresses) ->
                 when (blockchain) {
-                    Blockchain.ETHEREUM, Blockchain.POLYGON -> {
+                    Blockchain.ETHEREUM, Blockchain.POLYGON, Blockchain.IMMUTABLEX -> {
                         val currencyAddress = try {
                             Address.apply(address)
                         } catch (e: Throwable) {
-                            val msg = "Unable to parse ETHEREUM or POLYGON address [$address]"
+                            val msg = "Unable to parse ETHEREUM or POLYGON or IMMUTABLEX address [$address]"
                             throw CurrencyApiException(
                                 message = msg,
                                 code = CurrencyApiErrorDto.Code.VALIDATION,
@@ -47,7 +47,7 @@ data class CurrencyApiProperties(
                         }
                         addresses[blockchain.name]?.let { Address.apply(it) } == currencyAddress
                     }
-                    Blockchain.FLOW, Blockchain.SOLANA, Blockchain.TEZOS -> {
+                    Blockchain.FLOW, Blockchain.SOLANA, Blockchain.TEZOS, Blockchain.APTOS -> {
                         addresses[blockchain.name] == address
                     }
                 }

@@ -5,5 +5,7 @@ enum class Blockchain {
     POLYGON,
     FLOW,
     TEZOS,
-    SOLANA
+    SOLANA,
+    APTOS,
+    IMMUTABLEX
 }
