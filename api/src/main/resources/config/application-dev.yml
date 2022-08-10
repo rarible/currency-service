@@ -28,6 +28,16 @@ common:
       TEZOS: "KT1XVLypM2M7kVBGuT4p8wkYigCxbh6CMdia:0"
     dogami:
       TEZOS: "KT1Em3cZu3PRnvUyvifgAqYBjzuBv8fEAEud"
+    immutable-x:
+      IMMUTABLEX: "0x26b81657e09d3a6a18ff1c6d776fd09f4bb9ee80"
+    imx-usdc:
+      IMMUTABLEX: "0x07865c6e87b9f70255377e024ace6630c1eaa37f"
+    ecomi:
+      IMMUTABLEX: "0x3409d4ad4d3a86a261b27b913a9ee72f7f5650ad"
+    guild-of-guardians:
+      IMMUTABLEX: "0x3c9b585b4d29b5e0e6be8eb1ee9607cde09f5a57"
+    gods-unchained:
+      IMMUTABLEX: "0x4c04c39fb6d2b356ae8b06c47843576e32a1963e"
 
   aliases:
     dai-newdev: dai

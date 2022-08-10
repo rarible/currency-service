@@ -26,6 +26,7 @@ common:
   coins:
     ethereum:
       ETHEREUM: "0x0000000000000000000000000000000000000000"
+      IMMUTABLEX: "0x0000000000000000000000000000000000000000"
     dai:
       ETHEREUM: "0x6b175474e89094c44da98b954eedeac495271d0f"
     weth:
@@ -102,8 +103,17 @@ common:
     dogami:
       TEZOS: "KT1Ha4yFVeyzw6KRAdkzq6TxDHB97KG4pZe8"
     immutable-x:
-      IMMUTABLEX: "0x0000000000000000000000000000000000000000"
+      IMMUTABLEX: "0xf57e7e7c23978c3caec3c3548e3d615c346e79ff"
       ETHEREUM: "0xf57e7e7c23978c3caec3c3548e3d615c346e79ff"
+    imx-usdc:
+      IMMUTABLEX: "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+    ecomi:
+      IMMUTABLEX: "0xed35af169af46a02ee13b9d79eb57d6d68c1749e"
+    guild-of-guardians:
+      IMMUTABLEX: "0x9ab7bb7fdc60f4357ecfef43986818a2a3569c62"
+    gods-unchained:
+      IMMUTABLEX: "0xccc8cb5229b0ac8069c51fd58367fd1e622afd97"
+
 
   # coins aliased by 'usd' value will always return 1:1 rate
   aliases:
@@ -113,6 +123,7 @@ common:
     usdtez: usd
     wrapped-usdc: usd
     youves-uusd: usd
+    imx-usdc: usd
     eurl: seur # one of EUR stable coins
 
 
