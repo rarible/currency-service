@@ -1,6 +1,7 @@
 package com.rarible.protocol.currency.api.controller
 
 import com.rarible.core.common.nowMillis
+import com.rarible.core.test.data.randomBigDecimal
 import com.rarible.core.test.ext.MongoTest
 import com.rarible.protocol.currency.api.client.CurrencyApiClientFactory
 import com.rarible.protocol.currency.api.client.CurrencyControllerApi
@@ -17,13 +18,13 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.web.server.LocalServerPort
 import java.math.BigDecimal
 import java.net.URI
 import java.time.Instant
-import org.junit.jupiter.api.assertThrows
 
 @MongoTest
 @SpringBootTest(
@@ -64,7 +65,7 @@ internal class CurrencyControllerFt(
         val rate = Rate.of("ethereum", date, rateValue)
         rateRepository.save(rate)
 
-        val currencyRate = client?.getCurrencyRate(
+        val currencyRate = client.getCurrencyRate(
             BlockchainDto.ETHEREUM,
             zeroAddress,
             date.minusSeconds(1).toEpochMilli()
@@ -201,6 +202,38 @@ internal class CurrencyControllerFt(
 
         assertThat(eth.address).isEqualTo("0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2")
         assertThat(poly.address).isEqualTo("0x7ceb23fd6bc0add59e62ac25578270cff1b9f619")
+    }
+
+    @Test
+    fun `get immutablex currency`() = runBlocking<Unit> {
+        val date = Instant.now().minusSeconds(60)
+        val rateValue = randomBigDecimal()
+        val rate = Rate.of("ecomi", date, rateValue)
+        rateRepository.save(rate)
+
+        val currencyRate = client.getCurrencyRate(
+            BlockchainDto.IMMUTABLEX,
+            "0xed35af169af46a02ee13b9d79eb57d6d68c1749e",
+            date.plusSeconds(1).toEpochMilli()
+        )?.block()
+
+        assertEquals(currencyRate?.rate, rateValue)
+    }
+
+    @Test
+    fun `get immutablex currency from ethereum`() = runBlocking<Unit> {
+        val date = Instant.now().minusSeconds(60)
+        val rateValue = randomBigDecimal()
+        val rate = Rate.of("apecoin", date, rateValue)
+        rateRepository.save(rate)
+
+        val currencyRate = client.getCurrencyRate(
+            BlockchainDto.IMMUTABLEX, // not defined for IMX, but defined for ETHEREUM
+            "0x4d224452801aced8b2f0aebe155379bb5d594381",
+            date.plusSeconds(1).toEpochMilli()
+        )?.block()
+
+        assertEquals(currencyRate?.rate, rateValue)
     }
 
     @Test
