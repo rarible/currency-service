@@ -29,29 +29,40 @@ data class CurrencyApiProperties(
     fun byAddress(blockchain: Blockchain, address: String): String? {
         val extraCoins = extraCurrency[blockchain]
 
-        return if (extraCoins?.containsKey(address.toLowerCase()) == true) {
-            extraCoins[address.toLowerCase()]
+        return if (extraCoins?.containsKey(address.lowercase()) == true) {
+            extraCoins[address.lowercase()]
         } else {
             this.coins.entries.firstOrNull { (_, addresses) ->
+                val found = if (blockchain == Blockchain.IMMUTABLEX) {
+                    // If there is no ERC20 specific address for IMX, we can take it from ETHEREUM
+                    // They use same addresses for IMX ERC20
+                    addresses[blockchain.name] ?: addresses[Blockchain.ETHEREUM.name]
+                } else {
+                    addresses[blockchain.name]
+                }
+
                 when (blockchain) {
                     Blockchain.ETHEREUM, Blockchain.POLYGON, Blockchain.IMMUTABLEX -> {
-                        val currencyAddress = try {
-                            Address.apply(address)
-                        } catch (e: Throwable) {
-                            val msg = "Unable to parse ETHEREUM or POLYGON or IMMUTABLEX address [$address]"
-                            throw CurrencyApiException(
-                                message = msg,
-                                code = CurrencyApiErrorDto.Code.VALIDATION,
-                                status = HttpStatus.BAD_REQUEST
-                            )
-                        }
-                        addresses[blockchain.name]?.let { Address.apply(it) } == currencyAddress
+                        found?.let { Address.apply(it) } == parseAddress(address)
                     }
                     Blockchain.FLOW, Blockchain.SOLANA, Blockchain.TEZOS, Blockchain.APTOS -> {
-                        addresses[blockchain.name] == address
+                        found == address
                     }
                 }
             }?.key
+        }
+    }
+
+    private fun parseAddress(address: String): Address {
+        try {
+            return Address.apply(address)
+        } catch (e: Throwable) {
+            val msg = "Unable to parse ETHEREUM or POLYGON or IMMUTABLEX address [$address]"
+            throw CurrencyApiException(
+                message = msg,
+                code = CurrencyApiErrorDto.Code.VALIDATION,
+                status = HttpStatus.BAD_REQUEST
+            )
         }
     }
 

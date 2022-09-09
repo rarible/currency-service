@@ -103,7 +103,6 @@ common:
     dogami:
       TEZOS: "KT1Ha4yFVeyzw6KRAdkzq6TxDHB97KG4pZe8"
     immutable-x:
-      IMMUTABLEX: "0xf57e7e7c23978c3caec3c3548e3d615c346e79ff"
       ETHEREUM: "0xf57e7e7c23978c3caec3c3548e3d615c346e79ff"
     imx-usdc:
       IMMUTABLEX: "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
