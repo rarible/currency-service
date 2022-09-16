@@ -12,6 +12,7 @@ import scalether.domain.Address
 import java.net.URI
 import java.time.Duration
 import java.time.Instant
+import java.util.*
 
 internal const val PREFIX = "common"
 
@@ -26,6 +27,7 @@ data class CurrencyApiProperties(
     val proxyUrl: URI? = null,
     val clientType: ClientType = ClientType.FEIGN
 ) {
+
     fun byAddress(blockchain: Blockchain, address: String): String? {
         val extraCoins = extraCurrency[blockchain]
 
@@ -73,14 +75,22 @@ data class CurrencyApiProperties(
 
     fun getAllCurrencies(): List<CurrencyDto> {
         return coins.map { coin ->
-            coin.value.map {
+            val coinId = coin.key
+            val byBlockchain = coin.value.map {
                 CurrencyDto(
-                    currencyId = coin.key,
-                    alias = aliases[coin.key],
+                    currencyId = coinId,
+                    alias = aliases[coinId],
                     blockchain = BlockchainDto.valueOf(it.key),
                     address = it.value
                 )
+            }.associateByTo(TreeMap()) { it.blockchain }
+            val eth = byBlockchain[BlockchainDto.ETHEREUM]
+            val imx = byBlockchain[BlockchainDto.IMMUTABLEX]
+            if (eth != null && imx == null) {
+                // IMX has same currencies as Ethereum
+                byBlockchain[BlockchainDto.IMMUTABLEX] = eth.copy(blockchain = BlockchainDto.IMMUTABLEX)
             }
+            byBlockchain.values
         }.flatten()
     }
 
