@@ -195,13 +195,16 @@ internal class CurrencyControllerFt(
         val currencies = client.allCurrencies?.awaitFirstOrNull()?.currencies!!
 
         val wethCurrencies = currencies.filter { it.currencyId == "weth" }
-        assertThat(wethCurrencies).hasSize(2)
+        assertThat(wethCurrencies).hasSize(3)
 
         val eth = wethCurrencies.find { it.blockchain == BlockchainDto.ETHEREUM }!!
+        // Should be the same as for Eth despite absence in configuration
+        val imx = wethCurrencies.find { it.blockchain == BlockchainDto.IMMUTABLEX }!!
         val poly = wethCurrencies.find { it.blockchain == BlockchainDto.POLYGON }!!
 
         assertThat(eth.address).isEqualTo("0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2")
         assertThat(poly.address).isEqualTo("0x7ceb23fd6bc0add59e62ac25578270cff1b9f619")
+        assertThat(imx.address).isEqualTo(eth.address)
     }
 
     @Test
