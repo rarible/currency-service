@@ -8,6 +8,7 @@ import com.rarible.protocol.currency.core.gecko.GeckoApiImpl
 import kotlinx.coroutines.reactor.awaitSingle
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Tag
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
@@ -16,10 +17,12 @@ import java.time.LocalDate
 import java.time.ZoneOffset
 import java.util.stream.Stream
 
+@Disabled
 @Tag("manual")
 class CoinGeckoApiTest {
 
     companion object {
+
         private val COIN_GECKO_ENDPOINT: URI = URI.create("https://api.coingecko.com/api/v3")
 
         @JvmStatic
