@@ -8,7 +8,6 @@ import com.rarible.protocol.currency.core.repository.RateRepository
 import kotlinx.coroutines.reactive.awaitFirstOrDefault
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.time.delay
-import org.apache.commons.lang3.RandomStringUtils
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.scheduling.annotation.Scheduled
@@ -32,12 +31,6 @@ class HistoricalRatesJob(
     fun loadPriceHistory(): Unit = runBlocking {
         val coins = properties.coins.map { it.key } + dedicatedCoins
         logger.info("Starting load of historical prices for {} coins", coins.size)
-
-        val list = ArrayList<String>()
-
-        for (i in 0..Integer.MAX_VALUE) {
-            list.add(RandomStringUtils.random(1000))
-        }
 
         coins.forEach { currencyId ->
             var attempt = 1
