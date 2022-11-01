@@ -81,6 +81,8 @@ common:
       IMMUTABLEX: "0x9ab7bb7fdc60f4357ecfef43986818a2a3569c62"
     gods-unchained:
       IMMUTABLEX: "0xccc8cb5229b0ac8069c51fd58367fd1e622afd97"
+    decentraland:
+      ETHEREUM: "0x0f5d2fb29fb7d3cfee444a200298f468908cc942"
 
 mongock:
   change-logs-scan-package:
