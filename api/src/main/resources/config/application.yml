@@ -5,6 +5,12 @@ server:
   shutdown: graceful
   port: 8080
 
+logging:
+  logfmt:
+    enabled: false
+  logjson:
+    enabled: true
+
 spring:
   application.name: protocol-currency-api
   jackson:

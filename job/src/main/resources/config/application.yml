@@ -5,6 +5,12 @@ spring:
   application:
     name: protocol-currency-job
 
+logging:
+  logfmt:
+    enabled: false
+  logjson:
+    enabled: true
+
 common:
   historySince: '2020-01-01T00:00:00Z'
   apiUrl: https://api.coingecko.com/api/v3
