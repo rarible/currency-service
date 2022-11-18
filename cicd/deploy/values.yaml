@@ -18,8 +18,6 @@ protocol-currency-api:
     initialDelaySeconds: 600
   updateConfig:
     order: start-first
-  podAnnotations:
-    fluentbit.io/parser: logfmt
 
 protocol-currency-job:
   image:
@@ -37,5 +35,3 @@ protocol-currency-job:
       max_direct_memory_megabytes: 128
   livenessProbe:
     initialDelaySeconds: 600
-  podAnnotations:
-    fluentbit.io/parser: logfmt
