@@ -4,6 +4,9 @@ rarible:
       server: api-staging.rarible.com
 common:
   coins:
+    test-usd: # Currency for end-to-end test purposes
+      ETHEREUM: "0x02cc113a068B643e4f98195935496aaf3E572e86"
+      POLYGON: "0x32CcA2bB34B36409b29166FbEC9b617CdA1E0410"
     dai:
       ETHEREUM: "0x5592ec0cfb4dbc12d3ab100b257153436a1f0fea"
     weth:

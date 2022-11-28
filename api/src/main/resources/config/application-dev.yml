@@ -4,6 +4,9 @@ rarible:
       server: api-dev.rarible.com
 common:
   coins:
+    test-usd: # Currency for end-to-end test purposes
+      ETHEREUM: "0xA4A70E8627e858567a9f1F08748Fe30691f72b9e"
+      POLYGON: "0xf4520E73A0212166C07279428527b9d300295203"
     dai:
       ETHEREUM: "0xad6d458402f60fd3bd25163575031acdce07538d"
     dai-newdev:

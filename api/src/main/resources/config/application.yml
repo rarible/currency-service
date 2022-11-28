@@ -126,6 +126,7 @@ common:
     youves-uusd: usd
     imx-usdc: usd
     eurl: seur # one of EUR stable coins
+    test-usd: usd
 
 
 
