@@ -6,7 +6,7 @@ common:
   coins:
     test-usd: # Currency for end-to-end test purposes
       ETHEREUM: "0xCfaF03B6254363bcA1A9D8e529270B5660bF3109"
-      # POLYGON: "" # Not present yet
+      POLYGON: "0xd6e804e7EDB5B2AecB31D9cCC9d9F3940a7b4cE2"
     dai:
       ETHEREUM: "0x5592ec0cfb4dbc12d3ab100b257153436a1f0fea"
     weth:
