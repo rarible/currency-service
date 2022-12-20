@@ -9,6 +9,7 @@ object BlockchainConverter : Converter<BlockchainDto, Blockchain> {
         return when (source) {
             BlockchainDto.ETHEREUM -> Blockchain.ETHEREUM
             BlockchainDto.POLYGON -> Blockchain.POLYGON
+            BlockchainDto.OPTIMISM -> Blockchain.OPTIMISM
             BlockchainDto.FLOW -> Blockchain.FLOW
             BlockchainDto.TEZOS -> Blockchain.TEZOS
             BlockchainDto.SOLANA -> Blockchain.SOLANA

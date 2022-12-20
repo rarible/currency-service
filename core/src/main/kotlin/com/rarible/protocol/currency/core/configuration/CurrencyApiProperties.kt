@@ -42,9 +42,11 @@ data class CurrencyApiProperties(
                 } else {
                     addresses[blockchain.name]
                 }
-
                 when (blockchain) {
-                    Blockchain.ETHEREUM, Blockchain.POLYGON, Blockchain.IMMUTABLEX -> {
+                    Blockchain.ETHEREUM,
+                    Blockchain.POLYGON,
+                    Blockchain.OPTIMISM,
+                    Blockchain.IMMUTABLEX -> {
                         found?.let { Address.apply(it) } == parseAddress(address)
                     }
                     Blockchain.FLOW, Blockchain.SOLANA, Blockchain.TEZOS, Blockchain.APTOS -> {
