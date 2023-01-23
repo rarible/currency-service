@@ -8,30 +8,28 @@ class CurrencyJobMetrics(private val meterRegistry: MeterRegistry) {
     fun onCurrencyLoad(currencyId: String) {
         meterRegistry.counter(
             CURRENCY_LOAD,
-            "currency_id", currencyId,
-            "status", "ok",
+            "currency", currencyId
         ).increment()
     }
 
     fun onCurrencyLoadNotFound(currencyId: String) {
         meterRegistry.counter(
-            CURRENCY_LOAD,
-            "currency_id", currencyId,
-            "status", "fail",
+            CURRENCY_LOAD_ERROR,
+            "currency", currencyId,
             "reason", "not_found",
         ).increment()
     }
 
     fun onCurrencyLoadError(currencyId: String) {
         meterRegistry.counter(
-            CURRENCY_LOAD,
-            "currency_id", currencyId,
-            "status", "fail",
+            CURRENCY_LOAD_ERROR,
+            "currency", currencyId,
             "reason", "unknown_error"
         ).increment()
     }
 
     companion object {
         const val CURRENCY_LOAD = "currency_load"
+        const val CURRENCY_LOAD_ERROR = "currency_load_error"
     }
 }
