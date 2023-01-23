@@ -41,17 +41,19 @@ class HistoricalRatesJob(
             while (attempt <= request.attempts) {
                 try {
                     loadCurrency(currencyId)
+                    currencyJobMetrics.onCurrencyLoad(currencyId)
                     break
                 } catch (ex: FeignException.NotFound) {
                     logger.warn(
                         "Currency $currencyId not found, cause=${ex.message ?: ex.cause?.message}"
                     )
+                    currencyJobMetrics.onCurrencyLoadNotFound(currencyId)
                     break
                 } catch (ex: Throwable) {
                     logger.error(
                         "Can't load currency for $currencyId, attempt $attempt/${request.attempts}, cause=${ex.message ?: ex.cause?.message}"
                     )
-                    currencyJobMetrics.onCurrencyLoadFail(currencyId)
+                    currencyJobMetrics.onCurrencyLoadError(currencyId)
                     delay(request.errorDelay)
                 }
                 attempt += 1
