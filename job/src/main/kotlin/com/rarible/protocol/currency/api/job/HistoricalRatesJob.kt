@@ -1,10 +1,12 @@
 package com.rarible.protocol.currency.api.job
 
+import com.rarible.protocol.currency.api.metric.CurrencyJobMetrics
 import com.rarible.protocol.currency.core.configuration.CurrencyApiProperties
 import com.rarible.protocol.currency.core.gecko.GeckoApi
 import com.rarible.protocol.currency.core.gecko.HistoryResponse
 import com.rarible.protocol.currency.core.model.Rate
 import com.rarible.protocol.currency.core.repository.RateRepository
+import feign.FeignException
 import kotlinx.coroutines.reactive.awaitFirstOrDefault
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.time.delay
@@ -19,7 +21,8 @@ import java.time.temporal.ChronoUnit
 class HistoricalRatesJob(
     private val properties: CurrencyApiProperties,
     private val rateRepository: RateRepository,
-    private val geckoApi: GeckoApi
+    private val geckoApi: GeckoApi,
+    private val currencyJobMetrics: CurrencyJobMetrics,
 ) {
     private val request = properties.request
 
@@ -38,11 +41,19 @@ class HistoricalRatesJob(
             while (attempt <= request.attempts) {
                 try {
                     loadCurrency(currencyId)
+                    currencyJobMetrics.onCurrencyLoad(currencyId)
+                    break
+                } catch (ex: FeignException.NotFound) {
+                    logger.warn(
+                        "Currency $currencyId not found, cause=${ex.message ?: ex.cause?.message}"
+                    )
+                    currencyJobMetrics.onCurrencyLoadNotFound(currencyId)
                     break
                 } catch (ex: Throwable) {
                     logger.error(
                         "Can't load currency for $currencyId, attempt $attempt/${request.attempts}, cause=${ex.message ?: ex.cause?.message}"
                     )
+                    currencyJobMetrics.onCurrencyLoadError(currencyId)
                     delay(request.errorDelay)
                 }
                 attempt += 1
@@ -64,7 +75,7 @@ class HistoricalRatesJob(
             lastPlusHour
         }
         val rates = loadCurrency(currencyId, from, Instant.now())
-        if(rates.isNotEmpty()) {
+        if (rates.isNotEmpty()) {
             rateRepository.saveAll(rates)
             loadCurrency(currencyId)
         }
