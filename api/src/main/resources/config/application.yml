@@ -80,6 +80,8 @@ common:
     matic-network:
       ETHEREUM: "0x7d1afa7b718fb893db30a3abc0cfc608aacfebb0"
       POLYGON: "0x0000000000000000000000000000000000000000"
+    wmatic:
+      POLYGON: "0x0d500b1d8e8ef31e21c99d1db9a6444d3adf1270"
     wtez: # alias, not a real coin
       TEZOS: "KT1EJkjatSNWD2NiPx8hivKnawxuyaVTwP6n"
     kolibri-usd:
