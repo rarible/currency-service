@@ -123,7 +123,16 @@ common:
       ETHEREUM: "0x5283d291dbcf85356a21ba090e6db59121208b44"
     optimism:
       OPTIMISM: "0x0000000000000000000000000000000000000000"
-
+    apecoin:
+      ETHEREUM: "0x4d224452801aced8b2f0aebe155379bb5d594381"
+    the-sandbox:
+      ETHEREUM: "0x3845badAde8e6dFF049820680d1F14bD3903a5d0"
+    prosper:
+      ETHEREUM: "0x8642A849D0dcb7a15a974794668ADcfbe4794B56"
+    revv:
+      ETHEREUM: "0x557b933a7c2c45672b610f8954a3deb39a51a8ca"
+    gamee:
+      ETHEREUM: "0xd9016a907dc0ecfa3ca425ab20b6b785b42f2373"
 
   # coins aliased by 'usd' value will always return 1:1 rate
   aliases:
