@@ -87,8 +87,6 @@ common:
       ETHEREUM: "0x0f5d2fb29fb7d3cfee444a200298f468908cc942"
     blur:
       ETHEREUM: "0x5283d291dbcf85356a21ba090e6db59121208b44"
-    apecoin:
-      ETHEREUM: "0x4d224452801aced8b2f0aebe155379bb5d594381"
     the-sandbox:
       ETHEREUM: "0x3845badAde8e6dFF049820680d1F14bD3903a5d0"
     prosper:
