@@ -22,6 +22,8 @@ common:
       ETHEREUM: "0xfca59cd816ab1ead66534d82bc21e7515ce441cf"
     usd-coin:
       ETHEREUM: "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+      POLYGON: "0x2791bca1f2de4661ed88a30c99a7a9449aa84174"
+      FLOW: "A.b19436aae4d94622.FiatToken"
     firdaos:
       ETHEREUM: "0x361887c1d1b73557018c47c8001711168128cf69"
     atari:
