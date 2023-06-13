@@ -12,3 +12,5 @@ common:
       TEZOS: "KT1Rgf9RNW7gLj7JGn98yyVM34S4St9eudMC:0"
     eurl:
       TEZOS: "KT1PEBh9oKkQosYuw4tvzigps5p7uqXMgdez:0"
+    usd-coin:
+      FLOW: "A.a983fecbed621163.FiatToken"

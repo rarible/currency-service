@@ -16,6 +16,8 @@ common:
       FLOW: "A.7e60df042a9c0868.FlowToken"
     flowusd:
       FLOW: "A.e223d8a629e49c68.FUSD"
+    usd-coin:
+      FLOW: "A.a983fecbed621163.FiatToken"
     stasis-eurs:
       TEZOS: "KT1Rgf9RNW7gLj7JGn98yyVM34S4St9eudMC:0"
     matic-network:
