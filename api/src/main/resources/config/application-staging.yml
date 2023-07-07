@@ -18,6 +18,8 @@ common:
       TEZOS: "KT1Rgf9RNW7gLj7JGn98yyVM34S4St9eudMC:0"
     matic-network:
       ETHEREUM: "0x83e556da6514325ee615ff868cd0d324856fa0cf"
+    wmatic:
+      POLYGON: "0x48fAF37c8b1B8A8C735aB25c039Cc00E8f95a435"
     wtez: # alias, not a real coin
       TEZOS: "KT1RggVJ1mMaLJezpdsJ6YtBfL7sBfcaGD1H"
     youves-uusd:
