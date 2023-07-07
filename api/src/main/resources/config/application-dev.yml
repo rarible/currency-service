@@ -24,7 +24,7 @@ common:
     matic-network:
       ETHEREUM: "0x83e556da6514325ee615ff868cd0d324856fa0cf"
     wmatic:
-      POLYGON: "0x328823f69a0915c9BEc366Eb09ccdfB964f91Ad5  
+      POLYGON: "0x328823f69a0915c9BEc366Eb09ccdfB964f91Ad5"
     wtez: # alias, not a real coin
       TEZOS: "KT1RggVJ1mMaLJezpdsJ6YtBfL7sBfcaGD1H"
     youves-uusd:
