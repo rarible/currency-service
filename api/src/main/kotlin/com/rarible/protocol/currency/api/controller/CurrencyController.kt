@@ -1,5 +1,6 @@
 package com.rarible.protocol.currency.api.controller
 
+import com.rarible.protocol.currency.api.AbukataListProp
 import com.rarible.protocol.currency.api.service.CurrencyService
 import com.rarible.protocol.currency.core.configuration.CurrencyApiProperties
 import com.rarible.protocol.currency.core.converter.dto.RateDtoConverter
@@ -11,13 +12,16 @@ import java.math.BigDecimal
 import java.time.Instant
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import org.springframework.context.ApplicationContext
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
 class CurrencyController(
     private val currencyService: CurrencyService,
-    private val currencyApiProperties: CurrencyApiProperties
+    private val currencyApiProperties: CurrencyApiProperties,
+    private val abukataListProp: AbukataListProp,
+    private val applicationContext: ApplicationContext
 ) : CurrencyControllerApi {
 
     val logger: Logger = LoggerFactory.getLogger(CurrencyController::class.java)

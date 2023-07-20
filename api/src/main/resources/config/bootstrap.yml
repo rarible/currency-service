@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: currency
+  cloud:
+    config:
+      discovery:
+        enabled: false
+    consul:
+      discovery:
+        enabled: false
+      service-registry:
+        auto-registration:
+          enabled: false
+      enabled: true
+      host: consul.dev.rarible.int.
+      port: 80
+      config:
+#        data-key: currency
+        enabled: true
+        prefixes:
+          - dev/protocol
+#          - currency
+        format: key_value

@@ -1,8 +1,10 @@
 package com.rarible.protocol.currency.api.service
 
+import com.rarible.protocol.currency.api.AbukataListProp
 import com.rarible.protocol.currency.core.model.Rate
 import com.rarible.protocol.currency.core.repository.RateRepository
 import org.slf4j.LoggerFactory
+import org.springframework.context.ApplicationContext
 import org.springframework.stereotype.Component
 import java.time.Instant
 
