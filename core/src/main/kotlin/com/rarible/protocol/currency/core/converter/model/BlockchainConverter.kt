@@ -15,6 +15,7 @@ object BlockchainConverter : Converter<BlockchainDto, Blockchain> {
             BlockchainDto.SOLANA -> Blockchain.SOLANA
             BlockchainDto.APTOS -> Blockchain.APTOS
             BlockchainDto.IMMUTABLEX -> Blockchain.IMMUTABLEX
+            BlockchainDto.MANTLE -> Blockchain.MANTLE
         }
     }
 }

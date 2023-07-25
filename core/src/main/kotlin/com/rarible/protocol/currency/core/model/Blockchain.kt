@@ -8,5 +8,6 @@ enum class Blockchain {
     TEZOS,
     SOLANA,
     APTOS,
-    IMMUTABLEX
+    IMMUTABLEX,
+    MANTLE,
 }

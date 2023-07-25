@@ -46,6 +46,7 @@ data class CurrencyApiProperties(
                     Blockchain.ETHEREUM,
                     Blockchain.POLYGON,
                     Blockchain.OPTIMISM,
+                    Blockchain.MANTLE,
                     Blockchain.IMMUTABLEX -> {
                         found?.let { Address.apply(it) } == parseAddress(address)
                     }
