@@ -12,6 +12,7 @@ common:
     weth:
       ETHEREUM: "0xb4fbf271143f4fbf7b91a5ded31805e42b2208d6"
       POLYGON: "0xa6fa4fb5f76172d178d61b04b0ecd319c5d1c0aa"
+      MANTLE: "0xdeaddeaddeaddeaddeaddeaddeaddeaddead1111"
     flow:
       FLOW: "A.7e60df042a9c0868.FlowToken"
     flowusd:
@@ -44,3 +45,6 @@ common:
       IMMUTABLEX: "0x3c9b585b4d29b5e0e6be8eb1ee9607cde09f5a57"
     gods-unchained:
       IMMUTABLEX: "0x4c04c39fb6d2b356ae8b06c47843576e32a1963e"
+    wmnt:
+      MANTLE: "0x2c6db4f138a1336db50ab698ca70cf99a37e1198"
+
