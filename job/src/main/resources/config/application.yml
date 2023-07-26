@@ -95,6 +95,8 @@ common:
       ETHEREUM: "0x557b933a7c2c45672b610f8954a3deb39a51a8ca"
     gamee:
       ETHEREUM: "0xd9016a907dc0ecfa3ca425ab20b6b785b42f2373"
+    mantle:
+      MANTLE: "0x0000000000000000000000000000000000000000"
 
 mongock:
   change-logs-scan-package:
