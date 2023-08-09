@@ -43,7 +43,6 @@
         <version.plugin.install>2.5.2</version.plugin.install>
         <version.plugin.jar>3.2.0</version.plugin.jar>
         <version.plugin.build.helper>3.2.0</version.plugin.build.helper>
-        <temp>test-release-tool</temp>
     </properties>
 
     <dependencyManagement>
