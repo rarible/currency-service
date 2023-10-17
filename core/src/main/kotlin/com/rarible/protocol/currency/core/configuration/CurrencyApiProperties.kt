@@ -1,8 +1,6 @@
 package com.rarible.protocol.currency.core.configuration
 
 import com.rarible.protocol.currency.core.exceptions.CurrencyApiException
-import com.rarible.protocol.currency.core.model.Blockchain
-import com.rarible.protocol.currency.dto.BlockchainDto
 import com.rarible.protocol.currency.dto.CurrencyApiErrorDto
 import com.rarible.protocol.currency.dto.CurrencyDto
 import org.springframework.boot.context.properties.ConfigurationProperties
@@ -28,29 +26,29 @@ data class CurrencyApiProperties(
     val clientType: ClientType = ClientType.FEIGN
 ) {
 
-    fun byAddress(blockchain: Blockchain, address: String): String? {
+    fun byAddress(blockchain: String, address: String): String? {
         val extraCoins = extraCurrency[blockchain]
 
         return if (extraCoins?.containsKey(address.lowercase()) == true) {
             extraCoins[address.lowercase()]
         } else {
             this.coins.entries.firstOrNull { (_, addresses) ->
-                val found = if (blockchain == Blockchain.IMMUTABLEX) {
+                val found = if (blockchain == "IMMUTABLEX") {
                     // If there is no ERC20 specific address for IMX, we can take it from ETHEREUM
                     // They use same addresses for IMX ERC20
-                    addresses[blockchain.name] ?: addresses[Blockchain.ETHEREUM.name]
+                    addresses[blockchain] ?: addresses["ETHEREUM"]
                 } else {
-                    addresses[blockchain.name]
+                    addresses[blockchain]
                 }
                 when (blockchain) {
-                    Blockchain.ETHEREUM,
-                    Blockchain.POLYGON,
-                    Blockchain.OPTIMISM,
-                    Blockchain.MANTLE,
-                    Blockchain.IMMUTABLEX -> {
+                    "ETHEREUM",
+                    "POLYGON",
+                    "OPTIMISM",
+                    "MANTLE",
+                    "IMMUTABLEX" -> {
                         found?.let { Address.apply(it) } == parseAddress(address)
                     }
-                    Blockchain.FLOW, Blockchain.SOLANA, Blockchain.TEZOS, Blockchain.APTOS -> {
+                    else -> {
                         found == address
                     }
                 }
@@ -83,22 +81,22 @@ data class CurrencyApiProperties(
                 CurrencyDto(
                     currencyId = coinId,
                     alias = aliases[coinId],
-                    blockchain = BlockchainDto.valueOf(it.key),
+                    blockchain = it.key,
                     address = it.value
                 )
             }.associateByTo(TreeMap()) { it.blockchain }
-            val eth = byBlockchain[BlockchainDto.ETHEREUM]
-            val imx = byBlockchain[BlockchainDto.IMMUTABLEX]
+            val eth = byBlockchain["ETHEREUM"]
+            val imx = byBlockchain["IMMUTABLEX"]
             if (eth != null && imx == null) {
                 // IMX has same currencies as Ethereum
-                byBlockchain[BlockchainDto.IMMUTABLEX] = eth.copy(blockchain = BlockchainDto.IMMUTABLEX)
+                byBlockchain["IMMUTABLEX"] = eth.copy(blockchain = "IMMUTABLEX")
             }
             byBlockchain.values
         }.flatten()
     }
 
     private val extraCurrency = mapOf(
-        Blockchain.TEZOS to mapOf("xtz" to "tezos")
+        "TEZOS" to mapOf("xtz" to "tezos")
     )
 }
 

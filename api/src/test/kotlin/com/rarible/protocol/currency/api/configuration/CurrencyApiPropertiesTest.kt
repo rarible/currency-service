@@ -1,7 +1,6 @@
 package com.rarible.protocol.currency.api.configuration
 
 import com.rarible.protocol.currency.core.configuration.CurrencyApiProperties
-import com.rarible.protocol.currency.core.model.Blockchain
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
@@ -23,8 +22,8 @@ class CurrencyApiPropertiesTest {
             Instant.now()
         )
 
-        Assertions.assertEquals("ethereum", props.byAddress(Blockchain.ETHEREUM, Address.ZERO().prefixed()))
-        Assertions.assertEquals("dai", props.byAddress(Blockchain.ETHEREUM, Address.apply(DAI).prefixed()))
+        Assertions.assertEquals("ethereum", props.byAddress("ETHEREUM", Address.ZERO().prefixed()))
+        Assertions.assertEquals("dai", props.byAddress("ETHEREUM", Address.apply(DAI).prefixed()))
     }
 
     @Test
@@ -39,8 +38,8 @@ class CurrencyApiPropertiesTest {
             Instant.now()
         )
 
-        val flowUsdAlias = props.byAddress(Blockchain.FLOW, "123")!!
-        val flow = props.byAddress(Blockchain.FLOW, "321")!!
+        val flowUsdAlias = props.byAddress("FLOW", "123")!!
+        val flow = props.byAddress("FLOW", "321")!!
 
         assertThat(flowUsdAlias).isEqualTo("flowusd")
         assertThat(flow).isEqualTo("flow")
