@@ -27,7 +27,6 @@
         <maven.deploy.skip>true</maven.deploy.skip>
 
         <rarible.core.version>2.5.19</rarible.core.version>
-        <rarible.ethereum.version>1.7.3</rarible.ethereum.version>
         <rarible.protocol.currency.version>1.56.101</rarible.protocol.currency.version>
 
         <feign-reactor.version>2.0.31</feign-reactor.version>
@@ -51,13 +50,6 @@
                 <groupId>com.rarible.core</groupId>
                 <artifactId>rarible-core-parent</artifactId>
                 <version>${rarible.core.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>com.rarible.ethereum</groupId>
-                <artifactId>rarible-ethereum-parent</artifactId>
-                <version>${rarible.ethereum.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
