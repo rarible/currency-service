@@ -14,3 +14,5 @@ common:
       TEZOS: "KT1PEBh9oKkQosYuw4tvzigps5p7uqXMgdez:0"
     usd-coin:
       FLOW: "A.a983fecbed621163.FiatToken"
+    wmnt:
+      MANTLE: "0xa4c4cb2a072ee99f77212fa18c2b7ca26da23905"
