@@ -3,8 +3,6 @@ package com.rarible.protocol.currency.api.controller
 import com.rarible.protocol.currency.api.service.CurrencyService
 import com.rarible.protocol.currency.core.configuration.CurrencyApiProperties
 import com.rarible.protocol.currency.core.converter.dto.RateDtoConverter
-import com.rarible.protocol.currency.core.converter.model.BlockchainConverter
-import com.rarible.protocol.currency.dto.BlockchainDto
 import com.rarible.protocol.currency.dto.CurrenciesDto
 import com.rarible.protocol.currency.dto.CurrencyRateDto
 import java.math.BigDecimal
@@ -28,14 +26,14 @@ class CurrencyController(
     }
 
     override suspend fun getCurrencyRate(
-        blockchain: BlockchainDto,
+        blockchain: String,
         address: String,
         at: Long
     ): ResponseEntity<CurrencyRateDto> {
         val atDate = Instant.ofEpochMilli(at)
         logger.info("Get rate for [{}/{}] at {}", blockchain, address, atDate)
 
-        val coinAlias = currencyApiProperties.byAddress(BlockchainConverter.convert(blockchain), address)
+        val coinAlias = currencyApiProperties.byAddress(blockchain, address)
         if (coinAlias == null) {
             logger.warn(
                 "Coin [{}/{}] is not supported. If this coin should be tracked, add it to application.yml.",

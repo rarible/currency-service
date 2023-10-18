@@ -9,7 +9,6 @@ import com.rarible.protocol.currency.api.client.FixedCurrencyApiServiceUriProvid
 import com.rarible.protocol.currency.api.client.NoopWebClientCustomizer
 import com.rarible.protocol.currency.core.model.Rate
 import com.rarible.protocol.currency.core.repository.RateRepository
-import com.rarible.protocol.currency.dto.BlockchainDto
 import com.rarible.protocol.currency.dto.CurrencyRateDto
 import kotlinx.coroutines.reactive.awaitFirst
 import kotlinx.coroutines.reactive.awaitFirstOrNull
@@ -66,7 +65,7 @@ internal class CurrencyControllerFt(
         rateRepository.save(rate)
 
         val currencyRate = client.getCurrencyRate(
-            BlockchainDto.ETHEREUM,
+            "ETHEREUM",
             zeroAddress,
             date.minusSeconds(1).toEpochMilli()
         )?.awaitFirst()
@@ -83,7 +82,7 @@ internal class CurrencyControllerFt(
         rateRepository.save(rate)
 
         val currencyRate = client.getCurrencyRate(
-            BlockchainDto.POLYGON,
+            "POLYGON",
             zeroAddress,
             date.minusSeconds(1).toEpochMilli()
         )?.awaitFirst()
@@ -114,7 +113,7 @@ internal class CurrencyControllerFt(
 ;
     private suspend fun getRateForDate(date: Instant): CurrencyRateDto? {
         return client.getCurrencyRate(
-            BlockchainDto.POLYGON,
+            "POLYGON",
             zeroAddress,
             date.toEpochMilli()
         )?.awaitFirst()
@@ -136,7 +135,7 @@ internal class CurrencyControllerFt(
         rateRepository.save(rate)
 
         val currencyRate = client.getCurrencyRate(
-            BlockchainDto.ETHEREUM,
+            "ETHEREUM",
             "0000000000000000000000000000000000000000",
             date.minusSeconds(1).toEpochMilli()
         )?.awaitFirst()
@@ -153,7 +152,7 @@ internal class CurrencyControllerFt(
         rateRepository.save(rate)
 
         val currencyRate = client.getCurrencyRate(
-            BlockchainDto.TEZOS,
+            "TEZOS",
             "KT1EJkjatSNWD2NiPx8hivKnawxuyaVTwP6n",
             date.minusSeconds(1).toEpochMilli()
         )?.awaitFirst()
@@ -165,7 +164,7 @@ internal class CurrencyControllerFt(
     @Test
     fun `get usd wrapped currency rate`() = runBlocking {
         val currencyRate = client.getCurrencyRate(
-            BlockchainDto.TEZOS,
+            "TEZOS",
             "KT18fp5rcTW7mbWDmzFwjLDUhs5MeJmagDSZ:17",
             nowMillis().toEpochMilli()
         )?.awaitFirst()
@@ -182,7 +181,7 @@ internal class CurrencyControllerFt(
         rateRepository.save(rate)
 
         val currencyRate = client.getCurrencyRate(
-            BlockchainDto.ETHEREUM,
+            "ETHEREUM",
             zeroAddress,
             date.plusSeconds(1).toEpochMilli()
         )?.block()
@@ -197,12 +196,12 @@ internal class CurrencyControllerFt(
         val wethCurrencies = currencies.filter { it.currencyId == "weth" }
         assertThat(wethCurrencies).hasSize(5)
 
-        val eth = wethCurrencies.find { it.blockchain == BlockchainDto.ETHEREUM }!!
+        val eth = wethCurrencies.find { it.blockchain == "ETHEREUM" }!!
         // Should be the same as for Eth despite absence in configuration
-        val imx = wethCurrencies.find { it.blockchain == BlockchainDto.IMMUTABLEX }!!
-        val poly = wethCurrencies.find { it.blockchain == BlockchainDto.POLYGON }!!
-        val opt = wethCurrencies.find { it.blockchain == BlockchainDto.OPTIMISM }!!
-        val mantle = wethCurrencies.find { it.blockchain == BlockchainDto.MANTLE }!!
+        val imx = wethCurrencies.find { it.blockchain == "IMMUTABLEX" }!!
+        val poly = wethCurrencies.find { it.blockchain == "POLYGON" }!!
+        val opt = wethCurrencies.find { it.blockchain == "OPTIMISM" }!!
+        val mantle = wethCurrencies.find { it.blockchain == "MANTLE" }!!
 
         assertThat(eth.address).isEqualTo("0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2")
         assertThat(poly.address).isEqualTo("0x7ceb23fd6bc0add59e62ac25578270cff1b9f619")
@@ -219,7 +218,7 @@ internal class CurrencyControllerFt(
         rateRepository.save(rate)
 
         val currencyRate = client.getCurrencyRate(
-            BlockchainDto.IMMUTABLEX,
+            "IMMUTABLEX",
             "0xed35af169af46a02ee13b9d79eb57d6d68c1749e",
             date.plusSeconds(1).toEpochMilli()
         )?.block()
@@ -235,7 +234,7 @@ internal class CurrencyControllerFt(
         rateRepository.save(rate)
 
         val currencyRate = client.getCurrencyRate(
-            BlockchainDto.IMMUTABLEX, // not defined for IMX, but defined for ETHEREUM
+            "IMMUTABLEX", // not defined for IMX, but defined for ETHEREUM
             "0x4d224452801aced8b2f0aebe155379bb5d594381",
             date.plusSeconds(1).toEpochMilli()
         )?.block()
@@ -249,7 +248,7 @@ internal class CurrencyControllerFt(
         val msg = "Unable to parse ETHEREUM or POLYGON address [$badAddress]"
         assertThrows<CurrencyControllerApi.ErrorGetCurrencyRate>(msg) {
             client.getCurrencyRate(
-                BlockchainDto.ETHEREUM,
+                "ETHEREUM",
                 badAddress,
                 Instant.now().toEpochMilli()
             ).block()
