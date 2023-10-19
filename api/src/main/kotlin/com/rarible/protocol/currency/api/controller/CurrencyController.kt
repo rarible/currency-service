@@ -84,5 +84,4 @@ class CurrencyController(
         val result = geckoRate?.let { converter.convert(it, coinAlias) }
         return ResponseEntity.ok(result)
     }
-
 }
