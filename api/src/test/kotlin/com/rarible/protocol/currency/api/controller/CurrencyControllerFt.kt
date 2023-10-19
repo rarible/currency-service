@@ -194,6 +194,11 @@ internal class CurrencyControllerFt(
 
     @Test
     fun `get all currencies`() = runBlocking<Unit> {
+        val date = Instant.now().minusSeconds(60)
+        val rateValue = BigDecimal("123.54")
+        val rate = Rate.of("weth", date, rateValue)
+        rateRepository.save(rate)
+
         val currencies = client.allCurrencies?.awaitFirstOrNull()?.currencies!!
 
         val wethCurrencies = currencies.filter { it.currencyId == "weth" }
@@ -208,12 +213,17 @@ internal class CurrencyControllerFt(
 
         assertThat(eth.address).isEqualTo("0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2")
         assertThat(eth.abbreviation).isEqualTo("weth")
+        assertThat(eth.rate).isEqualTo(rateValue)
+
         assertThat(poly.address).isEqualTo("0x7ceb23fd6bc0add59e62ac25578270cff1b9f619")
         assertThat(poly.abbreviation).isEqualTo("weth")
+
         assertThat(imx.address).isEqualTo(eth.address)
         assertThat(imx.abbreviation).isEqualTo("weth")
+
         assertThat(opt.address).isEqualTo("0x4200000000000000000000000000000000000006")
         assertThat(opt.abbreviation).isEqualTo("weth")
+
         assertThat(mantle.address).isEqualTo("0xdeaddeaddeaddeaddeaddeaddeaddeaddead1111")
         assertThat(mantle.abbreviation).isEqualTo("weth")
     }

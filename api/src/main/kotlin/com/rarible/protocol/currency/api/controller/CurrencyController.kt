@@ -4,7 +4,11 @@ import com.rarible.protocol.currency.api.service.CurrencyService
 import com.rarible.protocol.currency.core.configuration.CurrencyApiProperties
 import com.rarible.protocol.currency.core.converter.dto.CurrencyDtoConverter
 import com.rarible.protocol.currency.dto.CurrenciesDto
+import com.rarible.protocol.currency.dto.CurrencyDto
 import com.rarible.protocol.currency.dto.CurrencyRateDto
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.coroutineScope
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.http.ResponseEntity
@@ -22,7 +26,24 @@ class CurrencyController(
     val logger: Logger = LoggerFactory.getLogger(CurrencyController::class.java)
 
     override suspend fun getAllCurrencies(): ResponseEntity<CurrenciesDto> {
-        val currencies = currencyApiProperties.getAllCurrencies()
+        val currencies = coroutineScope {
+            currencyApiProperties.getAllCurrencies().map {
+                async {
+                    val rate = when (it.alias) {
+                        "usd" -> BigDecimal.ONE
+                        else -> currencyService.getRate(it.alias ?: it.currencyId, null)?.rate
+                    }
+                    CurrencyDto(
+                        currencyId = it.currencyId,
+                        alias = it.alias,
+                        blockchain = it.blockchain,
+                        address = it.address,
+                        abbreviation = it.abbreviation,
+                        rate = rate
+                    )
+                }
+            }.awaitAll()
+        }
         return ResponseEntity.ok(CurrenciesDto(currencies))
     }
 
