@@ -23,7 +23,8 @@ data class CurrencyApiProperties(
     val historySince: Instant,
     val request: RequestProperties = RequestProperties(),
     val proxyUrl: URI? = null,
-    val clientType: ClientType = ClientType.FEIGN
+    val clientType: ClientType = ClientType.FEIGN,
+    val abbreviations: Map<String, String> = emptyMap(),
 ) {
 
     fun byAddress(blockchain: String, address: String): String? {
@@ -74,6 +75,10 @@ data class CurrencyApiProperties(
         return aliases[alias] ?: alias
     }
 
+    fun getAbbreviation(alias: String): String? {
+        return abbreviations[alias]
+    }
+
     fun getAllCurrencies(): List<CurrencyDto> {
         return coins.map { coin ->
             val coinId = coin.key
@@ -82,7 +87,7 @@ data class CurrencyApiProperties(
                     currencyId = coinId,
                     alias = aliases[coinId],
                     blockchain = it.key,
-                    address = it.value
+                    address = it.value,
                 )
             }.associateByTo(TreeMap()) { it.blockchain }
             val eth = byBlockchain["ETHEREUM"]
