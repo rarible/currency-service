@@ -88,6 +88,7 @@ data class CurrencyApiProperties(
                     alias = aliases[coinId],
                     blockchain = it.key,
                     address = it.value,
+                    abbreviation = getAbbreviation(coinId)
                 )
             }.associateByTo(TreeMap()) { it.blockchain }
             val eth = byBlockchain["ETHEREUM"]
