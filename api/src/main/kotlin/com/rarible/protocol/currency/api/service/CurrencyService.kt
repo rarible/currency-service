@@ -13,8 +13,8 @@ class CurrencyService(
 
     private val logger = LoggerFactory.getLogger(CurrencyService::class.java)
 
-    suspend fun getRate(coinId: String, at: Instant): Rate? {
+    suspend fun getRate(coinId: String, at: Instant?): Rate? {
         logger.info("Coin id = {}", coinId)
-        return rateRepository.getRate(coinId, at) ?: rateRepository.findLast(coinId)
+        return at?.let { rateRepository.getRate(coinId, at) } ?: rateRepository.findLast(coinId)
     }
 }

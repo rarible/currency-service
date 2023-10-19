@@ -23,6 +23,7 @@ common:
   # format:
   # key is CoinGecko id from /coins/list;
   # value is map of platform name to the coins address on the corresponding platform
+
   coins:
     ethereum:
       ETHEREUM: "0x0000000000000000000000000000000000000000"
@@ -152,5 +153,56 @@ common:
     blur-pool: weth
     wmnt: mantle
 
-
-
+  abbreviations:
+    apecoin: "ape"
+    arke: "arke"
+    ash: "ash"
+    atari: "atri"
+    blur: "blur"
+    blur-pool: "weth"
+    cube: "cube"
+    imx-usdc: "usdc"
+    dai: "dai"
+    decentraland: "mana"
+    deflect: "deflct"
+    dogami: "doga"
+    donkey: "donk"
+    dynamite: "dyt"
+    ecomi: "omi"
+    ethereum: "eth"
+    eurl: "eurl"
+    firdaos: "fdo"
+    flow: "flow"
+    flowusd: "fusd"
+    gamee: "gmee"
+    gods-unchained: "gods"
+    guild-of-guardians: "gog"
+    hue: "hue"
+    immutable-x: "imx"
+    kolibri-usd: "kusd"
+    lux-expression: "lux"
+    mantle: "mnt"
+    many: "many"
+    matic-network: "matic"
+    monavale: "mona"
+    optimism: "op"
+    plenty-dao: "plenty"
+    polyient-games-unity: "pgu"
+    prosper: "pros"
+    rarible: "rari"
+    reflect-finance: "rfi"
+    revv: "revv"
+    rotten: "rot"
+    solana: "sol"
+    stasis-eurs: "eurs"
+    tezos: "xtz"
+    wtez: "wxtz"
+    terra-virtua-kolect: "tvk"
+    the-sandbox: "sand"
+    usd-coin: "usdc"
+    usdtez: "usdtz"
+    weth: "weth"
+    wmatic: "wmatic"
+    wmnt: "wmnt"
+    wrapped-usdc: "xusd"
+    youves-uusd: "uusd"

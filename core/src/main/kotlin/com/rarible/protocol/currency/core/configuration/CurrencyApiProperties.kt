@@ -2,7 +2,6 @@ package com.rarible.protocol.currency.core.configuration
 
 import com.rarible.protocol.currency.core.exceptions.CurrencyApiException
 import com.rarible.protocol.currency.dto.CurrencyApiErrorDto
-import com.rarible.protocol.currency.dto.CurrencyDto
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.boot.context.properties.ConstructorBinding
 import org.springframework.http.HttpStatus
@@ -23,7 +22,8 @@ data class CurrencyApiProperties(
     val historySince: Instant,
     val request: RequestProperties = RequestProperties(),
     val proxyUrl: URI? = null,
-    val clientType: ClientType = ClientType.FEIGN
+    val clientType: ClientType = ClientType.FEIGN,
+    val abbreviations: Map<String, String> = emptyMap(),
 ) {
 
     fun byAddress(blockchain: String, address: String): String? {
@@ -74,15 +74,20 @@ data class CurrencyApiProperties(
         return aliases[alias] ?: alias
     }
 
-    fun getAllCurrencies(): List<CurrencyDto> {
+    fun getAbbreviation(alias: String): String? {
+        return abbreviations[alias]
+    }
+
+    fun getAllCurrencies(): List<Currency> {
         return coins.map { coin ->
             val coinId = coin.key
             val byBlockchain = coin.value.map {
-                CurrencyDto(
+                Currency(
                     currencyId = coinId,
                     alias = aliases[coinId],
                     blockchain = it.key,
-                    address = it.value
+                    address = it.value,
+                    abbreviation = getAbbreviation(coinId)
                 )
             }.associateByTo(TreeMap()) { it.blockchain }
             val eth = byBlockchain["ETHEREUM"]
@@ -109,4 +114,12 @@ data class RequestProperties(
     val delay: Duration = Duration.ofSeconds(10),
     val errorDelay: Duration = Duration.ofSeconds(10),
     val attempts: Int = 3
+)
+
+data class Currency(
+    val currencyId: String,
+    val address: String,
+    val blockchain: String,
+    val alias: String? = null,
+    val abbreviation: String? = null,
 )

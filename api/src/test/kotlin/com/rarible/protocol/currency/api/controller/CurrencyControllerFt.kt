@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.boot.web.server.LocalServerPort
+import org.springframework.boot.test.web.server.LocalServerPort
 import java.math.BigDecimal
 import java.net.URI
 import java.time.Instant
@@ -57,7 +57,7 @@ internal class CurrencyControllerFt(
     }
 
     @Test
-    fun `get actual`() = runBlocking {
+    fun `get actual`() = runBlocking<Unit> {
 
         val date = Instant.now().minusSeconds(60)
         val rateValue = BigDecimal("123.54")
@@ -68,13 +68,14 @@ internal class CurrencyControllerFt(
             "ETHEREUM",
             zeroAddress,
             date.minusSeconds(1).toEpochMilli()
-        )?.awaitFirst()
+        )?.awaitFirst()!!
 
-        assertEquals(currencyRate?.rate, rateValue)
+        assertThat(currencyRate.rate).isEqualTo(rateValue)
+        assertThat(currencyRate.abbreviation).isEqualTo("eth")
     }
 
     @Test
-    fun `get actual polygon`() = runBlocking {
+    fun `get actual polygon`() = runBlocking<Unit> {
 
         val date = Instant.now().minusSeconds(60)
         val rateValue = BigDecimal("123.54")
@@ -85,9 +86,10 @@ internal class CurrencyControllerFt(
             "POLYGON",
             zeroAddress,
             date.minusSeconds(1).toEpochMilli()
-        )?.awaitFirst()
+        )?.awaitFirst()!!
 
-        assertEquals(currencyRate?.rate, rateValue)
+        assertThat(currencyRate.rate).isEqualTo(rateValue)
+        assertThat(currencyRate.abbreviation).isEqualTo("matic")
     }
 
     @Test
@@ -120,10 +122,9 @@ internal class CurrencyControllerFt(
     }
 
     private suspend fun saveRate(rateValue : String, at : Instant): BigDecimal {
-        val rateValue = BigDecimal(rateValue)
-        val rate = Rate.of("matic-network", at, rateValue)
+        val rate = Rate.of("matic-network", at, BigDecimal(rateValue))
         rateRepository.save(rate)
-        return rateValue
+        return rate.rate
     }
 
     @Test
@@ -144,7 +145,7 @@ internal class CurrencyControllerFt(
     }
 
     @Test
-    fun `get aliased currency rate`() = runBlocking {
+    fun `get aliased currency rate`() = runBlocking<Unit> {
 
         val date = nowMillis().minusSeconds(60)
         val rateValue = BigDecimal("133")
@@ -155,22 +156,24 @@ internal class CurrencyControllerFt(
             "TEZOS",
             "KT1EJkjatSNWD2NiPx8hivKnawxuyaVTwP6n",
             date.minusSeconds(1).toEpochMilli()
-        )?.awaitFirst()
+        )?.awaitFirst()!!
 
-        assertEquals(currencyRate?.rate, rateValue)
-        assertEquals(currencyRate?.fromCurrencyId, "wtez")
+        assertThat(currencyRate.rate).isEqualTo(rateValue)
+        assertThat(currencyRate.fromCurrencyId).isEqualTo("wtez")
+        assertThat(currencyRate.abbreviation).isEqualTo("wxtz")
     }
 
     @Test
-    fun `get usd wrapped currency rate`() = runBlocking {
+    fun `get usd wrapped currency rate`() = runBlocking<Unit> {
         val currencyRate = client.getCurrencyRate(
             "TEZOS",
             "KT18fp5rcTW7mbWDmzFwjLDUhs5MeJmagDSZ:17",
             nowMillis().toEpochMilli()
-        )?.awaitFirst()
+        )?.awaitFirst()!!
 
-        assertEquals(currencyRate?.rate, BigDecimal.ONE)
-        assertEquals(currencyRate?.fromCurrencyId, "wrapped-usdc")
+        assertThat(currencyRate.rate).isEqualTo(BigDecimal.ONE)
+        assertThat(currencyRate.fromCurrencyId).isEqualTo("wrapped-usdc")
+        assertThat(currencyRate.abbreviation).isEqualTo("xusd")
     }
 
     @Test
@@ -191,6 +194,11 @@ internal class CurrencyControllerFt(
 
     @Test
     fun `get all currencies`() = runBlocking<Unit> {
+        val date = Instant.now().minusSeconds(60)
+        val rateValue = BigDecimal("123.54")
+        val rate = Rate.of("weth", date, rateValue)
+        rateRepository.save(rate)
+
         val currencies = client.allCurrencies?.awaitFirstOrNull()?.currencies!!
 
         val wethCurrencies = currencies.filter { it.currencyId == "weth" }
@@ -204,10 +212,20 @@ internal class CurrencyControllerFt(
         val mantle = wethCurrencies.find { it.blockchain == "MANTLE" }!!
 
         assertThat(eth.address).isEqualTo("0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2")
+        assertThat(eth.abbreviation).isEqualTo("weth")
+        assertThat(eth.rate).isEqualTo(rateValue)
+
         assertThat(poly.address).isEqualTo("0x7ceb23fd6bc0add59e62ac25578270cff1b9f619")
+        assertThat(poly.abbreviation).isEqualTo("weth")
+
         assertThat(imx.address).isEqualTo(eth.address)
+        assertThat(imx.abbreviation).isEqualTo("weth")
+
         assertThat(opt.address).isEqualTo("0x4200000000000000000000000000000000000006")
+        assertThat(opt.abbreviation).isEqualTo("weth")
+
         assertThat(mantle.address).isEqualTo("0xdeaddeaddeaddeaddeaddeaddeaddeaddead1111")
+        assertThat(mantle.abbreviation).isEqualTo("weth")
     }
 
     @Test
