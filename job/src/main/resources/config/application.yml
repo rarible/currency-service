@@ -99,6 +99,8 @@ common:
       MANTLE: "0x0000000000000000000000000000000000000000"
     wmnt:
       MANTLE: "0x78c1b0c915c4faa5fffa6cabf0219da63d7f4cb8"
+    chiliz:
+      CHILIZ: "0x0000000000000000000000000000000000000000"
 
 mongock:
   change-logs-scan-package:
