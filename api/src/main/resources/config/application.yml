@@ -138,6 +138,8 @@ common:
       MANTLE: "0x0000000000000000000000000000000000000000"
     wmnt:
       MANTLE: "0x78c1b0c915c4faa5fffa6cabf0219da63d7f4cb8"
+    chiliz:
+      CHILIZ: "0x0000000000000000000000000000000000000000"
 
   # coins aliased by 'usd' value will always return 1:1 rate
   aliases:
@@ -206,3 +208,4 @@ common:
     wmnt: "wmnt"
     wrapped-usdc: "xusd"
     youves-uusd: "uusd"
+    chiliz: "chz"
