@@ -46,6 +46,7 @@ data class CurrencyApiProperties(
                     "OPTIMISM",
                     "MANTLE",
                     "CHILIZ",
+                    "ARBITRUM",
                     "IMMUTABLEX" -> {
                         found?.let { Address.apply(it) } == parseAddress(address)
                     }

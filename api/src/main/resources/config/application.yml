@@ -28,6 +28,7 @@ common:
     ethereum:
       ETHEREUM: "0x0000000000000000000000000000000000000000"
       IMMUTABLEX: "0x0000000000000000000000000000000000000000"
+      ARBITRUM: "0x0000000000000000000000000000000000000000"
     dai:
       ETHEREUM: "0x6b175474e89094c44da98b954eedeac495271d0f"
       POLYGON: "0x8f3cf7ad23cd3cadbd9735aff958023239c6a063"
@@ -36,6 +37,7 @@ common:
       POLYGON: "0x7ceb23fd6bc0add59e62ac25578270cff1b9f619"
       OPTIMISM: "0x4200000000000000000000000000000000000006"
       MANTLE: "0xdeaddeaddeaddeaddeaddeaddeaddeaddead1111"
+      ARBITRUM: "0x82af49447d8a07e3bd95bd0d56f35241523fbab1"
     rarible:
       ETHEREUM: "0xfca59cd816ab1ead66534d82bc21e7515ce441cf"
     usd-coin:
@@ -140,6 +142,8 @@ common:
       MANTLE: "0x78c1b0c915c4faa5fffa6cabf0219da63d7f4cb8"
     chiliz:
       CHILIZ: "0x0000000000000000000000000000000000000000"
+    arbitrum:
+      ARBITRUM: "0x912ce59144191c1204e64559fe8253a0e49e6548"
 
   # coins aliased by 'usd' value will always return 1:1 rate
   aliases:
@@ -209,3 +213,4 @@ common:
     wrapped-usdc: "xusd"
     youves-uusd: "uusd"
     chiliz: "chz"
+    arbitrum: "arb"

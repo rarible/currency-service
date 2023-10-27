@@ -13,6 +13,7 @@ common:
       ETHEREUM: "0xb4fbf271143f4fbf7b91a5ded31805e42b2208d6"
       POLYGON: "0xa6fa4fb5f76172d178d61b04b0ecd319c5d1c0aa"
       MANTLE: "0xdeaddeaddeaddeaddeaddeaddeaddeaddead1111"
+      ARBITRUM: "0x980b62da83eff3d4576c647993b0c1d7faf17c73"
     flow:
       FLOW: "A.7e60df042a9c0868.FlowToken"
     flowusd:

@@ -101,6 +101,8 @@ common:
       MANTLE: "0x78c1b0c915c4faa5fffa6cabf0219da63d7f4cb8"
     chiliz:
       CHILIZ: "0x0000000000000000000000000000000000000000"
+    arbitrum:
+      ARBITRUM: "0x912ce59144191c1204e64559fe8253a0e49e6548"
 
 mongock:
   change-logs-scan-package:
