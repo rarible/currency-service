@@ -1,40 +1,41 @@
-rarible:
-  core:
-    nginx-expose:
-      server: api-dev.rarible.com
 common:
   coins:
     test-usd: # Currency for end-to-end test purposes
-      ETHEREUM: "0xA4A70E8627e858567a9f1F08748Fe30691f72b9e"
-      POLYGON: "0xf4520E73A0212166C07279428527b9d300295203"
+      ETHEREUM: "0xCfaF03B6254363bcA1A9D8e529270B5660bF3109"
+      POLYGON: "0xd6e804e7EDB5B2AecB31D9cCC9d9F3940a7b4cE2"
     dai:
-      ETHEREUM: "0xad6d458402f60fd3bd25163575031acdce07538d"
-    dai-newdev:
-      ETHEREUM: "0x3867e897ed8C72900281BF27ac9e8D6c7E3615b6"
-      POLYGON: "0x938a97375D6809f7FCd191139E6658D6A5109A48"
+      ETHEREUM: "0x5592ec0cfb4dbc12d3ab100b257153436a1f0fea"
     weth:
-      ETHEREUM: "0x55eb2809896ab7414706aacdde63e3bbb26e0bc6"
-      POLYGON: "0xb24740adecb71feb7d66aa4ebd5f5c334e5be922"
+      ETHEREUM: "0xb4fbf271143f4fbf7b91a5ded31805e42b2208d6"
+      POLYGON: "0xa6fa4fb5f76172d178d61b04b0ecd319c5d1c0aa"
+      MANTLE: "0xdeaddeaddeaddeaddeaddeaddeaddeaddead1111"
+      ARBITRUM: "0x980b62da83eff3d4576c647993b0c1d7faf17c73"
+      ZKSYNC: "0x20b28b1e4665fff290650586ad76e977eab90c5d"
+      LIGHTLINK: "0xf42991f02c07ab66cfea282e7e482382aeb85461"
     flow:
       FLOW: "A.7e60df042a9c0868.FlowToken"
     flowusd:
       FLOW: "A.e223d8a629e49c68.FUSD"
+    usd-coin:
+      FLOW: "A.a983fecbed621163.FiatToken"
     stasis-eurs:
       TEZOS: "KT1Rgf9RNW7gLj7JGn98yyVM34S4St9eudMC:0"
     matic-network:
       ETHEREUM: "0x83e556da6514325ee615ff868cd0d324856fa0cf"
     wmatic:
-      POLYGON: "0x328823f69a0915c9BEc366Eb09ccdfB964f91Ad5"
+      POLYGON: "0x9c3c9283d3e44854697cd22d3faa240cfb032889"
     wtez: # alias, not a real coin
       TEZOS: "KT1RggVJ1mMaLJezpdsJ6YtBfL7sBfcaGD1H"
     youves-uusd:
       TEZOS: "KT191NbZCWnCZvoLEgcPpSEx5yVRk7WnisnN:0"
     eurl:
-      TEZOS: "KT1XVLypM2M7kVBGuT4p8wkYigCxbh6CMdia:0"
+      TEZOS: "KT1PEBh9oKkQosYuw4tvzigps5p7uqXMgdez:0"
     dogami:
       TEZOS: "KT1Em3cZu3PRnvUyvifgAqYBjzuBv8fEAEud"
     immutable-x:
       IMMUTABLEX: "0x26b81657e09d3a6a18ff1c6d776fd09f4bb9ee80"
+      # not sure, there are several addresses of IMX at Rinkeby
+      ETHEREUM: "0xca0596d0534786f8672bd7a07fe9ba683d37090b"
     imx-usdc:
       IMMUTABLEX: "0x07865c6e87b9f70255377e024ace6630c1eaa37f"
     ecomi:
@@ -43,6 +44,5 @@ common:
       IMMUTABLEX: "0x3c9b585b4d29b5e0e6be8eb1ee9607cde09f5a57"
     gods-unchained:
       IMMUTABLEX: "0x4c04c39fb6d2b356ae8b06c47843576e32a1963e"
-
-  aliases:
-    dai-newdev: dai
+    wmnt:
+      MANTLE: "0xa4c4cb2a072ee99f77212fa18c2b7ca26da23905"

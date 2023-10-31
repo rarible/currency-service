@@ -6,8 +6,7 @@ protocol-currency-api:
     enabled: true
   environments:
     APPLICATION_ENVIRONMENT: '{{ include "service.env" $ }}'
-    CONSUL_ROOT_PATH: '{{ include "service.env" $ }}/protocol/currency'
-    SPRING_PROFILES_ACTIVE: 'consul,{{ include "service.env" $ }}'
+    SPRING_PROFILES_ACTIVE: 'core,core-{{ include "service.env" $ }},{{ include "service.env" $ }},api'
   nodeSelector:
     node.labels.rarible.service: true
   resources:
@@ -25,8 +24,7 @@ protocol-currency-job:
   replicas: 1
   environments:
     APPLICATION_ENVIRONMENT: '{{ include "service.env" $ }}'
-    CONSUL_ROOT_PATH: '{{ include "service.env" $ }}/protocol/currency'
-    SPRING_PROFILES_ACTIVE: 'consul,{{ include "service.env" $ }}'
+    SPRING_PROFILES_ACTIVE: 'core,core-{{ include "service.env" $ }},{{ include "service.env" $ }},job'
   nodeSelector:
     node.labels.rarible.service: true
   resources:
