@@ -15,6 +15,7 @@ common:
       MANTLE: "0xdeaddeaddeaddeaddeaddeaddeaddeaddead1111"
       ARBITRUM: "0x980b62da83eff3d4576c647993b0c1d7faf17c73"
       ZKSYNC: "0x20b28b1e4665fff290650586ad76e977eab90c5d"
+      LIGHTLINK: "0xf42991f02c07ab66cfea282e7e482382aeb85461"
     flow:
       FLOW: "A.7e60df042a9c0868.FlowToken"
     flowusd:
