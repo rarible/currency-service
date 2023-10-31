@@ -14,6 +14,7 @@ common:
       POLYGON: "0xa6fa4fb5f76172d178d61b04b0ecd319c5d1c0aa"
       MANTLE: "0xdeaddeaddeaddeaddeaddeaddeaddeaddead1111"
       ARBITRUM: "0x980b62da83eff3d4576c647993b0c1d7faf17c73"
+      ZKSYNC: "0x20b28b1e4665fff290650586ad76e977eab90c5d"
     flow:
       FLOW: "A.7e60df042a9c0868.FlowToken"
     flowusd:
