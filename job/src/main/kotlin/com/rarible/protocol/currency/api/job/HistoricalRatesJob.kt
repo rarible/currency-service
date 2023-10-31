@@ -7,6 +7,7 @@ import com.rarible.protocol.currency.core.gecko.HistoryResponse
 import com.rarible.protocol.currency.core.model.Rate
 import com.rarible.protocol.currency.core.repository.RateRepository
 import feign.FeignException
+import kotlinx.coroutines.reactive.awaitFirst
 import kotlinx.coroutines.reactive.awaitFirstOrDefault
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.time.delay
@@ -16,6 +17,7 @@ import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Component
 import java.time.Instant
 import java.time.temporal.ChronoUnit
+import java.util.concurrent.atomic.AtomicReference
 
 @Component
 class HistoricalRatesJob(
@@ -25,6 +27,7 @@ class HistoricalRatesJob(
     private val currencyJobMetrics: CurrencyJobMetrics,
 ) {
     private val request = properties.request
+    private val geckoCoinIds = AtomicReference<Set<String>>(emptySet())
 
     private val dedicatedCoins = listOf(
         "seur" // EUR stable coin
@@ -32,7 +35,10 @@ class HistoricalRatesJob(
 
     @Scheduled(initialDelay = 60000, fixedDelay = 3600000)
     fun loadPriceHistory(): Unit = runBlocking {
-        val coins = properties.coins.map { it.key } + dedicatedCoins
+        val existedCoinIds = getExistedCoinIds()
+        val coins = (properties.coins.map { it.key } + dedicatedCoins)
+            .filter { currencyId -> currencyId in existedCoinIds }
+
         logger.info("Starting load of historical prices for {} coins", coins.size)
 
         coins.forEach { currencyId ->
@@ -103,6 +109,16 @@ class HistoricalRatesJob(
                 logger.info("Received {} rates for {} in range {} - {}", rates.size, currencyId, from, to)
                 rates
             }
+        }
+    }
+
+    private suspend fun getExistedCoinIds(): Set<String> {
+        val existedCoinIds = geckoCoinIds.get()
+        return existedCoinIds.ifEmpty {
+            val geckoCoins = geckoApi.coinsList().awaitFirst()
+            val fetchedCoinIds = geckoCoins.map { it.id }.toSet()
+            geckoCoinIds.set(fetchedCoinIds)
+            fetchedCoinIds
         }
     }
 

@@ -1,0 +1,106 @@
+application:
+  project: protocol
+
+server:
+  shutdown: graceful
+  port: 8080
+
+spring:
+  jackson:
+    mapper:
+      ACCEPT_CASE_INSENSITIVE_ENUMS: true
+    deserialization:
+      FAIL_ON_UNKNOWN_PROPERTIES: false
+    default-property-inclusion: non_null
+  main:
+    banner-mode: log
+    web-application-type: reactive
+
+common:
+  historySince: '2020-01-01T00:00:00Z'
+  apiUrl: https://api.coingecko.com/api/v3
+  # format:
+  # key is CoinGecko id from /coins/list;
+  # value is map of platform name to the coins address on the corresponding platform
+  coins:
+    ethereum:
+      ETHEREUM: "0x0000000000000000000000000000000000000000"
+      IMMUTABLEX: "0x0000000000000000000000000000000000000000"
+      ARBITRUM: "0x0000000000000000000000000000000000000000"
+      ZKSYNC: "0x0000000000000000000000000000000000000000"
+      LIGHTLINK: "0x0000000000000000000000000000000000000000"
+    optimism:
+      OPTIMISM: "0x0000000000000000000000000000000000000000"
+    mantle:
+      MANTLE: "0x0000000000000000000000000000000000000000"
+    chiliz:
+      CHILIZ: "0x0000000000000000000000000000000000000000"
+
+  aliases:
+    flowusd: usd
+    wtez: tezos
+    kolibri-usd: usd
+    usdtez: usd
+    wrapped-usdc: usd
+    youves-uusd: usd
+    imx-usdc: usd
+    eurl: seur # one of EUR stable coins
+    test-usd: usd
+    blur-pool: weth
+    wmnt: mantle
+
+  abbreviations:
+    apecoin: "ape"
+    arke: "arke"
+    ash: "ash"
+    atari: "atri"
+    blur: "blur"
+    blur-pool: "weth"
+    cube: "cube"
+    imx-usdc: "usdc"
+    dai: "dai"
+    decentraland: "mana"
+    deflect: "deflct"
+    dogami: "doga"
+    donkey: "donk"
+    dynamite: "dyt"
+    ecomi: "omi"
+    ethereum: "eth"
+    eurl: "eurl"
+    firdaos: "fdo"
+    flow: "flow"
+    flowusd: "fusd"
+    gamee: "gmee"
+    gods-unchained: "gods"
+    guild-of-guardians: "gog"
+    hue: "hue"
+    immutable-x: "imx"
+    kolibri-usd: "kusd"
+    lux-expression: "lux"
+    mantle: "mnt"
+    many: "many"
+    matic-network: "matic"
+    monavale: "mona"
+    optimism: "op"
+    plenty-dao: "plenty"
+    polyient-games-unity: "pgu"
+    prosper: "pros"
+    rarible: "rari"
+    reflect-finance: "rfi"
+    revv: "revv"
+    rotten: "rot"
+    solana: "sol"
+    stasis-eurs: "eurs"
+    tezos: "xtz"
+    wtez: "wxtz"
+    terra-virtua-kolect: "tvk"
+    the-sandbox: "sand"
+    usd-coin: "usdc"
+    usdtez: "usdtz"
+    weth: "weth"
+    wmatic: "wmatic"
+    wmnt: "wmnt"
+    wrapped-usdc: "xusd"
+    youves-uusd: "uusd"
+    chiliz: "chz"
+    arbitrum: "arb"

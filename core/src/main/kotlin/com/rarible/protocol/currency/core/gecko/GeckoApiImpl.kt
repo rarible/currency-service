@@ -53,6 +53,14 @@ class GeckoApiImpl(
         return get(uri)
     }
 
+    override fun coinsList(): Mono<List<Coin>> {
+        val uri = uriBuilderFactory.builder().run {
+            path(COINS_LIST_PATH)
+            build()
+        }
+        return get(uri)
+    }
+
     override fun history(currencyId: String, from: Long, to: Long, vsCurrency: String): Mono<HistoryResponse> {
         val uri = uriBuilderFactory.builder().run {
             path(HISTORY_PATH.replace("{$ID_PARAM}", currencyId))

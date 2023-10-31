@@ -14,6 +14,7 @@ internal const val DEFAULT_VS_CURRENCY_PARAM_VALUR = "usd"
 
 internal const val CURRENT_PRICE_PATH = "/simple/price"
 internal const val HISTORY_PATH = "/coins/{$ID_PARAM}/market_chart/range"
+internal const val COINS_LIST_PATH = "/coins/list"
 
 interface GeckoApi {
 
@@ -25,6 +26,9 @@ interface GeckoApi {
         @RequestParam(value = VS_CURRENCIES_PARAM, required = false, defaultValue = DEFAULT_VS_CURRENCY_PARAM_VALUR)
         vsCurrency: String
     ): Mono<Map<String, Map<String, Double>>>
+
+    @GetMapping(COINS_LIST_PATH)
+    fun coinsList(): Mono<List<Coin>>
 
     @GetMapping(HISTORY_PATH)
     fun history(
