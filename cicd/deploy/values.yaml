@@ -1,3 +1,13 @@
+global:
+  environments: &sharedEnv
+    APPLICATION_ENVIRONMENT: '{{ include "service.env" $ }}'
+    SPRING_CONFIG_IMPORT: "configserver:http://protocol-config-service:8080/"
+    SPRING_CLOUD_CONFIG_NAME: "currency-service"
+    # Disable consul
+    SPRING_CLOUD_SERVICE-REGISTRY_AUTO-REGISTRATION_ENABLED: "false"
+    SPRING_CLOUD_DISCOVERY_ENABLED: "false"
+    SPRING_CLOUD_CONSUL_CONFIG_ENABLED: "false"
+
 protocol-currency-api:
   image:
     repository: currency-service-api
@@ -5,7 +15,7 @@ protocol-currency-api:
   service:
     enabled: true
   environments:
-    APPLICATION_ENVIRONMENT: '{{ include "service.env" $ }}'
+    <<: *sharedEnv
     SPRING_PROFILES_ACTIVE: 'core,core-{{ include "service.env" $ }},{{ include "service.env" $ }},api'
   nodeSelector:
     node.labels.rarible.service: true
@@ -23,7 +33,7 @@ protocol-currency-job:
     repository: currency-service-job
   replicas: 1
   environments:
-    APPLICATION_ENVIRONMENT: '{{ include "service.env" $ }}'
+    <<: *sharedEnv
     SPRING_PROFILES_ACTIVE: 'core,core-{{ include "service.env" $ }},{{ include "service.env" $ }},job'
   nodeSelector:
     node.labels.rarible.service: true
