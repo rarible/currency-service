@@ -110,6 +110,7 @@ common:
       ETHEREUM: "0x4d224452801aced8b2f0aebe155379bb5d594381"
     dogami:
       TEZOS: "KT1Ha4yFVeyzw6KRAdkzq6TxDHB97KG4pZe8"
+      POLYGON: "0x2f3e306d9f02ee8e8850f9040404918d0b345207"
     immutable-x:
       ETHEREUM: "0xf57e7e7c23978c3caec3c3548e3d615c346e79ff"
     imx-usdc:
