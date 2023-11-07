@@ -1,0 +1,12 @@
+global:
+  environments: &sharedEnv
+    MONGODB_HOSTS: "staging-mongo1.rarible.int.,staging-mongo2.rarible.int.,staging-mongo3.rarible.int."
+    MONGODB_DATABASE: "testnet-protocol-currency"
+
+protocol-currency-api:
+  environments:
+    <<: *sharedEnv
+
+protocol-currency-job:
+  environments:
+    <<: *sharedEnv
