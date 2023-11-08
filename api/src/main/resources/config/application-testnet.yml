@@ -33,6 +33,7 @@ common:
       TEZOS: "KT1PEBh9oKkQosYuw4tvzigps5p7uqXMgdez:0"
     dogami:
       TEZOS: "KT1Em3cZu3PRnvUyvifgAqYBjzuBv8fEAEud"
+      POLYGON: "0xef5e0533aaddc7fd56e0ae8576672a3a14f9465a"
     immutable-x:
       IMMUTABLEX: "0x26b81657e09d3a6a18ff1c6d776fd09f4bb9ee80"
       # not sure, there are several addresses of IMX at Rinkeby
