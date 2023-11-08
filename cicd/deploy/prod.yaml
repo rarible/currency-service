@@ -1,2 +1,13 @@
+global:
+  environments: &sharedEnv
+    MONGODB_HOSTS: "mongo1.rarible.int.,mongo2.rarible.int.,mongo3.rarible.int."
+    MONGODB_DATABASE: "protocol-currency"
+
 protocol-currency-api:
+  environments:
+    <<: *sharedEnv
   replicas: 3
+
+protocol-currency-job:
+  environments:
+    <<: *sharedEnv

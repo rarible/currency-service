@@ -57,5 +57,8 @@ class CoinGeckoApiTest {
             .history("weth", from.toEpochSecond(ZoneOffset.UTC), to.toEpochSecond(ZoneOffset.UTC))
             .awaitSingle()
         Assertions.assertTrue(weth.prices.isNotEmpty()) { "WETH prices must not be empty" }
+
+        val coinList = client.coinsList().awaitSingle()
+        Assertions.assertTrue(coinList.isNotEmpty()) { "Coin list must not be empty" }
     }
 }
