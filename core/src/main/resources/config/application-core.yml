@@ -49,6 +49,7 @@ common:
     test-usd: usd
     blur-pool: weth
     wmnt: mantle
+    wchz: chiliz
 
   abbreviations:
     apecoin: "ape"
@@ -101,6 +102,7 @@ common:
     weth: "weth"
     wmatic: "wmatic"
     wmnt: "wmnt"
+    wchz: "wchz"
     wrapped-usdc: "xusd"
     youves-uusd: "uusd"
     chiliz: "chz"
