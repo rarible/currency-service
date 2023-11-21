@@ -23,11 +23,11 @@
     </repositories>
 
     <properties>
-        <revision>1.69</revision>
+        <revision>1.70</revision>
         <maven.deploy.skip>true</maven.deploy.skip>
 
         <rarible.core.version>2.5.19</rarible.core.version>
-        <rarible.protocol.currency.version>1.69.0</rarible.protocol.currency.version>
+        <rarible.protocol.currency.version>1.70.0</rarible.protocol.currency.version>
 
         <feign-reactor.version>2.0.31</feign-reactor.version>
         <dev-jna.version>5.7.0</dev-jna.version>
