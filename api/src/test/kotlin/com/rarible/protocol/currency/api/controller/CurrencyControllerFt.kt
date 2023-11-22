@@ -21,6 +21,7 @@ import org.junit.jupiter.api.assertThrows
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.web.server.LocalServerPort
+import org.springframework.test.context.ActiveProfiles
 import java.math.BigDecimal
 import java.net.URI
 import java.time.Instant
@@ -36,10 +37,11 @@ import java.time.Instant
         "logging.logstash.tcp-socket.enabled = false"
     ]
 )
-internal class CurrencyControllerFt(
+@ActiveProfiles("test")
+internal class CurrencyControllerFt {
+
     @LocalServerPort
-    val port: Int
-) {
+    private var port: Int = 0
 
     val zeroAddress = "0x0000000000000000000000000000000000000000"
 

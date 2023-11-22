@@ -1,0 +1,214 @@
+server:
+  shutdown: graceful
+  port: 8080
+
+spring:
+  application.name: protocol-currency-api
+  jackson:
+    mapper:
+      ACCEPT_CASE_INSENSITIVE_ENUMS: true
+    deserialization:
+      FAIL_ON_UNKNOWN_PROPERTIES: false
+    default-property-inclusion: non_null
+  main:
+    banner-mode: log
+    web-application-type: reactive
+    
+common:
+  historySince: '2020-01-01T00:00:00Z'
+  apiUrl: https://api.coingecko.com/api/v3
+  # format:
+  # key is CoinGecko id from /coins/list;
+  # value is map of platform name to the coins address on the corresponding platform
+
+  coins:
+    ethereum:
+      ETHEREUM: "0x0000000000000000000000000000000000000000"
+      IMMUTABLEX: "0x0000000000000000000000000000000000000000"
+      ARBITRUM: "0x0000000000000000000000000000000000000000"
+    dai:
+      ETHEREUM: "0x6b175474e89094c44da98b954eedeac495271d0f"
+      POLYGON: "0x8f3cf7ad23cd3cadbd9735aff958023239c6a063"
+    weth:
+      ETHEREUM: "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2"
+      POLYGON: "0x7ceb23fd6bc0add59e62ac25578270cff1b9f619"
+      OPTIMISM: "0x4200000000000000000000000000000000000006"
+      MANTLE: "0xdeaddeaddeaddeaddeaddeaddeaddeaddead1111"
+      ARBITRUM: "0x82af49447d8a07e3bd95bd0d56f35241523fbab1"
+    rarible:
+      ETHEREUM: "0xfca59cd816ab1ead66534d82bc21e7515ce441cf"
+    usd-coin:
+      ETHEREUM: "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+      POLYGON: "0x2791bca1f2de4661ed88a30c99a7a9449aa84174"
+      FLOW: "A.b19436aae4d94622.FiatToken"
+    firdaos:
+      ETHEREUM: "0x361887c1d1b73557018c47c8001711168128cf69"
+    atari:
+      ETHEREUM: "0xdacd69347de42babfaecd09dc88958378780fb62"
+    many:
+      ETHEREUM: "0xab7aaf9e485a3bc885985184abe9fc6aba727bd6"
+    terra-virtua-kolect:
+      ETHEREUM: "0xd084b83c305dafd76ae3e1b4e1f1fe2ecccb3988"
+    donkey:
+      ETHEREUM: "0x1bbc8aa095f5ca72dfbc169773989e41de8bdb86"
+    arke:
+      ETHEREUM: "0xa9248f8e40d4b9c3ca8ebd8e07e9bcb942c616d8"
+    reflect-finance:
+      ETHEREUM: "0xa1afffe3f4d611d252010e3eaf6f4d77088b0cd7"
+    polyient-games-unity:
+      ETHEREUM: "0x98c36c0e953463bd5146c8783ce081ce1d187acf"
+    rotten:
+      ETHEREUM: "0xd04785c4d8195e4a54d9dec3a9043872875ae9e2"
+    hue:
+      ETHEREUM: "0xdcfe18bc46f5a0cd0d3af0c2155d2bcb5ade2fc5"
+    dynamite:
+      ETHEREUM: "0x740623d2c797b7d8d1ecb98e9b4afcf99ec31e14"
+    lux-expression:
+      ETHEREUM: "0x88dafebb769311d7fbbeb9a21431fa026d4100d0"
+    deflect:
+      ETHEREUM: "0x3aa5f749d4a6bcf67dac1091ceb69d1f5d86fa53"
+    ash:
+      ETHEREUM: "0x64d91f12ece7362f91a6f8e7940cd55f05060b92"
+    cube:
+      ETHEREUM: "0xdf801468a808a32656d2ed2d2d80b72a129739f4"
+    flow:
+      FLOW: "A.1654653399040a61.FlowToken"
+    flowusd:
+      FLOW: "A.3c5959b568896393.FUSD"
+    tezos:
+      TEZOS: "tz1Ke2h7sDdakHJQh8WX4Z372du1KChsksyU"
+    stasis-eurs:
+      TEZOS: "KT1JBNFcB5tiycHNdYGYCtR3kk6JaJysUCi8:0"
+    matic-network:
+      ETHEREUM: "0x7d1afa7b718fb893db30a3abc0cfc608aacfebb0"
+      POLYGON: "0x0000000000000000000000000000000000000000"
+    wmatic:
+      POLYGON: "0x0d500b1d8e8ef31e21c99d1db9a6444d3adf1270"
+    wtez: # alias, not a real coin
+      TEZOS: "KT1EJkjatSNWD2NiPx8hivKnawxuyaVTwP6n"
+    kolibri-usd:
+      TEZOS: "KT1K9gCRgaLRFKTErYt1wVxA3Frb9FjasjTV"
+    usdtez:
+      TEZOS: "KT1LN4LPSqTMS7Sd2CJw4bbDGRkMv2t68Fy9"
+    wrapped-usdc:
+      TEZOS: "KT18fp5rcTW7mbWDmzFwjLDUhs5MeJmagDSZ:17"
+    plenty-dao:
+      TEZOS: "KT1GRSvLoikDsXujKgZPsGLX8k8VvR2Tq95b:0"
+    youves-uusd:
+      TEZOS: "KT1XRPEPXbZK25r3Htzp2o1x7xdMMmfocKNW:0"
+    eurl:
+      TEZOS: "KT1JBNFcB5tiycHNdYGYCtR3kk6JaJysUCi8:0"
+    solana:
+      SOLANA: "So11111111111111111111111111111111111111112"
+    monavale:
+      ETHEREUM: "0x275f5ad03be0fa221b4c6649b8aee09a42d9412a"
+      POLYGON: "0x6968105460f67c3bf751be7c15f92f5286fd0ce5"
+    apecoin:
+      ETHEREUM: "0x4d224452801aced8b2f0aebe155379bb5d594381"
+    dogami:
+      TEZOS: "KT1Ha4yFVeyzw6KRAdkzq6TxDHB97KG4pZe8"
+      POLYGON: "0x2f3e306d9f02ee8e8850f9040404918d0b345207"
+    immutable-x:
+      ETHEREUM: "0xf57e7e7c23978c3caec3c3548e3d615c346e79ff"
+    imx-usdc:
+      IMMUTABLEX: "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+    ecomi:
+      IMMUTABLEX: "0xed35af169af46a02ee13b9d79eb57d6d68c1749e"
+    guild-of-guardians:
+      IMMUTABLEX: "0x9ab7bb7fdc60f4357ecfef43986818a2a3569c62"
+    gods-unchained:
+      IMMUTABLEX: "0xccc8cb5229b0ac8069c51fd58367fd1e622afd97"
+    decentraland:
+      ETHEREUM: "0x0f5d2fb29fb7d3cfee444a200298f468908cc942"
+    blur:
+      ETHEREUM: "0x5283d291dbcf85356a21ba090e6db59121208b44"
+    optimism:
+      OPTIMISM: "0x0000000000000000000000000000000000000000"
+    the-sandbox:
+      ETHEREUM: "0x3845badAde8e6dFF049820680d1F14bD3903a5d0"
+    prosper:
+      ETHEREUM: "0x8642A849D0dcb7a15a974794668ADcfbe4794B56"
+    revv:
+      ETHEREUM: "0x557b933a7c2c45672b610f8954a3deb39a51a8ca"
+    gamee:
+      ETHEREUM: "0xd9016a907dc0ecfa3ca425ab20b6b785b42f2373"
+    blur-pool:
+      ETHEREUM: "0x0000000000a39bb272e79075ade125fd351887ac"
+    mantle:
+      MANTLE: "0x0000000000000000000000000000000000000000"
+    wmnt:
+      MANTLE: "0x78c1b0c915c4faa5fffa6cabf0219da63d7f4cb8"
+    chiliz:
+      CHILIZ: "0x0000000000000000000000000000000000000000"
+    arbitrum:
+      ARBITRUM: "0x912ce59144191c1204e64559fe8253a0e49e6548"
+
+  # coins aliased by 'usd' value will always return 1:1 rate
+  aliases:
+    flowusd: usd
+    wtez: tezos
+    kolibri-usd: usd
+    usdtez: usd
+    wrapped-usdc: usd
+    youves-uusd: usd
+    imx-usdc: usd
+    eurl: seur # one of EUR stable coins
+    test-usd: usd
+    blur-pool: weth
+    wmnt: mantle
+
+  abbreviations:
+    apecoin: "ape"
+    arke: "arke"
+    ash: "ash"
+    atari: "atri"
+    blur: "blur"
+    blur-pool: "weth"
+    cube: "cube"
+    imx-usdc: "usdc"
+    dai: "dai"
+    decentraland: "mana"
+    deflect: "deflct"
+    dogami: "doga"
+    donkey: "donk"
+    dynamite: "dyt"
+    ecomi: "omi"
+    ethereum: "eth"
+    eurl: "eurl"
+    firdaos: "fdo"
+    flow: "flow"
+    flowusd: "fusd"
+    gamee: "gmee"
+    gods-unchained: "gods"
+    guild-of-guardians: "gog"
+    hue: "hue"
+    immutable-x: "imx"
+    kolibri-usd: "kusd"
+    lux-expression: "lux"
+    mantle: "mnt"
+    many: "many"
+    matic-network: "matic"
+    monavale: "mona"
+    optimism: "op"
+    plenty-dao: "plenty"
+    polyient-games-unity: "pgu"
+    prosper: "pros"
+    rarible: "rari"
+    reflect-finance: "rfi"
+    revv: "revv"
+    rotten: "rot"
+    solana: "sol"
+    stasis-eurs: "eurs"
+    tezos: "xtz"
+    wtez: "wxtz"
+    terra-virtua-kolect: "tvk"
+    the-sandbox: "sand"
+    usd-coin: "usdc"
+    usdtez: "usdtz"
+    weth: "weth"
+    wmatic: "wmatic"
+    wmnt: "wmnt"
+    wrapped-usdc: "xusd"
+    youves-uusd: "uusd"
+    chiliz: "chz"
+    arbitrum: "arb"
