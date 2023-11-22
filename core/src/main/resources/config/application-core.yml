@@ -6,6 +6,10 @@ server:
   port: 8080
 
 spring:
+  data:
+    mongodb:
+      uri: mongodb://${mongodb.hosts}
+      database: ${mongodb.database}
   jackson:
     mapper:
       ACCEPT_CASE_INSENSITIVE_ENUMS: true
