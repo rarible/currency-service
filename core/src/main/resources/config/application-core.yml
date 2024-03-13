@@ -66,6 +66,7 @@ common:
     wchz: chiliz
     wcelo: celo
     wfief: fief
+    woas: oas
 
   abbreviations:
     apecoin: "ape"
@@ -124,3 +125,4 @@ common:
     chiliz: "chz"
     arbitrum: "arb"
     oasys: "oas"
+    woas: "woas"
