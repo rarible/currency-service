@@ -48,6 +48,8 @@ common:
       CELO: "0x0000000000000000000000000000000000000000"
     fief:
       FIEF: "0x0000000000000000000000000000000000000000"
+    oas:
+      OASYS: "0x0000000000000000000000000000000000000000"
 
   aliases:
     flowusd: usd
@@ -121,3 +123,4 @@ common:
     youves-uusd: "uusd"
     chiliz: "chz"
     arbitrum: "arb"
+    oasys: "oas"
