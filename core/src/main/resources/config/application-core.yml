@@ -48,6 +48,8 @@ common:
       CELO: "0x0000000000000000000000000000000000000000"
     fief:
       FIEF: "0x0000000000000000000000000000000000000000"
+    oas:
+      OASYS: "0x0000000000000000000000000000000000000000"
 
   aliases:
     flowusd: usd
@@ -64,6 +66,7 @@ common:
     wchz: chiliz
     wcelo: celo
     wfief: fief
+    woas: oas
 
   abbreviations:
     apecoin: "ape"
@@ -121,3 +124,5 @@ common:
     youves-uusd: "uusd"
     chiliz: "chz"
     arbitrum: "arb"
+    oasys: "oas"
+    woas: "woas"
