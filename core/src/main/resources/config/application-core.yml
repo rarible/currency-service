@@ -67,6 +67,7 @@ common:
     wcelo: celo
     wfief: fief
     woas: oas
+    wxai: xai
 
   abbreviations:
     apecoin: "ape"
@@ -126,3 +127,5 @@ common:
     arbitrum: "arb"
     oasys: "oas"
     woas: "woas"
+    wxai: "wxai"
+    xai: "xai"
