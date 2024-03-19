@@ -64,6 +64,7 @@ common:
     wchz: chiliz
     wcelo: celo
     wfief: fief
+    wxai: xai
 
   abbreviations:
     apecoin: "ape"
@@ -121,3 +122,5 @@ common:
     youves-uusd: "uusd"
     chiliz: "chz"
     arbitrum: "arb"
+    wxai: "wxai"
+    xai: "xai"
