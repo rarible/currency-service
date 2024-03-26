@@ -2,7 +2,7 @@ package com.rarible.protocol.currency.api.job
 
 import com.rarible.protocol.currency.api.metric.CurrencyJobMetrics
 import com.rarible.protocol.currency.core.configuration.CurrencyApiProperties
-import com.rarible.protocol.currency.core.gecko.GeckoApi
+import com.rarible.protocol.currency.core.gecko.GeckoApiService
 import com.rarible.protocol.currency.core.gecko.HistoryResponse
 import com.rarible.protocol.currency.core.model.Rate
 import com.rarible.protocol.currency.core.repository.RateRepository
@@ -23,7 +23,7 @@ import java.util.concurrent.atomic.AtomicReference
 class HistoricalRatesJob(
     private val properties: CurrencyApiProperties,
     private val rateRepository: RateRepository,
-    private val geckoApi: GeckoApi,
+    private val geckoApi: GeckoApiService,
     private val currencyJobMetrics: CurrencyJobMetrics,
 ) {
     private val request = properties.request
@@ -93,9 +93,7 @@ class HistoricalRatesJob(
             return emptyList()
         } else {
             val to = from.plus(90, ChronoUnit.DAYS)
-            val rates = geckoApi
-                .history(currencyId, from.epochSecond, to.epochSecond)
-                .awaitFirstOrDefault(HistoryResponse())
+            val rates = (geckoApi.history(currencyId, from.epochSecond, to.epochSecond) ?: HistoryResponse())
                 .prices
                 .map { (date, rate) ->
                     Rate.of(currencyId, date, rate)
@@ -115,7 +113,7 @@ class HistoricalRatesJob(
     private suspend fun getExistedCoinIds(): Set<String> {
         val existedCoinIds = geckoCoinIds.get()
         return existedCoinIds.ifEmpty {
-            val geckoCoins = geckoApi.coinsList().awaitFirst()
+            val geckoCoins = geckoApi.coinsList()
             val fetchedCoinIds = geckoCoins.map { it.id }.toSet()
             geckoCoinIds.set(fetchedCoinIds)
             fetchedCoinIds
