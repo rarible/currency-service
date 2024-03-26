@@ -7,8 +7,6 @@ import com.rarible.protocol.currency.core.gecko.HistoryResponse
 import com.rarible.protocol.currency.core.model.Rate
 import com.rarible.protocol.currency.core.repository.RateRepository
 import feign.FeignException
-import kotlinx.coroutines.reactive.awaitFirst
-import kotlinx.coroutines.reactive.awaitFirstOrDefault
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.time.delay
 import org.slf4j.Logger
