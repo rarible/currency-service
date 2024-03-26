@@ -5,6 +5,7 @@ import com.fasterxml.jackson.module.kotlin.KotlinModule
 import com.rarible.protocol.currency.core.gecko.FeignHelper
 import com.rarible.protocol.currency.core.gecko.GeckoApi
 import com.rarible.protocol.currency.core.gecko.GeckoApiImpl
+import com.rarible.protocol.currency.core.gecko.GeckoApiService
 import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -30,5 +31,10 @@ class CurrencyApiConfiguration(
                 GeckoApiImpl(baseUrl = properties.apiUrl, proxyUrl = properties.proxyUrl)
             }
         }
+    }
+
+    @Bean
+    fun geckoApiService(geckoApi: GeckoApi): GeckoApiService {
+        return GeckoApiService(geckoApi, properties)
     }
 }
