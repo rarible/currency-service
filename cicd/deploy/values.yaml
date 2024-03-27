@@ -3,10 +3,6 @@ global:
     APPLICATION_ENVIRONMENT: '{{ include "service.env" $ }}'
     SPRING_CONFIG_IMPORT: "configserver:http://protocol-config-service:8080/"
     SPRING_CLOUD_CONFIG_NAME: "currency-service"
-    # Disable consul
-    SPRING_CLOUD_SERVICE-REGISTRY_AUTO-REGISTRATION_ENABLED: "false"
-    SPRING_CLOUD_DISCOVERY_ENABLED: "false"
-    SPRING_CLOUD_CONSUL_CONFIG_ENABLED: "false"
 
 protocol-currency-api:
   image:
