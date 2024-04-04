@@ -53,7 +53,14 @@ common:
       SAAKURU: "0x0000000000000000000000000000000000000000"
     xai:
       XAI: "0x0000000000000000000000000000000000000000"
-
+    rose:
+      OASIS: "0x0000000000000000000000000000000000000000"
+    mat:
+      MATCH: "0x0000000000000000000000000000000000000000"
+    palm:
+      PALM: "0x0000000000000000000000000000000000000000"
+    5vire:
+      FIVIRE: "0x0000000000000000000000000000000000000000"
   aliases:
     flowusd: usd
     wtez: tezos
@@ -71,6 +78,10 @@ common:
     wfief: fief
     woas: oas
     wxai: xai
+    wrose: rose
+    wpalm: palm
+    wmat: mat
+    w5vire: w5vire
 
   abbreviations:
     apecoin: "ape"
@@ -132,3 +143,11 @@ common:
     woas: "woas"
     wxai: "wxai"
     xai: "xai"
+    rose: "rose"
+    wrose: "wrose"
+    match: "mat"
+    wmatch: "wmat"
+    palm: "palm"
+    wpalm: "wpalm"
+    5vire: "5vire"
+    w5vire: "w5vire"
