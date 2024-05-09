@@ -61,6 +61,8 @@ common:
       PALM: "0x0000000000000000000000000000000000000000"
     5vire:
       FIVIRE: "0x0000000000000000000000000000000000000000"
+    aptos:
+      APTOS: "0x0000000000000000000000000000000000000000"
   aliases:
     flowusd: usd
     wtez: tezos
@@ -85,6 +87,7 @@ common:
 
   abbreviations:
     apecoin: "ape"
+    aptos: "apt"
     arke: "arke"
     ash: "ash"
     atari: "atri"
