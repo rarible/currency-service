@@ -38,6 +38,8 @@ common:
       BASE: "0x0000000000000000000000000000000000000000"
       KROMA: "0x0000000000000000000000000000000000000000"
       ZKLINK: "0x0000000000000000000000000000000000000000"
+      LISK: "0x0000000000000000000000000000000000000000"
+      CAMP: "0x0000000000000000000000000000000000000000"
     optimism:
       OPTIMISM: "0x0000000000000000000000000000000000000000"
     mantle:
@@ -63,6 +65,8 @@ common:
       FIVIRE: "0x0000000000000000000000000000000000000000"
     aptos:
       APTOS: "0x0000000000000000000000000000000000000000"
+    sei:
+      SEI: "0x0000000000000000000000000000000000000000"
   aliases:
     flowusd: usd
     wtez: tezos
@@ -84,6 +88,9 @@ common:
     wpalm: palm
     wmat: mat
     w5vire: w5vire
+    wsei: sei
+    wlisk: lisk
+    wcamp: camp
 
   abbreviations:
     apecoin: "ape"
@@ -155,3 +162,9 @@ common:
     5vire: "5vire"
     w5vire: "w5vire"
     lightlink: "ll"
+    sei: "sei"
+    wsei: "wsei"
+    camp: "camp"
+    wcamp: "wcamp"
+    lisk: "lisk"
+    wlisk: "wlisk"
