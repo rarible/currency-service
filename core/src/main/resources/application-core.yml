@@ -95,6 +95,7 @@ common:
     wsei: sei
     wlisk: lisk
     wcamp: camp
+    wmoonbeam: moonbeam
 
   abbreviations:
     apecoin: "ape"
