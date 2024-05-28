@@ -96,6 +96,7 @@ common:
     wlisk: lisk
     wcamp: camp
     wmoonbeam: moonbeam
+    wglmr: moonbeam
 
   abbreviations:
     apecoin: "ape"
