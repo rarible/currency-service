@@ -69,6 +69,8 @@ common:
       SEI: "0x0000000000000000000000000000000000000000"
     tezos:
       ETHERLINK: "0x0000000000000000000000000000000000000000"
+    moonbeam:
+      MOONBEAM: "0x0000000000000000000000000000000000000000"
   aliases:
     flowusd: usd
     wtez: tezos
@@ -93,7 +95,6 @@ common:
     wsei: sei
     wlisk: lisk
     wcamp: camp
-    moonbeam-dev: usd
 
   abbreviations:
     apecoin: "ape"
