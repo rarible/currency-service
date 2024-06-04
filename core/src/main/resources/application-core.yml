@@ -97,7 +97,6 @@ common:
     wcamp: camp
     wmoonbeam: moonbeam
     wglmr: moonbeam
-    usdc.e: usd
     speth: weth
 
   abbreviations:
@@ -177,5 +176,5 @@ common:
     lisk: "lisk"
     wlisk: "wlisk"
     moonbeam: "glmr"
-    usdc.e: "usdc.e"
+    bridged-usdc-polygon-pos-bridge: "usdc.e"
     speth: "speth"
