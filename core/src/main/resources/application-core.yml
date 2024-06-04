@@ -97,7 +97,7 @@ common:
     wcamp: camp
     wmoonbeam: moonbeam
     wglmr: moonbeam
-    bridged-usdc-polygon-pos-bridge: usd
+    bridged-usdc: usd
 
   abbreviations:
     apecoin: "ape"
@@ -176,4 +176,4 @@ common:
     lisk: "lisk"
     wlisk: "wlisk"
     moonbeam: "glmr"
-    bridged-usdc-polygon-pos-bridge: "usdc.e"
+    bridged-usdc: "usdc.e"
