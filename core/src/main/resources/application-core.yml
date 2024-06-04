@@ -98,6 +98,7 @@ common:
     wmoonbeam: moonbeam
     wglmr: moonbeam
     bridged-usdc: usd
+    speth: weth
 
   abbreviations:
     apecoin: "ape"
@@ -177,3 +178,4 @@ common:
     wlisk: "wlisk"
     moonbeam: "glmr"
     bridged-usdc: "usdc.e"
+    speth: "speth"
