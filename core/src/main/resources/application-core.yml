@@ -63,14 +63,15 @@ common:
       PALM: "0x0000000000000000000000000000000000000000"
     5vire:
       FIVIRE: "0x0000000000000000000000000000000000000000"
-    aptos:
-      APTOS: "0x0000000000000000000000000000000000000000"
     sei:
       SEI: "0x0000000000000000000000000000000000000000"
     tezos:
       ETHERLINK: "0x0000000000000000000000000000000000000000"
     moonbeam:
       MOONBEAM: "0x0000000000000000000000000000000000000000"
+    aptos:
+      # Base64 (Basic) encoding of UT8-encoding of the string "0x1::aptos_coin::AptosCoin"
+      APTOS: "MHgxOjphcHRvc19jb2luOjpBcHRvc0NvaW4="
   aliases:
     flowusd: usd
     wtez: tezos
@@ -92,6 +93,7 @@ common:
     wpalm: palm
     wmat: mat
     w5vire: w5vire
+    aptos: aptos
     wsei: sei
     wlisk: lisk
     wcamp: camp
