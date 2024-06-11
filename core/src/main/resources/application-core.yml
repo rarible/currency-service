@@ -70,7 +70,8 @@ common:
     moonbeam:
       MOONBEAM: "0x0000000000000000000000000000000000000000"
     aptos:
-      APTOS: "0x1::aptos_coin::AptosCoin"
+      # Base64 (Basic) encoding of UT8-encoding of the string "0x1::aptos_coin::AptosCoin"
+      APTOS: "MHgxOjphcHRvc19jb2luOjpBcHRvc0NvaW4="
   aliases:
     flowusd: usd
     wtez: tezos
