@@ -101,6 +101,7 @@ common:
     wmoonbeam: moonbeam
     wglmr: moonbeam
     speth: weth
+    xcusdc: usd
 
   abbreviations:
     apecoin: "ape"
