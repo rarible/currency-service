@@ -102,6 +102,7 @@ common:
     wglmr: moonbeam
     speth: weth
     xcusdc: usd
+    bnb: binancecoin
 
   abbreviations:
     apecoin: "ape"
@@ -182,3 +183,4 @@ common:
     moonbeam: "glmr"
     bridged-usdc-polygon-pos-bridge: "usdc.e"
     speth: "speth"
+    binancecoin: "bnb"
