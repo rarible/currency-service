@@ -51,7 +51,7 @@ common:
       CELO: "0x0000000000000000000000000000000000000000"
     fief:
       FIEF: "0x0000000000000000000000000000000000000000"
-    oas:
+    oasys:
       OASYS: "0x0000000000000000000000000000000000000000"
       SAAKURU: "0x0000000000000000000000000000000000000000"
     xai:
@@ -88,7 +88,7 @@ common:
     wchz: chiliz
     wcelo: celo
     wfief: fief
-    woas: oas
+    woasys: oasys
     wxai: xai
     wrose: rose
     wpalm: palm
@@ -162,6 +162,7 @@ common:
     chiliz: "chz"
     arbitrum: "arb"
     oasys: "oas"
+    woasys: "woas"
     woas: "woas"
     wxai: "wxai"
     xai: "xai"
