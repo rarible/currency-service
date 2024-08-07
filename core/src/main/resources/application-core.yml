@@ -51,14 +51,14 @@ common:
       CELO: "0x0000000000000000000000000000000000000000"
     fief:
       FIEF: "0x0000000000000000000000000000000000000000"
-    oas:
+    oasys:
       OASYS: "0x0000000000000000000000000000000000000000"
       SAAKURU: "0x0000000000000000000000000000000000000000"
     xai:
       XAI: "0x0000000000000000000000000000000000000000"
     rose:
       OASIS: "0x0000000000000000000000000000000000000000"
-    mat:
+    binancecoin:
       MATCH: "0x0000000000000000000000000000000000000000"
     palm:
       PALM: "0x0000000000000000000000000000000000000000"
@@ -88,7 +88,7 @@ common:
     wchz: chiliz
     wcelo: celo
     wfief: fief
-    woas: oas
+    woasys: oasys
     wxai: xai
     wrose: rose
     wpalm: palm
@@ -102,6 +102,7 @@ common:
     wglmr: moonbeam
     speth: weth
     xcusdc: usd
+    bnb: binancecoin
 
   abbreviations:
     apecoin: "ape"
@@ -161,6 +162,7 @@ common:
     chiliz: "chz"
     arbitrum: "arb"
     oasys: "oas"
+    woasys: "woas"
     woas: "woas"
     wxai: "wxai"
     xai: "xai"
@@ -182,3 +184,4 @@ common:
     moonbeam: "glmr"
     bridged-usdc-polygon-pos-bridge: "usdc.e"
     speth: "speth"
+    binancecoin: "bnb"
