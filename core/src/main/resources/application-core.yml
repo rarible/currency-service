@@ -70,6 +70,8 @@ common:
       ETHERLINK: "0x0000000000000000000000000000000000000000"
     moonbeam:
       MOONBEAM: "0x0000000000000000000000000000000000000000"
+    alephzero:
+      ALEPHZERO: "0x0000000000000000000000000000000000000000"
     aptos:
       # Base64 (Basic) encoding of UT8-encoding of the string "0x1::aptos_coin::AptosCoin"
       APTOS: "MHgxOjphcHRvc19jb2luOjpBcHRvc0NvaW4="
@@ -185,3 +187,4 @@ common:
     bridged-usdc-polygon-pos-bridge: "usdc.e"
     speth: "speth"
     binancecoin: "bnb"
+    alephzero: "azero"
