@@ -105,6 +105,7 @@ common:
     speth: weth
     xcusdc: usd
     bnb: binancecoin
+    walephzero: alephzero
 
   abbreviations:
     apecoin: "ape"
@@ -188,3 +189,4 @@ common:
     speth: "speth"
     binancecoin: "bnb"
     alephzero: "azero"
+    walephzero: "wazero"
