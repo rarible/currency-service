@@ -109,6 +109,7 @@ common:
     bnb: binancecoin
     walephzero: aleph-zero
     wbera: berachain-bera
+    berachain-honey: usd
 
   abbreviations:
     apecoin: "ape"
