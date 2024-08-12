@@ -72,6 +72,8 @@ common:
       MOONBEAM: "0x0000000000000000000000000000000000000000"
     aleph-zero:
       ALEPHZERO: "0x0000000000000000000000000000000000000000"
+    berachain-bera:
+      BERACHAIN: "0x0000000000000000000000000000000000000000"
     aptos:
       # Base64 (Basic) encoding of UT8-encoding of the string "0x1::aptos_coin::AptosCoin"
       APTOS: "MHgxOjphcHRvc19jb2luOjpBcHRvc0NvaW4="
@@ -106,6 +108,8 @@ common:
     xcusdc: usd
     bnb: binancecoin
     walephzero: aleph-zero
+    wbera: berachain-bera
+    berachain-honey: usd
 
   abbreviations:
     apecoin: "ape"
@@ -190,3 +194,4 @@ common:
     binancecoin: "bnb"
     aleph-zero: "azero"
     walephzero: "wazero"
+    berachain-bera: "bera"
