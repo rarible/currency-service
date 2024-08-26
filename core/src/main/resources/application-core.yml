@@ -41,6 +41,7 @@ common:
       LISK: "0x0000000000000000000000000000000000000000"
       CAMP: "0x0000000000000000000000000000000000000000"
       ZKCANDY: "0x0000000000000000000000000000000000000000"
+      ABSTRACT: "0x0000000000000000000000000000000000000000"
       ECLIPSE: "0x0000000000000000000000000000000000000000"
     optimism:
       OPTIMISM: "0x0000000000000000000000000000000000000000"
@@ -71,8 +72,10 @@ common:
       ETHERLINK: "0x0000000000000000000000000000000000000000"
     moonbeam:
       MOONBEAM: "0x0000000000000000000000000000000000000000"
-    alephzero:
+    aleph-zero:
       ALEPHZERO: "0x0000000000000000000000000000000000000000"
+    berachain-bera:
+      BERACHAIN: "0x0000000000000000000000000000000000000000"
     aptos:
       # Base64 (Basic) encoding of UT8-encoding of the string "0x1::aptos_coin::AptosCoin"
       APTOS: "MHgxOjphcHRvc19jb2luOjpBcHRvc0NvaW4="
@@ -106,6 +109,9 @@ common:
     speth: weth
     xcusdc: usd
     bnb: binancecoin
+    walephzero: aleph-zero
+    wbera: berachain-bera
+    berachain-honey: usd
 
   abbreviations:
     apecoin: "ape"
@@ -188,4 +194,6 @@ common:
     bridged-usdc-polygon-pos-bridge: "usdc.e"
     speth: "speth"
     binancecoin: "bnb"
-    alephzero: "azero"
+    aleph-zero: "azero"
+    walephzero: "wazero"
+    berachain-bera: "bera"
