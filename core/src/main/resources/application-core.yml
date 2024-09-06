@@ -95,7 +95,6 @@ common:
     wmnt: mantle
     wchz: chiliz
     wcelo: celo
-    erc20-celo: celo
     wfief: fief
     woasys: oasys
     wxai: xai
@@ -200,3 +199,4 @@ common:
     aleph-zero: "azero"
     walephzero: "wazero"
     berachain-bera: "bera"
+    celo: "celo"
