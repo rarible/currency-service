@@ -276,4 +276,22 @@ internal class CurrencyControllerFt {
             ).block()
         }
     }
+
+    @Test
+    fun `get with remove prefix`() = runBlocking<Unit> {
+        val date = Instant.now().minusSeconds(60)
+        val rateValue = BigDecimal("1.4")
+        val rate = Rate.of("celo", date, rateValue)
+        rateRepository.save(rate)
+
+        val currencyRate = client.getCurrencyRate(
+            "CELO",
+            "0x471ece3750da237f93b8e339c536989b8978a438",
+            date.minusSeconds(1).toEpochMilli()
+        )?.awaitFirst()!!
+
+        assertThat(currencyRate.rate).isEqualTo(rateValue)
+        assertThat(currencyRate.fromCurrencyId).isEqualTo("celo")
+        assertThat(currencyRate.abbreviation).isEqualTo("celo")
+    }
 }
