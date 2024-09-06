@@ -17,14 +17,13 @@ internal const val PREFIX = "common"
 @ConfigurationProperties(PREFIX)
 data class CurrencyApiProperties(
     val apiUrl: URI,
-    val coins: Map<String, Map<String, String>>,
+    val coins: Map<String, Map<String, List<String>>>,
     val aliases: Map<String, String> = emptyMap(),
     val historySince: Instant,
     val request: RequestProperties = RequestProperties(),
     val proxyUrl: URI? = null,
     val clientType: ClientType = ClientType.FEIGN,
     val abbreviations: Map<String, String> = emptyMap(),
-    val removeCurrencyNamePrefixes: List<String> = emptyList()
 ) {
 
     fun byAddress(blockchain: String, address: String): String? {
@@ -51,13 +50,13 @@ data class CurrencyApiProperties(
                     "ZKSYNC",
                     "LIGHTLINK",
                     "IMMUTABLEX" -> {
-                        found?.let { Address.apply(it) } == parseAddress(address)
+                        found?.any { Address.apply(it) == parseAddress(address) } == true
                     }
                     else -> {
-                        found == address
+                        found?.any { it == address } == true
                     }
                 }
-            }?.key?.removeExtraPrefix()
+            }?.key
         }
     }
 
@@ -85,15 +84,17 @@ data class CurrencyApiProperties(
 
     fun getAllCurrencies(): List<Currency> {
         return coins.map { coin ->
-            val coinId = coin.key.removeExtraPrefix()
-            val byBlockchain = coin.value.map {
-                Currency(
-                    currencyId = coinId,
-                    alias = aliases[coinId],
-                    blockchain = it.key,
-                    address = it.value,
-                    abbreviation = getAbbreviation(coinId)
-                )
+            val coinId = coin.key
+            val byBlockchain = coin.value.flatMap { value ->
+                value.value.map {
+                    Currency(
+                        currencyId = coinId,
+                        alias = aliases[coinId],
+                        blockchain = value.key,
+                        address = it,
+                        abbreviation = getAbbreviation(coinId)
+                    )
+                }
             }.associateByTo(TreeMap()) { it.blockchain }
             val eth = byBlockchain["ETHEREUM"]
             val imx = byBlockchain["IMMUTABLEX"]
@@ -108,12 +109,6 @@ data class CurrencyApiProperties(
     private val extraCurrency = mapOf(
         "TEZOS" to mapOf("xtz" to "tezos")
     )
-
-    private fun String.removeExtraPrefix(): String {
-        return removeCurrencyNamePrefixes.fold(this) { acc, prefix ->
-            acc.removePrefix(prefix)
-        }
-    }
 }
 
 enum class ClientType {
