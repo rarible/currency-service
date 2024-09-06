@@ -278,7 +278,7 @@ internal class CurrencyControllerFt {
     }
 
     @Test
-    fun `get with remove prefix`() = runBlocking<Unit> {
+    fun `get with multi-address`() = runBlocking<Unit> {
         val date = Instant.now().minusSeconds(60)
         val rateValue = BigDecimal("1.4")
         val rate = Rate.of("celo", date, rateValue)
