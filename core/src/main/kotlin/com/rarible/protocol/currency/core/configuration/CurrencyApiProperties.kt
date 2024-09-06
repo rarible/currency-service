@@ -85,8 +85,8 @@ data class CurrencyApiProperties(
     fun getAllCurrencies(): List<Currency> {
         return coins.map { coin ->
             val coinId = coin.key
-            val byBlockchain = coin.value.flatMap { value ->
-                value.value.map {
+            val byBlockchain = coin.value.map { value ->
+                val currencies = value.value.map {
                     Currency(
                         currencyId = coinId,
                         alias = aliases[coinId],
@@ -95,15 +95,17 @@ data class CurrencyApiProperties(
                         abbreviation = getAbbreviation(coinId)
                     )
                 }
-            }.associateByTo(TreeMap()) { it.blockchain }
+                value.key to currencies
+            }.toMap().toMutableMap()
+
             val eth = byBlockchain["ETHEREUM"]
             val imx = byBlockchain["IMMUTABLEX"]
             if (eth != null && imx == null) {
                 // IMX has same currencies as Ethereum
-                byBlockchain["IMMUTABLEX"] = eth.copy(blockchain = "IMMUTABLEX")
+                byBlockchain["IMMUTABLEX"] = eth.map { it.copy(blockchain = "IMMUTABLEX") }
             }
             byBlockchain.values
-        }.flatten()
+        }.flatten().flatten()
     }
 
     private val extraCurrency = mapOf(

@@ -201,6 +201,12 @@ internal class CurrencyControllerFt {
 
         val currencies = client.allCurrencies?.awaitFirstOrNull()?.currencies!!
 
+        val celo1 = currencies.find { it.blockchain == "CELO" && it.address == "0x471ece3750da237f93b8e339c536989b8978a438" }
+        assertThat(celo1).isNotNull
+
+        val celo2 = currencies.find { it.blockchain == "CELO" && it.address == "0x0000000000000000000000000000000000000000" }
+        assertThat(celo2).isNotNull
+
         val wethCurrencies = currencies.filter { it.currencyId == "weth" }
         assertThat(wethCurrencies).hasSize(6)
 
