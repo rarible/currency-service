@@ -15,8 +15,8 @@ class CurrencyApiPropertiesTest {
         val props = CurrencyApiProperties(
             URI.create("localhost"),
             mapOf(
-                "ethereum" to mapOf("ETHEREUM" to "0x0000000000000000000000000000000000000000"),
-                "dai" to mapOf("ETHEREUM" to DAI)
+                "ethereum" to mapOf("ETHEREUM" to listOf("0x0000000000000000000000000000000000000000")),
+                "dai" to mapOf("ETHEREUM" to listOf(DAI))
             ),
             mapOf(),
             Instant.now()
@@ -31,8 +31,8 @@ class CurrencyApiPropertiesTest {
         val props = CurrencyApiProperties(
             URI.create("localhost"),
             mapOf(
-                "flowusd" to mapOf("FLOW" to "123"),
-                "flow" to mapOf("FLOW" to "321"),
+                "flowusd" to mapOf("FLOW" to listOf("123")),
+                "flow" to mapOf("FLOW" to listOf("321")),
             ),
             mapOf("flowusd" to "usd"),
             Instant.now()
