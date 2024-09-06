@@ -23,6 +23,8 @@ spring:
 common:
   historySince: '2024-01-01T00:00:00Z'
   apiUrl: https://api.coingecko.com/api/v3
+  removeCurrencyNamePrefixes:
+    - "extra-native-erc20-"
   # format:
   # key is CoinGecko id from /coins/list;
   # value is map of platform name to the coins address on the corresponding platform
@@ -93,6 +95,7 @@ common:
     wmnt: mantle
     wchz: chiliz
     wcelo: celo
+    erc20-celo: celo
     wfief: fief
     woasys: oasys
     wxai: xai

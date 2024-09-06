@@ -24,6 +24,7 @@ data class CurrencyApiProperties(
     val proxyUrl: URI? = null,
     val clientType: ClientType = ClientType.FEIGN,
     val abbreviations: Map<String, String> = emptyMap(),
+    val removeCurrencyNamePrefixes: List<String> = emptyList()
 ) {
 
     fun byAddress(blockchain: String, address: String): String? {
@@ -56,7 +57,7 @@ data class CurrencyApiProperties(
                         found == address
                     }
                 }
-            }?.key
+            }?.key?.removeExtraPrefix()
         }
     }
 
@@ -84,7 +85,7 @@ data class CurrencyApiProperties(
 
     fun getAllCurrencies(): List<Currency> {
         return coins.map { coin ->
-            val coinId = coin.key
+            val coinId = coin.key.removeExtraPrefix()
             val byBlockchain = coin.value.map {
                 Currency(
                     currencyId = coinId,
@@ -107,6 +108,12 @@ data class CurrencyApiProperties(
     private val extraCurrency = mapOf(
         "TEZOS" to mapOf("xtz" to "tezos")
     )
+
+    private fun String.removeExtraPrefix(): String {
+        return removeCurrencyNamePrefixes.fold(this) { acc, prefix ->
+            acc.removePrefix(prefix)
+        }
+    }
 }
 
 enum class ClientType {
