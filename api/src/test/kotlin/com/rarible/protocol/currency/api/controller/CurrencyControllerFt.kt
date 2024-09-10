@@ -201,6 +201,12 @@ internal class CurrencyControllerFt {
 
         val currencies = client.allCurrencies?.awaitFirstOrNull()?.currencies!!
 
+        val celo1 = currencies.find { it.blockchain == "CELO" && it.address == "0x471ece3750da237f93b8e339c536989b8978a438" }
+        assertThat(celo1).isNotNull
+
+        val celo2 = currencies.find { it.blockchain == "CELO" && it.address == "0x0000000000000000000000000000000000000000" }
+        assertThat(celo2).isNotNull
+
         val wethCurrencies = currencies.filter { it.currencyId == "weth" }
         assertThat(wethCurrencies).hasSize(6)
 
@@ -275,5 +281,33 @@ internal class CurrencyControllerFt {
                 Instant.now().toEpochMilli()
             ).block()
         }
+    }
+
+    @Test
+    fun `get with multi-address`() = runBlocking<Unit> {
+        val date = Instant.now().minusSeconds(60)
+        val rateValue = BigDecimal("1.4")
+        val rate = Rate.of("celo", date, rateValue)
+        rateRepository.save(rate)
+
+        val currencyRate1 = client.getCurrencyRate(
+            "CELO",
+            "0x471ece3750da237f93b8e339c536989b8978a438",
+            date.minusSeconds(1).toEpochMilli()
+        )?.awaitFirst()!!
+
+        assertThat(currencyRate1.rate).isEqualTo(rateValue)
+        assertThat(currencyRate1.fromCurrencyId).isEqualTo("celo")
+        assertThat(currencyRate1.abbreviation).isEqualTo("celo")
+
+        val currencyRate2 = client.getCurrencyRate(
+            "CELO",
+            "0x0000000000000000000000000000000000000000",
+            date.minusSeconds(1).toEpochMilli()
+        )?.awaitFirst()!!
+
+        assertThat(currencyRate2.rate).isEqualTo(rateValue)
+        assertThat(currencyRate2.fromCurrencyId).isEqualTo("celo")
+        assertThat(currencyRate2.abbreviation).isEqualTo("celo")
     }
 }

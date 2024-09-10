@@ -17,7 +17,7 @@ internal const val PREFIX = "common"
 @ConfigurationProperties(PREFIX)
 data class CurrencyApiProperties(
     val apiUrl: URI,
-    val coins: Map<String, Map<String, String>>,
+    val coins: Map<String, Map<String, List<String>>>,
     val aliases: Map<String, String> = emptyMap(),
     val historySince: Instant,
     val request: RequestProperties = RequestProperties(),
@@ -50,10 +50,10 @@ data class CurrencyApiProperties(
                     "ZKSYNC",
                     "LIGHTLINK",
                     "IMMUTABLEX" -> {
-                        found?.let { Address.apply(it) } == parseAddress(address)
+                        found?.any { Address.apply(it) == parseAddress(address) } == true
                     }
                     else -> {
-                        found == address
+                        found?.any { it == address } == true
                     }
                 }
             }?.key
@@ -85,23 +85,27 @@ data class CurrencyApiProperties(
     fun getAllCurrencies(): List<Currency> {
         return coins.map { coin ->
             val coinId = coin.key
-            val byBlockchain = coin.value.map {
-                Currency(
-                    currencyId = coinId,
-                    alias = aliases[coinId],
-                    blockchain = it.key,
-                    address = it.value,
-                    abbreviation = getAbbreviation(coinId)
-                )
-            }.associateByTo(TreeMap()) { it.blockchain }
+            val byBlockchain = coin.value.map { value ->
+                val currencies = value.value.map {
+                    Currency(
+                        currencyId = coinId,
+                        alias = aliases[coinId],
+                        blockchain = value.key,
+                        address = it,
+                        abbreviation = getAbbreviation(coinId)
+                    )
+                }
+                value.key to currencies
+            }.toMap().toMutableMap()
+
             val eth = byBlockchain["ETHEREUM"]
             val imx = byBlockchain["IMMUTABLEX"]
             if (eth != null && imx == null) {
                 // IMX has same currencies as Ethereum
-                byBlockchain["IMMUTABLEX"] = eth.copy(blockchain = "IMMUTABLEX")
+                byBlockchain["IMMUTABLEX"] = eth.map { it.copy(blockchain = "IMMUTABLEX") }
             }
             byBlockchain.values
-        }.flatten()
+        }.flatten().flatten()
     }
 
     private val extraCurrency = mapOf(
