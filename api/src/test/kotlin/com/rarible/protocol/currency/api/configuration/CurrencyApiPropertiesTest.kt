@@ -19,6 +19,7 @@ class CurrencyApiPropertiesTest {
                 "dai" to mapOf("ETHEREUM" to listOf(DAI))
             ),
             mapOf(),
+            18,
             mapOf(),
             Instant.now()
         )
@@ -36,8 +37,10 @@ class CurrencyApiPropertiesTest {
                 "flow" to mapOf("FLOW" to listOf("321")),
             ),
             mapOf(),
+            18,
             mapOf("flowusd" to "usd"),
-            Instant.now()
+            Instant.now(),
+
         )
 
         val flowUsdAlias = props.byAddress("FLOW", "123")!!
@@ -62,8 +65,8 @@ class CurrencyApiPropertiesTest {
             ),
             mapOf(
                 "degen-base" to mapOf("BASE" to 18),
-                "dai" to mapOf("PALM" to 10)
             ),
+            10,
             mapOf(),
             Instant.now()
         )

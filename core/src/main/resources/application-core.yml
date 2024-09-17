@@ -82,54 +82,9 @@ common:
       # Base64 (Basic) encoding of UT8-encoding of the string "0x1::aptos_coin::AptosCoin"
       APTOS: "MHgxOjphcHRvc19jb2luOjpBcHRvc0NvaW4="
 
+  defaultCurrencyDecimals: 18
+
   decimals:
-    ethereum:
-      ETHEREUM: 18
-      IMMUTABLEX: 18
-      ARBITRUM: 18
-      ZKSYNC: 18
-      LIGHTLINK: 18
-      ASTARZKEVM: 18
-      RARI: 18
-      BASE: 18
-      KROMA: 18
-      ZKLINK: 18
-      LISK: 18
-      CAMP: 18
-      ZKCANDY: 18
-      ABSTRACT: 18
-      ECLIPSE: 18
-    optimism:
-      OPTIMISM: 18
-    mantle:
-      MANTLE: 18
-    chiliz:
-      CHILIZ: 18
-    celo:
-      CELO: 18
-    fief:
-      FIEF: 18
-    oasys:
-      OASYS: 18
-      SAAKURU: 18
-    xai:
-      XAI: 18
-    rose:
-      OASIS: 18
-    binancecoin:
-      MATCH: 18
-    palm:
-      PALM: 18
-    5vire:
-      FIVIRE: 18
-    sei:
-      SEI: 18
-    moonbeam:
-      MOONBEAM: 18
-    aleph-zero:
-      ALEPHZERO: 18
-    berachain-bera:
-      BERACHAIN: 18
     aptos:
       APTOS: 9
 

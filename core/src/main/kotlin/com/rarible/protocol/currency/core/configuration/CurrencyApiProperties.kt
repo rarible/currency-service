@@ -19,12 +19,13 @@ data class CurrencyApiProperties(
     val apiUrl: URI,
     val coins: Map<String, Map<String, List<String>>>,
     val decimals: Map<String, Map<String, Int>>,
+    val defaultCurrencyDecimals: Int,
     val aliases: Map<String, String> = emptyMap(),
     val historySince: Instant,
     val request: RequestProperties = RequestProperties(),
     val proxyUrl: URI? = null,
     val clientType: ClientType = ClientType.FEIGN,
-    val abbreviations: Map<String, String> = emptyMap(),
+    val abbreviations: Map<String, String> = emptyMap()
 ) {
 
     fun byAddress(blockchain: String, address: String): String? {
@@ -92,9 +93,9 @@ data class CurrencyApiProperties(
                         currencyId = coinId,
                         alias = aliases[coinId],
                         blockchain = value.key,
+                        decimals = decimals[coinId]?.get(value.key) ?: defaultCurrencyDecimals,
                         address = it,
-                        abbreviation = getAbbreviation(coinId),
-                        decimals = decimals[coinId]?.get(value.key)
+                        abbreviation = getAbbreviation(coinId)
                     )
                 }
                 value.key to currencies
@@ -130,7 +131,7 @@ data class Currency(
     val currencyId: String,
     val address: String,
     val blockchain: String,
+    val decimals: Int,
     val alias: String? = null,
     val abbreviation: String? = null,
-    val decimals: Int? = null
 )
