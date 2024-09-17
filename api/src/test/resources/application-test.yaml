@@ -147,6 +147,7 @@ common:
         - "0x0000000000000000000000000000000000000000"
         - "0x471ece3750da237f93b8e339c536989b8978a438"
 
+  defaultCurrencyDecimals: 18
   decimals:
     arke:
       ETHEREUM: 4
