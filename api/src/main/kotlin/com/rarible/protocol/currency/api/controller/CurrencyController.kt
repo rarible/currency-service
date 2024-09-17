@@ -39,6 +39,7 @@ class CurrencyController(
                         blockchain = it.blockchain,
                         address = it.address,
                         abbreviation = it.abbreviation,
+                        decimals = it.decimals,
                         rate = rate
                     )
                 }

@@ -147,6 +147,30 @@ common:
         - "0x0000000000000000000000000000000000000000"
         - "0x471ece3750da237f93b8e339c536989b8978a438"
 
+  decimals:
+    arke:
+      ETHEREUM: 4
+    atari:
+      ETHEREUM: 8
+    deflect:
+      ETHEREUM: 9
+    flow:
+      FLOW: 8
+    flowusd:
+      FLOW: 8
+    hue:
+      ETHEREUM: 4
+    reflect-finance:
+      ETHEREUM: 9
+    solana:
+      SOLANA: 9
+    usd-coin:
+      ETHEREUM: 6
+      FLOW: 8
+      MOONBEAM: 1
+    xcusdc:
+      MOONBEAM: 1
+
   # coins aliased by 'usd' value will always return 1:1 rate
   aliases:
     flowusd: usd
