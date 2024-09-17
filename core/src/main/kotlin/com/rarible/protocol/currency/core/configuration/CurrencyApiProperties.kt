@@ -18,6 +18,7 @@ internal const val PREFIX = "common"
 data class CurrencyApiProperties(
     val apiUrl: URI,
     val coins: Map<String, Map<String, List<String>>>,
+    val decimals: Map<String, Map<String, Int>>,
     val aliases: Map<String, String> = emptyMap(),
     val historySince: Instant,
     val request: RequestProperties = RequestProperties(),
@@ -92,7 +93,8 @@ data class CurrencyApiProperties(
                         alias = aliases[coinId],
                         blockchain = value.key,
                         address = it,
-                        abbreviation = getAbbreviation(coinId)
+                        abbreviation = getAbbreviation(coinId),
+                        decimals = decimals[coinId]?.get(value.key)
                     )
                 }
                 value.key to currencies
@@ -130,4 +132,5 @@ data class Currency(
     val blockchain: String,
     val alias: String? = null,
     val abbreviation: String? = null,
+    val decimals: Int? = null
 )

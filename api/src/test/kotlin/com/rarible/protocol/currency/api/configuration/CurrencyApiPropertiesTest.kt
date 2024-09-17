@@ -19,6 +19,7 @@ class CurrencyApiPropertiesTest {
                 "dai" to mapOf("ETHEREUM" to listOf(DAI))
             ),
             mapOf(),
+            mapOf(),
             Instant.now()
         )
 
@@ -34,6 +35,7 @@ class CurrencyApiPropertiesTest {
                 "flowusd" to mapOf("FLOW" to listOf("123")),
                 "flow" to mapOf("FLOW" to listOf("321")),
             ),
+            mapOf(),
             mapOf("flowusd" to "usd"),
             Instant.now()
         )
@@ -48,6 +50,30 @@ class CurrencyApiPropertiesTest {
         assertThat(props.getRealCoin(flowUsdAlias)).isEqualTo("usd")
         // Real coin
         assertThat(props.getRealCoin(flow)).isEqualTo("flow")
+    }
+
+    @Test
+    fun `should populate currencies decimals`() {
+        val props = CurrencyApiProperties(
+            URI.create("localhost"),
+            mapOf(
+                "degen-base" to mapOf("BASE" to listOf("0x0000000000000000000000000000000000000000")),
+                "dai" to mapOf("PALM" to listOf(DAI))
+            ),
+            mapOf(
+                "degen-base" to mapOf("BASE" to 18),
+                "dai" to mapOf("PALM" to 10)
+            ),
+            mapOf(),
+            Instant.now()
+        )
+
+        val currencies = props.getAllCurrencies()
+        val dai = currencies.first { it.currencyId == "dai" }
+        assertThat(dai.decimals).isEqualTo(10)
+
+        val base = currencies.first { it.currencyId == "degen-base" }
+        assertThat(base.decimals).isEqualTo(18)
     }
 
     companion object {

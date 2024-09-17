@@ -147,6 +147,170 @@ common:
         - "0x0000000000000000000000000000000000000000"
         - "0x471ece3750da237f93b8e339c536989b8978a438"
 
+  decimals:
+    ethereum:
+      ETHEREUM: 18
+      IMMUTABLEX: 18
+      ARBITRUM: 18
+    apecoin:
+      ETHEREUM: 18
+    arbitrum:
+      ARBITRUM: 18
+    arke:
+      ETHEREUM: 4
+    ash:
+      ETHEREUM: 18
+    atari:
+      ETHEREUM: 8
+    base-god:
+      BASE: 18
+    based-brett:
+      BASE: 18
+    blur:
+      ETHEREUM: 18
+    blur-pool:
+      ETHEREUM: 18
+    bridged-usdc-polygon-pos-bridge:
+      POLYGON: 18
+    briun-armstrung:
+      BASE: 18
+    cube:
+      ETHEREUM: 18
+    dai:
+      ETHEREUM: 18
+      PALM: 18
+      POLYGON: 18
+    decentraland:
+      ETHEREUM: 18
+    deflect:
+      ETHEREUM: 9
+    degen-base:
+      BASE: 18
+    dogami:
+      POLYGON: 18
+    doginme:
+      BASE: 18
+    donkey:
+      ETHEREUM: 18
+    dynamite:
+      ETHEREUM: 18
+    ecomi:
+      IMMUTABLEX: 18
+    fief:
+      ETHEREUM: 18
+    firdaos:
+      ETHEREUM: 18
+    flow:
+      FLOW: 8
+    flowusd:
+      FLOW: 8
+    gamee:
+      ETHEREUM: 18
+    gods-unchained:
+      IMMUTABLEX: 18
+    guild-of-guardians:
+      IMMUTABLEX: 18
+    hue:
+      ETHEREUM: 4
+    immutable-x:
+      ETHEREUM: 18
+    imx-usdc:
+      IMMUTABLEX: 18
+    lightlink:
+      ETHEREUM: 18
+      LIGHTLINK: 18
+    lisk:
+      LISK: 18
+    lux-expression:
+      ETHEREUM: 18
+    many:
+      ETHEREUM: 18
+    matic-network:
+      ETHEREUM: 18
+      POLYGON: 18
+    mfercoin:
+      BASE: 18
+    mochi-thecatcoin:
+      BASE: 18
+    monavale:
+      ETHEREUM: 18
+      POLYGON: 18
+    normie-2:
+      BASE: 18
+    polyient-games-unity:
+      ETHEREUM: 18
+    prosper:
+      ETHEREUM: 18
+    rarible:
+      ETHEREUM: 18
+    reflect-finance:
+      ETHEREUM: 9
+    revv:
+      ETHEREUM: 18
+    rotten:
+      ETHEREUM: 18
+    solana:
+      SOLANA: 9
+    speth:
+      KROMA: 18
+    terra-virtua-kolect:
+      ETHEREUM: 18
+    the-sandbox:
+      ETHEREUM: 18
+      POLYGON: 18
+    toshi:
+      BASE: 18
+    usd-coin:
+      ETHEREUM: 6
+      FLOW: 8
+      MOONBEAM: 1
+      POLYGON: 18
+    walephzero:
+      ALEPHZERO: 18
+    wchz:
+      CHILIZ: 18
+    weth:
+      ARBITRUM: 18
+      ASTARZKEVM: 18
+      BASE: 18
+      CELO: 18
+      ETHEREUM: 18
+      KROMA: 18
+      LIGHTLINK: 18
+      MANTLE: 18
+      MATCH: 18
+      MOONBEAM: 18
+      OASYS: 18
+      OPTIMISM: 18
+      PALM: 18
+      POLYGON: 18
+      RARI: 18
+      XAI: 18
+      ZKSYNC: 18
+    wglmr:
+      MOONBEAM: 18
+    wmatic:
+      POLYGON: 18
+    wmnt:
+      MANTLE: 18
+    woasys:
+      OASYS: 18
+      SAAKURU: 18
+    wpalm:
+      PALM: 18
+    wrose:
+      OASIS: 18
+    wsei:
+      SEI: 18
+    wtez:
+      ETHERLINK: 18
+    wxai:
+      XAI: 18
+    xai:
+      XAI: 18
+    xcusdc:
+      MOONBEAM: 1
+
   # coins aliased by 'usd' value will always return 1:1 rate
   aliases:
     flowusd: usd
