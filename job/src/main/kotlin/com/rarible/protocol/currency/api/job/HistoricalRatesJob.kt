@@ -54,9 +54,7 @@ class HistoricalRatesJob(
                     currencyJobMetrics.onCurrencyLoadNotFound(currencyId)
                     break
                 } catch (ex: Throwable) {
-                    logger.error(
-                        "Can't load currency for $currencyId, attempt $attempt/${request.attempts}, cause=${ex.message ?: ex.cause?.message}", ex
-                    )
+                    logError(attempt, currencyId, ex)
                     currencyJobMetrics.onCurrencyLoadError(currencyId)
                     delay(request.errorDelay)
                 }
@@ -65,6 +63,15 @@ class HistoricalRatesJob(
             delay(request.delay)
         }
         logger.info("Finished load of historical prices")
+    }
+
+    private fun logError(attempt: Int, currencyId: String, ex: Throwable) {
+        val reason = ex.message ?: ex.cause?.message
+        if (attempt == request.attempts) {
+            logger.error("couldn't load rates for $currencyId after $attempt attempts, cause=${reason}", ex)
+        } else {
+            logger.info("couldn't load rates for $currencyId, attempt $attempt/${request.attempts}, cause=${reason}")
+        }
     }
 
     suspend fun loadCurrency(currencyId: String) {
