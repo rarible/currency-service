@@ -121,6 +121,7 @@ common:
     walephzero: aleph-zero
     wbera: berachain-bera
     berachain-honey: usd
+    trnsk: usd
 
   abbreviations:
     apecoin: "ape"
