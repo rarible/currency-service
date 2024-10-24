@@ -13,8 +13,6 @@ protocol-currency-api:
   environments:
     <<: *sharedEnv
     SPRING_PROFILES_ACTIVE: 'core,core-{{ include "service.env" $ }},{{ include "service.env" $ }},api'
-  nodeSelector:
-    node.labels.rarible.service: true
   resources:
     jvm:
       xmx_megabytes: 512
@@ -31,8 +29,6 @@ protocol-currency-job:
   environments:
     <<: *sharedEnv
     SPRING_PROFILES_ACTIVE: 'core,core-{{ include "service.env" $ }},{{ include "service.env" $ }},job'
-  nodeSelector:
-    node.labels.rarible.service: true
   resources:
     jvm:
       xmx_megabytes: 512
