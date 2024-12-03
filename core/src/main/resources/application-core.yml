@@ -82,7 +82,7 @@ common:
     aptos:
       # Base64 (Basic) encoding of UT8-encoding of the string "0x1::aptos_coin::AptosCoin"
       APTOS: "MHgxOjphcHRvc19jb2luOjpBcHRvc0NvaW4="
-    tloc:
+    tlos:
       TELOS: "0x0000000000000000000000000000000000000000"
 
   defaultCurrencyDecimals: 18
