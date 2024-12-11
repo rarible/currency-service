@@ -96,7 +96,6 @@ common:
     wtez: tezos
     kolibri-usd: usd
     usdtez: usd
-    tether: usd
     wrapped-usdc: usd
     youves-uusd: usd
     imx-usdc: usd
