@@ -96,6 +96,7 @@ common:
     wtez: tezos
     kolibri-usd: usd
     usdtez: usd
+    tether: usd
     wrapped-usdc: usd
     youves-uusd: usd
     imx-usdc: usd
@@ -174,6 +175,7 @@ common:
     terra-virtua-kolect: "tvk"
     the-sandbox: "sand"
     usd-coin: "usdc"
+    tether: "usdt"
     usdtez: "usdtz"
     weth: "weth"
     wmatic: "wpol"
