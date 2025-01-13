@@ -84,6 +84,8 @@ common:
       APTOS: "MHgxOjphcHRvc19jb2luOjpBcHRvc0NvaW4="
     tlos:
       TELOS: "0x0000000000000000000000000000000000000000"
+    hbar:
+      HEDERA: "0x0000000000000000000000000000000000000000"
 
   defaultCurrencyDecimals: 18
 
