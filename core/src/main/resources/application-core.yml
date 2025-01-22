@@ -84,8 +84,8 @@ common:
       APTOS: "MHgxOjphcHRvc19jb2luOjpBcHRvc0NvaW4="
     tlos:
       TELOS: "0x0000000000000000000000000000000000000000"
-    hedera-hashgraph:
-      HEDERA: "0x0000000000000000000000000000000000000000"
+    hederaevm-hashgraph:
+      HEDERAEVM: "0x0000000000000000000000000000000000000000"
 
   defaultCurrencyDecimals: 18
 
@@ -215,4 +215,4 @@ common:
     berachain-bera: "bera"
     celo: "celo"
     wtlos: "wtlos"
-    hedera-hashgraph: "hbar"
+    hederaevm-hashgraph: "hbar"
