@@ -125,7 +125,6 @@ common:
     bnb: binancecoin
     walephzero: aleph-zero
     wbera: berachain-bera
-    berachain-honey: usd
     trnsk: usd
 
   abbreviations:
@@ -216,3 +215,4 @@ common:
     celo: "celo"
     wtlos: "wtlos"
     hederaevm-hashgraph: "hbar"
+    honey-3: "honey"
