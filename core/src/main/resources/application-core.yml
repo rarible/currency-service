@@ -86,6 +86,8 @@ common:
       TELOS: "0x0000000000000000000000000000000000000000"
     hederaevm-hashgraph:
       HEDERAEVM: "0x0000000000000000000000000000000000000000"
+    tomochain:
+      VICTION: "0x0000000000000000000000000000000000000000"
 
   defaultCurrencyDecimals: 18
 
@@ -216,3 +218,4 @@ common:
     wtlos: "wtlos"
     hederaevm-hashgraph: "hbar"
     honey-3: "honey"
+    tomochain: "vic"
