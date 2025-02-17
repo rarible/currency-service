@@ -131,6 +131,7 @@ common:
     walephzero: aleph-zero
     wbera: berachain-bera
     trnsk: usd
+    wbtc: bitcoin
 
   abbreviations:
     apecoin: "ape"
