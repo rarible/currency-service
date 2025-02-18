@@ -44,6 +44,7 @@ common:
       ABSTRACT: "0x0000000000000000000000000000000000000000"
       ECLIPSE: "So11111111111111111111111111111111111111112"
       SHAPE: "0x0000000000000000000000000000000000000000"
+      SETTLUS: "0x0000000000000000000000000000000000000000"
     optimism:
       OPTIMISM: "0x0000000000000000000000000000000000000000"
     mantle:
@@ -88,6 +89,8 @@ common:
       HEDERAEVM: "0x0000000000000000000000000000000000000000"
     tomochain:
       VICTION: "0x0000000000000000000000000000000000000000"
+    bitcoin:
+      GOAT: "0x0000000000000000000000000000000000000000"
 
   defaultCurrencyDecimals: 18
 
@@ -128,6 +131,7 @@ common:
     walephzero: aleph-zero
     wbera: berachain-bera
     trnsk: usd
+    wbtc: bitcoin
 
   abbreviations:
     apecoin: "ape"
@@ -219,3 +223,4 @@ common:
     hederaevm-hashgraph: "hbar"
     honey-3: "honey"
     tomochain: "vic"
+    bitcoin: "btc"
