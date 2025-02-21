@@ -91,6 +91,8 @@ common:
       VICTION: "0x0000000000000000000000000000000000000000"
     bitcoin:
       GOAT: "0x0000000000000000000000000000000000000000"
+    hyperliquid:
+      HYPEREVM: "0x0000000000000000000000000000000000000000"
 
   defaultCurrencyDecimals: 18
 
@@ -224,3 +226,4 @@ common:
     honey-3: "honey"
     tomochain: "vic"
     bitcoin: "btc"
+    hyperliquid: "hype"
