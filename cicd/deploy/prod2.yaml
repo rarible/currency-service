@@ -1,0 +1,47 @@
+global:
+  ########### tailscale
+  tailscale: &tailscale
+    automountServiceAccountToken: true
+    serviceAccountName: tailscale
+    sidecars:
+    - name: ts-sidecar
+      image: ghcr.io/tailscale/tailscale:latest
+      env:
+        - name: TS_USERSPACE
+          value: 'false'
+        - name: TS_DEBUG_FIREWALL_MODE
+          value: auto
+        - name: TS_ACCEPT_DNS
+          value: 'true'
+        - name: TS_EXTRA_ARGS
+          value: '--advertise-tags=tag:oauth --accept-routes'
+        - name: TS_KUBE_SECRET
+          value: ""
+        - name: TS_STATE_DIR
+          value: "/usr/app/state/"
+        - name: TS_AUTHKEY
+          valueFrom:
+            secretKeyRef:
+              name: tailscale
+              key: authkey
+      imagePullPolicy: Always
+      securityContext:
+        capabilities:
+          add:
+            - NET_ADMIN
+        privileged: true
+  environments: &sharedEnv
+    MONGODB_HOSTS: "mongo1.rarible.int.,mongo2.rarible.int.,mongo3.rarible.int."
+    MONGODB_DATABASE: "protocol-currency"
+
+protocol-currency-api:
+  <<: *tailscale
+  environments:
+    <<: *sharedEnv
+  replicas: 2
+
+protocol-currency-job:
+  <<: *tailscale
+  environments:
+    <<: *sharedEnv
+  replicas: 0
