@@ -1,6 +1,6 @@
 # Currency Service
 
-Currency Service gives the exchange rates of various blockchains tokens for the USD.
+Currency Service gives the exchange rates of various blockchains tokens for the USD. 
 
 ## Suggestions
 
