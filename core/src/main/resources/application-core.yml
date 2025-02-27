@@ -85,8 +85,9 @@ common:
       APTOS: "MHgxOjphcHRvc19jb2luOjpBcHRvc0NvaW4="
     tlos:
       TELOS: "0x0000000000000000000000000000000000000000"
-    hederaevm-hashgraph:
+    hedera-hashgraph:
       HEDERAEVM: "0x0000000000000000000000000000000000000000"
+      HEDERA: "0.0.0"
     tomochain:
       VICTION: "0x0000000000000000000000000000000000000000"
     bitcoin:
@@ -222,7 +223,7 @@ common:
     berachain-bera: "bera"
     celo: "celo"
     wtlos: "wtlos"
-    hederaevm-hashgraph: "hbar"
+    hedera-hashgraph: "hbar"
     honey-3: "honey"
     tomochain: "vic"
     bitcoin: "btc"
