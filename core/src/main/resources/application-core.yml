@@ -228,3 +228,4 @@ common:
     tomochain: "vic"
     bitcoin: "btc"
     hyperliquid: "hype"
+    wrapped-hype: "whype"
