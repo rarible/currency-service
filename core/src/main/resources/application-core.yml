@@ -137,6 +137,7 @@ common:
     wbera: berachain-bera
     trnsk: usd
     wbtc: bitcoin
+    wvic: wrapped-viction
 
   abbreviations:
     apecoin: "ape"
