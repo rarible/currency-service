@@ -138,6 +138,7 @@ common:
     wbera: berachain-bera
     trnsk: usd
     wbtc: bitcoin
+    wgbtc: bitcoin
 
   abbreviations:
     apecoin: "ape"
