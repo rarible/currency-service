@@ -236,3 +236,4 @@ common:
     crossfi-2: "xfi"
     wrapped-xfi: "wxfi"
     wrapped-viction: "wvic"
+    wrapped-hbar: "whbar"
