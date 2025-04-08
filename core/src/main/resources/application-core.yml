@@ -136,6 +136,7 @@ common:
     walephzero: aleph-zero
     wbera: berachain-bera
     trnsk: usd
+    btc: bitcoin
     wbtc: bitcoin
     wgbtc: bitcoin
 

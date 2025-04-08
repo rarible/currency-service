@@ -38,7 +38,7 @@ protocol-currency-api:
   <<: *tailscale
   environments:
     <<: *sharedEnv
-  replicas: 2
+  replicas: 0
 
 protocol-currency-job:
   <<: *tailscale
